@@ -1,5 +1,9 @@
 package frc.robot.subsystems;
 
+/**
+ * @author Emilyn Heikell
+ * <p>Driving makes the wheels go 'round</p>
+ */
 public class Drive extends Subsystem {
     public Drive() {
         super.register("drive", this);
