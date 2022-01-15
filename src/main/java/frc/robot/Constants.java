@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -12,4 +14,13 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+    // Sparks START
+    public static Spark     frontLeftWheelSpark = new Spark(9),
+                            frontRightWheelSpark = new Spark(1),
+                            backLeftWheelSpark = new Spark(8),
+                            backRightWheelSpark = new Spark(0);
+    public static Spark     shooterSpark = new Spark(2);
+    // Sparks END
+    public static final XboxController CONTROLLER = new XboxController(0);
+}
