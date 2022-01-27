@@ -22,7 +22,7 @@ public abstract class Subsystem extends SubsystemBase {
      * <p>Initialize all subsystems ONCE in this bracket.</p>
      */
     static {
-        new Drive();
+        
     }
 
     /**
