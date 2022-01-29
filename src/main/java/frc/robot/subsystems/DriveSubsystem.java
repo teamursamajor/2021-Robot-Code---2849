@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
-  final Spark frontRight = new Spark(Constants.FrontRightDrivePort);
-  final Spark frontLeft = new Spark(Constants.FrontLeftDrivePort);
-  final Spark backRight = new Spark(Constants.BackRightDrivePort);
-  final Spark backLeft = new Spark(Constants.BackLeftDrivePort);
+  public final Spark FrontRightDrive = new Spark(Constants.FrontRightDrivePort);
+  public final Spark FrontLeftDrive = new Spark(Constants.FrontLeftDrivePort);
+  public final Spark BackRightDrive = new Spark(Constants.BackRightDrivePort);
+  public final Spark BackLeftDrive = new Spark(Constants.BackLeftDrivePort);
 
   /** Creates a new ExampleSubsystem. */
   public DriveSubsystem() {

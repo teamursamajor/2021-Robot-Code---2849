@@ -1,10 +1,9 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.commands;
-
-import frc.robot.Constants;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.*;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -12,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final DriveSubsystem driveSubsystem;
+  XboxController xboxcontroller = new XboxController(0);
 
   /**
    * Creates a new ExampleCommand.
@@ -27,19 +27,21 @@ public class DriveCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("intialzied");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //System.out.println("it works");
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
-
-    leftStickY = Constants.XboxController.getAxis(Constants.XboxController.AXIS_LEFTSTICK_Y);
-    rightStickX = -Constants.XboxController.getAxis(Constants.XboxController.AXIS_RIGHTSTICK_X);
-
+    leftStickY = xboxcontroller.getRawAxis(1);
+    rightStickX = -xboxcontroller.getRawAxis(4);
+    System.out.println("Left Stick: " + leftStickY);
+    System.out.println("Right Stick: " + rightStickX);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
-
+    
     double max = Math.max(leftSpeed, rightSpeed); // the greater of the two values
     double min = Math.min(leftSpeed, rightSpeed); // the lesser of the two values
 
@@ -53,6 +55,7 @@ public class DriveCommand extends CommandBase {
 
     setLeftPower(leftSpeed);
     setRightPower(rightSpeed);
+    //System.out.println("it works 2");
   }
 
   public void setLeftPower(final double power) {
@@ -62,8 +65,8 @@ public class DriveCommand extends CommandBase {
   }
 
   public void setRightPower(final double power) {
-    driveSubsystem.BackRightDrive.set(-power);
-    driveSubsystem.FrontRightDrive.set(-power);
+    driveSubsystem.BackRightDrive.set(power);
+    driveSubsystem.FrontRightDrive.set(power);
     System.out.println("right speed: " + power);
   }
 
@@ -72,6 +75,8 @@ public class DriveCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    setLeftPower(0);
+    setRightPower(0);
   }
 
   // Returns true when the command should end.

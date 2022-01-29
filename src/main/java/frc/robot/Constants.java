@@ -5,7 +5,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -21,9 +20,8 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
  */
 public final class Constants {
 
-    final XboxController xboxController = new XboxController(0);
-    public static final int BackLeftDrivePort = 0;
+    public static final int BackLeftDrivePort = 8;
     public static final int BackRightDrivePort = 0;
-    public static final int FrontLeftDrivePort = 0;
-    public static final int FrontRightDrivePort = 0;
+    public static final int FrontLeftDrivePort = 9;
+    public static final int FrontRightDrivePort = 1;
 }
