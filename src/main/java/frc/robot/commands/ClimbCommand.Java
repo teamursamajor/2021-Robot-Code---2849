@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.subsystems.ShooterSubsystem
 import frc.robot.subsystems.CatapultSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -19,7 +20,18 @@ public class ClimbCommand extends CommandBase {
     
     @Override
     public void execute() {
-        
+        System.out.println("Execute");
     }
+
+    @Override
+    public void end() {
+        System.out.println("Done");
+    }
+
+    @Override
+    public boolean isFinished(){
+        return false;
+    }
+
 
 }
