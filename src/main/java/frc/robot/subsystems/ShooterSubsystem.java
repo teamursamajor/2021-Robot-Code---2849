@@ -2,9 +2,9 @@ package frc.robot.subsystems;
 
 
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
-public class CatapultSubsystem {
+public class ShooterSubsystem {
     final Spark launcher = new Spark(5);
-    public CatapultSubsystem() {}
+    public ShooterSubsystem() {}
 
     //@Override
     public void periodic() {
