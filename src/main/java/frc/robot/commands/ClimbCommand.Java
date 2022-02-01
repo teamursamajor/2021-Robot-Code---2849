@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
-import frc.robot.subsystems.ShooterSubsystem
-import frc.robot.subsystems.CatapultSubsystem;
+import frc.robot.subsystems.ClimbSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ClimbCommand extends CommandBase {
