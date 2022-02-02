@@ -2,7 +2,8 @@ package frc.robot.subsystems;
 
 
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
-public class ShooterSubsystem {
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+public class ShooterSubsystem extends SubsystemBase {
     final Spark launcher = new Spark(5);
     public ShooterSubsystem() {}
 
