@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ClimbCommand;
@@ -31,6 +32,8 @@ public class RobotContainer {
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   private final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
+
+  private final ClimbSubsystem climbSubsystem = new ClimbSubsystem();
 
   private final ClimbCommand climbCommand = new ClimbCommand(climbSubsystem);
 

@@ -1,7 +1,9 @@
 package frc.robot.commands;
 
-import frc.robot.subsystems.ClimbSubsystem;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.ClimbSubsystem;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 
 public class ClimbCommand extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
@@ -23,7 +25,7 @@ public class ClimbCommand extends CommandBase {
     }
 
     @Override
-    public void end() {
+    public void end(boolean interrupted) {
         System.out.println("Done");
     }
 
