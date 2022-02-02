@@ -29,20 +29,20 @@ public class RobotContainer {
   XboxController xboxController = new XboxController(1); // Creates an XboxController on port 0.
 
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
 
-  private final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
+  private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
-  private final ClimbSubsystem climbSubsystem = new ClimbSubsystem();
+  private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
-  private final ClimbCommand climbCommand = new ClimbCommand(climbSubsystem);
+  private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
-    driveSubsystem.setDefaultCommand(driveCommand);
+    DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
     configureButtonBindings();
   }
 
