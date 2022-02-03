@@ -5,6 +5,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -24,4 +25,5 @@ public final class Constants {
     public static final int BackRightDrivePort = 0;
     public static final int FrontLeftDrivePort = 9;
     public static final int FrontRightDrivePort = 1;
+    public static final XboxController XBOXCONTROLLER = new XboxController(0);
 }

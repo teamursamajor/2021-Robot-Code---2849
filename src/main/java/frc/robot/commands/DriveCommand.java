@@ -4,14 +4,15 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.*;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
 
 /** An example command that uses an example subsystem. */
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final DriveSubsystem driveSubsystem;
-  XboxController xboxcontroller = new XboxController(0);
 
   /**
    * Creates a new ExampleCommand.
@@ -35,8 +36,8 @@ public class DriveCommand extends CommandBase {
   public void execute() {
     //System.out.println("it works");
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
-    leftStickY = xboxcontroller.getRawAxis(1);
-    rightStickX = -xboxcontroller.getRawAxis(4);
+    leftStickY = Constants.XBOXCONTROLLER.getRawAxis(1);
+    rightStickX = Constants.XBOXCONTROLLER.getRawAxis(4);
     System.out.println("Left Stick: " + leftStickY);
     System.out.println("Right Stick: " + rightStickX);
     leftSpeed = leftStickY + rightStickX;
