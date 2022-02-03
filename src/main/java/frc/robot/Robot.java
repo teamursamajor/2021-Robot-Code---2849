@@ -6,10 +6,16 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+//Color Stuff
 import edu.wpi.first.wpilibj.util.Color;
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorMatchResult;
+import com.revrobotics.ColorSensorV3;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import com.revrobotics.ColorSensorV3;
+
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -30,7 +36,11 @@ public class Robot extends TimedRobot {
 
     private final I2C.Port i2cPort = I2C.Port.kOnboard;
     private final ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
-    //private final ColorMatch colorMatcher = new ColorMatch();
+    private final ColorMatch colorMatcher = new ColorMatch();
+
+    private final Color redBallColor = ColorMatch.makeColor(0.119, 0.421, 0.459);
+    private final Color blueBallColor = ColorMatch.makeColor(0.183, 0.579, 0.247);
+    
     
 
   /**
