@@ -5,12 +5,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import static frc.robot.Constants.*;
 
 /** An example command that uses an example subsystem. */
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final DriveSubsystem driveSubsystem;
-  XboxController xboxcontroller = new XboxController(0);
 
   /**
    * Creates a new ExampleCommand.
@@ -34,8 +34,8 @@ public class DriveCommand extends CommandBase {
   public void execute() {
     //System.out.println("it works");
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
-    leftStickY = xboxcontroller.getRawAxis(1);
-    rightStickX = -xboxcontroller.getRawAxis(4);
+    leftStickY = XBOX_CONTROLLER.getRawAxis(1);
+    rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
     System.out.println("Left Stick: " + leftStickY);
     System.out.println("Right Stick: " + rightStickX);
     leftSpeed = leftStickY + rightStickX;

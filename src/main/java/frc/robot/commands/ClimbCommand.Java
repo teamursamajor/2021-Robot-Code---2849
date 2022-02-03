@@ -9,7 +9,7 @@ public class ClimbCommand extends CommandBase {
 
     public ClimbCommand(ClimbSubsystem subsystem){
         CLIMB_SUBSYSTEM = subsystem;
-        addRequirements(subsystem);
+        addRequirements(CLIMB_SUBSYSTEM);
     }
 
     @Override
