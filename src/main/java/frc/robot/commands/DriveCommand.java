@@ -22,6 +22,8 @@ public class DriveCommand extends CommandBase {
     DRIVE_SUBSYSTEM = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
+
+    setName("Drive (Command)");
   }
 
   // Called when the command is initially scheduled.
@@ -37,8 +39,8 @@ public class DriveCommand extends CommandBase {
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOX_CONTROLLER.getRawAxis(1);
     rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
-    System.out.println("Left Stick: " + leftStickY);
-    System.out.println("Right Stick: " + rightStickX);
+    log(DRIVE_SUBSYSTEM.getName(), "Left Stick: " + leftStickY);
+    log(DRIVE_SUBSYSTEM.getName(), "Right Stick: " + rightStickX);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
 
@@ -61,13 +63,13 @@ public class DriveCommand extends CommandBase {
   public void setLeftPower(final double power) {
     DRIVE_SUBSYSTEM.BACK_LEFT_DRIVE.set(-power);
     DRIVE_SUBSYSTEM.FRONT_LEFT_DRIVE.set(-power);
-    System.out.println("left speed: " + power);
+    log(DRIVE_SUBSYSTEM.getName(), "left speed: " + power);
   }
 
   public void setRightPower(final double power) {
     DRIVE_SUBSYSTEM.BACK_RIGHT_DRIVE.set(power);
     DRIVE_SUBSYSTEM.FRONT_RIGHT_DRIVE.set(power);
-    System.out.println("right speed: " + power);
+    log(DRIVE_SUBSYSTEM.getName(), "right speed: " + power);
   }
 
   // Called once the command ends or is interrupted.

@@ -1,12 +1,16 @@
 package frc.robot.subsystems;
 
+import static frc.robot.Constants.*;
+
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShooterSubsystem extends SubsystemBase {
-  private final Spark LAUNCHER = new Spark(5);
+  public final Spark SHOOTER = new Spark(SHOOTER_PORT);
 
-  public ShooterSubsystem() {}
+  public ShooterSubsystem() {
+    setName("Shooter");
+  }
 
   // @Override
   public void periodic() {

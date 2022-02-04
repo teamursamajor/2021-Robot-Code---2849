@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -16,10 +18,19 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public final class Constants {
 
+  public static final RuntimeMXBean RUNTIME = ManagementFactory.getRuntimeMXBean();
+
   public static final int BACK_LEFT_DRIVER_PORT = 8;
   public static final int BACK_RIGHT_DRIVE_PORT = 0;
   public static final int FRONT_LEFT_DRIVE_PORT = 9;
   public static final int FRONT_RIGHT_DRIVE_PORT = 1;
 
+  public static final int SHOOTER_PORT = 0; // TODO: real port num
+  public static final int CLIMB_PORT = 0; // TODO: real port num
+
   public static final XboxController XBOX_CONTROLLER = new XboxController(0);
+
+  public static final void log(String source, String msg) {
+    System.out.printf("%s @ %d: %s\n", source, RUNTIME.getUptime(), msg);
+  }
 }

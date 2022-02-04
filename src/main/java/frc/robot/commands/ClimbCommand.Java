@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import static frc.robot.Constants.*;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimbSubsystem;
 
@@ -10,21 +12,23 @@ public class ClimbCommand extends CommandBase {
   public ClimbCommand(ClimbSubsystem subsystem) {
     CLIMB_SUBSYSTEM = subsystem;
     addRequirements(CLIMB_SUBSYSTEM);
+
+    setName("Climb (Command)");
   }
 
   @Override
   public void initialize() {
-    System.out.println("intialzied");
+    log(CLIMB_SUBSYSTEM.getName(), "intialzied");
   }
 
   @Override
   public void execute() {
-    System.out.println("Execute");
+    log(CLIMB_SUBSYSTEM.getName(), "Execute");
   }
 
   @Override
   public void end(boolean interrupted) {
-    System.out.println("Done");
+    log(CLIMB_SUBSYSTEM.getName(), "Done");
   }
 
   @Override

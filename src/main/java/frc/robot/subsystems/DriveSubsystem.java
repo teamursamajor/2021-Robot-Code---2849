@@ -15,7 +15,9 @@ public class DriveSubsystem extends SubsystemBase {
   public final Spark BACK_LEFT_DRIVE = new Spark(Constants.BACK_LEFT_DRIVER_PORT);
 
   /** Creates a new ExampleSubsystem. */
-  public DriveSubsystem() {}
+  public DriveSubsystem() {
+    setName("Drive");
+  }
 
   @Override
   public void periodic() {
