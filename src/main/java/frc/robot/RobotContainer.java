@@ -11,7 +11,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ClimbCommand;
 import edu.wpi.first.wpilibj2.command.Command;
-
+import static frc.robot.Constants.*;
 /**
  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a
@@ -22,10 +22,6 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-
-  // define the joystick.
-
-  XboxController xboxController = new XboxController(1); // Creates an XboxController on port 0.
 
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
