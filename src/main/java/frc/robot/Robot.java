@@ -21,7 +21,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.I2C;
-//import edu.wpli.first.wpilibj2.
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -37,9 +36,11 @@ public class Robot extends TimedRobot {
     private final I2C.Port i2cPort = I2C.Port.kOnboard;
     private final ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
     private final ColorMatch colorMatcher = new ColorMatch();
+    private final Color redBall = new Color(0.412, 0.184, .405);
+    private final Color blueBall = new Color(0.180, 0.404, .417);
 
-    private final Color redBallColor = ColorMatch.makeColor(0.119, 0.421, 0.459);
-    private final Color blueBallColor = ColorMatch.makeColor(0.183, 0.579, 0.247);
+    //private final Color redBallColor = ColorMatch.makeColor(0.119, 0.421, 0.459);
+    //private final Color blueBallColor = ColorMatch.makeColor(0.183, 0.579, 0.247);
     
     
 
@@ -49,6 +50,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    colorMatcher.addColorMatch(redBall);
+    colorMatcher.addColorMatch(blueBall);
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
@@ -70,9 +73,22 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     Color detectedColor = colorSensor.getColor();
-    System.out.println("Red: " + detectedColor.red);
+    /*System.out.println("Red: " + detectedColor.red);
     System.out.println("Green: " + detectedColor.green);
-    System.out.println("Blue: " +  detectedColor.blue);
+    System.out.println("Blue: " +  detectedColor.blue);*/
+
+
+    //TODO: Possibly replace matchClosestColor call with matchColor call so that it can say if a color is neither red nor blue.
+    ColorMatchResult matchColor = colorMatcher.matchClosestColor(detectedColor);
+
+    if (matchColor.color == blueBall) {
+      System.out.println("Blue");
+    } else if (matchColor.color == redBall) 
+      System.out.println("Red");
+     else {
+      System.out.println("Nothing");
+    }
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
