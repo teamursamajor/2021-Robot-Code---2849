@@ -27,6 +27,8 @@ public final class Constants {
 
   public static final int SHOOTER_PORT = 0; // TODO: real port num
   public static final int CLIMB_PORT = 0; // TODO: real port num
+  public static final int INTAKE_PORT = 0; // TODO: real port num
+  public static final int BELT_PORT = 0; //TODO: real port num
 
   public static final XboxController XBOX_CONTROLLER = new XboxController(0);
 
