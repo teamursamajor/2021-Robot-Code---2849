@@ -41,9 +41,13 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    
     // Configure the button bindings
-    driveSubsystem.setDefaultCommand(driveCommand);
+    //driveSubsystem.setDefaultCommand(driveCommand);
+    System.out.println("1");
+    climbSubsystem.setDefaultCommand(climbCommand);
     configureButtonBindings();
+    
   }
 
   /**
@@ -55,6 +59,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
     //JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new JoystickButton object for
                                                                         // button 1 on exampleStick
     // Binds an ExampleCommand to be scheduled when the trigger of the example

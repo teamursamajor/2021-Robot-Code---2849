@@ -13,6 +13,7 @@ public class ClimbCommand extends CommandBase {
     private final ClimbSubsystem climbSubsystem;
 
     public ClimbCommand(ClimbSubsystem subsystem){
+        System.out.println("construct");
         climbSubsystem = subsystem;
         addRequirements(subsystem);
     }
@@ -25,10 +26,16 @@ public class ClimbCommand extends CommandBase {
 
     public void execute() {
         System.out.println("Execute");
-        boolean isAPressed = Constants.XBOXCONTROLLER.getAButtonPressed();
-        boolean isBPressed = Constants.XBOXCONTROLLER.getBButtonPressed();
+        boolean isAPressed = Constants.XBOXCONTROLLER.getAButton();
+        System.out.println("Varible a "+ isAPressed );
+        boolean isBPressed = Constants.XBOXCONTROLLER.getBButton();
+        System.out.println("Varible b "+ isBPressed );
         if(isAPressed){
-
+            climbSubsystem.moterMove(.25);
+        }else if(isBPressed){
+            climbSubsystem.moterMove(-.25);
+        }else{
+            climbSubsystem.moterMove(0);
         }
     }
         

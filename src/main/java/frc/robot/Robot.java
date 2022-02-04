@@ -58,15 +58,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
-    CommandScheduler.getInstance().run();
-    Color detectedColor = colorSensor.getColor();
-    System.out.println("Red: " + detectedColor.red);
-    System.out.println("Green: " + detectedColor.green);
-    System.out.println("Blue: " +  detectedColor.blue);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -105,29 +101,14 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry ta = table.getEntry("ta");
-    NetworkTableEntry ts = table.getEntry("ts");
-
-    double x = tx.getDouble(0.0);
-    double y = ty.getDouble(0.0);
-    double area = ta.getDouble(0.0);
-    double skew = ts.getDouble(0.0);
-
-    System.out.println(x + " " + y + " " + area);
-    SmartDashboard.putNumber("LimelightX", x);
-    SmartDashboard.putNumber("LimelightY", y);
-    SmartDashboard.putNumber("LimelightArea", area);
-    SmartDashboard.putNumber("LimelightSkew", skew);
-    //min shooting range, 5 ft, max 30 ft
+    
 
   }
 
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
+    System.out.println("BAD");
     CommandScheduler.getInstance().cancelAll();
   }
 

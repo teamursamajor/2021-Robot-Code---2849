@@ -4,12 +4,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
+
+
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 public class ClimbSubsystem extends SubsystemBase{
    // private final ClimbSubsystem m_ClimbSubsystem;
     public Spark climber = new Spark(3);
-    public Talon climbOne = new Talon(3);
-    public Talon climbTwo = new Talon(0);
+    public TalonFX climbOne = new TalonFX(3);
+    public TalonFX climbTwo = new TalonFX(0);
+    
     public ClimbSubsystem() {
+
 
     }
 
@@ -21,5 +27,9 @@ public class ClimbSubsystem extends SubsystemBase{
     //@Override
     public void SimulationPeriodic() {
         
+    }
+    public void moterMove(double speed){
+        climbOne.set(TalonFXControlMode.PercentOutput, speed);
+        climbOne.set(TalonFXControlMode.PercentOutput, speed);
     }
 }
