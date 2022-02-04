@@ -2,14 +2,15 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 package frc.robot.commands;
-import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.subsystems.DriveSubsystem;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+
 import static frc.robot.Constants.*;
+
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.DriveSubsystem;
 
 /** An example command that uses an example subsystem. */
 public class DriveCommand extends CommandBase {
-  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
+  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem driveSubsystem;
 
   /**
@@ -32,7 +33,7 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //System.out.println("it works");
+    // System.out.println("it works");
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOX_CONTROLLER.getRawAxis(1);
     rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
@@ -40,7 +41,7 @@ public class DriveCommand extends CommandBase {
     System.out.println("Right Stick: " + rightStickX);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
-    
+
     double max = Math.max(leftSpeed, rightSpeed); // the greater of the two values
     double min = Math.min(leftSpeed, rightSpeed); // the lesser of the two values
 
@@ -54,7 +55,7 @@ public class DriveCommand extends CommandBase {
 
     setLeftPower(leftSpeed);
     setRightPower(rightSpeed);
-    //System.out.println("it works 2");
+    // System.out.println("it works 2");
   }
 
   public void setLeftPower(final double power) {
@@ -68,8 +69,6 @@ public class DriveCommand extends CommandBase {
     driveSubsystem.FrontRightDrive.set(power);
     System.out.println("right speed: " + power);
   }
-
-
 
   // Called once the command ends or is interrupted.
   @Override

@@ -15,8 +15,7 @@ public class DriveSubsystem extends SubsystemBase {
   public final Spark BackLeftDrive = new Spark(Constants.BackLeftDrivePort);
 
   /** Creates a new ExampleSubsystem. */
-  public DriveSubsystem() {
-  }
+  public DriveSubsystem() {}
 
   @Override
   public void periodic() {
