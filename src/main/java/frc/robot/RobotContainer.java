@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import static frc.robot.Constants.*;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -21,8 +23,6 @@ import frc.robot.subsystems.DriveSubsystem;
 public class RobotContainer {
 
   // define the joystick.
-
-  XboxController xboxController = new XboxController(1); // Creates an XboxController on port 0.
 
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();

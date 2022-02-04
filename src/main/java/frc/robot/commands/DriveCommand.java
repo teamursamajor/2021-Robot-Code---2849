@@ -11,7 +11,7 @@ import frc.robot.subsystems.DriveSubsystem;
 /** An example command that uses an example subsystem. */
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final DriveSubsystem driveSubsystem;
+  private final DriveSubsystem DRIVE_SUBSYSTEM;
 
   /**
    * Creates a new ExampleCommand.
@@ -19,7 +19,7 @@ public class DriveCommand extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
   public DriveCommand(DriveSubsystem subsystem) {
-    driveSubsystem = subsystem;
+    DRIVE_SUBSYSTEM = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -59,14 +59,14 @@ public class DriveCommand extends CommandBase {
   }
 
   public void setLeftPower(final double power) {
-    driveSubsystem.BackLeftDrive.set(-power);
-    driveSubsystem.FrontLeftDrive.set(-power);
+    DRIVE_SUBSYSTEM.BACK_LEFT_DRIVE.set(-power);
+    DRIVE_SUBSYSTEM.FRONT_LEFT_DRIVE.set(-power);
     System.out.println("left speed: " + power);
   }
 
   public void setRightPower(final double power) {
-    driveSubsystem.BackRightDrive.set(power);
-    driveSubsystem.FrontRightDrive.set(power);
+    DRIVE_SUBSYSTEM.BACK_RIGHT_DRIVE.set(power);
+    DRIVE_SUBSYSTEM.FRONT_RIGHT_DRIVE.set(power);
     System.out.println("right speed: " + power);
   }
 
