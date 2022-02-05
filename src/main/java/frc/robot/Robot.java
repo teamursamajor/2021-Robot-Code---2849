@@ -15,6 +15,10 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.I2C;
+import frc.robot.commands.AutoAlignCommand;
+import frc.robot.subsystems.DriveSubsystem;
+
+import static frc.robot.Constants.XBOXCONTROLLER;
 //import edu.wpli.first.wpilibj2.
 
 /**

@@ -11,6 +11,9 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ClimbCommand;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import static frc.robot.Constants.XBOXCONTROLLER;
+import frc.robot.commands.AutoAlignCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -25,16 +28,18 @@ public class RobotContainer {
 
   // define the joystick.
 
-  XboxController xboxController = new XboxController(1); // Creates an XboxController on port 0.
 
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
+
+  private final AutoAlignCommand AUTOALIGN_COMMAND = new AutoAlignCommand(DRIVE_SUBSYSTEM);
 
   private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
   private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
   private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
+
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -60,11 +65,9 @@ public class RobotContainer {
     // Binds an ExampleCommand to be scheduled when the trigger of the example
     // joystick is pressed
 
-    /*
-    new JoystickButton(xboxController, XboxController.Axis.kLeftX.value)
-    .and(new JoystickButton(xboxController, XboxController.Axis.kLeftY.value)).and(new JoystickButton(xboxController,XboxController.Axis.kRightX.value)).
-    and(new JoystickButton(xboxController, XboxController.Axis.kRightY.value)).whenActive(new DriveCommand(driveSubsystem));
-    */
+    
+    new JoystickButton(XBOXCONTROLLER, XboxController.Button.kY.value).whenPressed(new AutoAlignCommand(DRIVE_SUBSYSTEM));
+    
     //driveButton.whileHeld(new DriveCommand(driveSubsystem));
   }
 
