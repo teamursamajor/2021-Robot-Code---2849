@@ -4,10 +4,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.XboxController;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
-import edu.wpi.first.wpilibj.I2C;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -26,10 +26,10 @@ public final class Constants {
   public static final int FRONT_LEFT_DRIVE_PORT = 9;
   public static final int FRONT_RIGHT_DRIVE_PORT = 1;
 
-  public static final int SHOOTER_PORT = 0; // TODO: real port num
-  public static final int CLIMB_PORT = 0; // TODO: real port num
-  public static final int INTAKE_PORT = 0; // TODO: real port num
-  public static final int BELT_PORT = 0; //TODO: real port num
+  public static final int SHOOTER_PORT = 2; // TODO: real port num
+  public static final int CLIMB_PORT = 3; // TODO: real port num
+  public static final int INTAKE_PORT = 4; // TODO: real port num
+  public static final int BELT_PORT = 2849; // TODO: real port num
 
   public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
 
