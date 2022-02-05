@@ -3,6 +3,8 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.*;
 
 import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorSensorV3.RawColor;
+
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -18,7 +20,7 @@ public class ColorSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    Color c = COLOR_SENSOR.getColor();
+    RawColor c = COLOR_SENSOR.getRawColor();
     System.out.printf("R: %f\nG: %f\nB: %f\n", c.red, c.green, c.blue);
   }
 
