@@ -13,7 +13,7 @@ import frc.robot.commands.ClimbCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
- * This class is where the bulk of the robot should be declared. Since
+//  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in
  * the {@link Robot}
