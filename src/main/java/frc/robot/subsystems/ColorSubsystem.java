@@ -3,13 +3,7 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.*;
 
 import com.revrobotics.ColorSensorV3;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import com.revrobotics.ColorSensorV3.RawColor;
->>>>>>> 15f911273f9fa5e69c9b1360b3caf4cf0215b1b5
-=======
->>>>>>> 4144bc06d573d8c22266f740d7aa4f859a59e781
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.ColorRGB;
