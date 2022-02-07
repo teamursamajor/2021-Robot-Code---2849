@@ -36,9 +36,9 @@ public class RobotContainer {
 
   private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
-  private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
+  //private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
-  private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
+  //private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
 
 
   /**
@@ -46,8 +46,8 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure the button bindings
-    DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
-    CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
+    //DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
+    //CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
     configureButtonBindings();
   }
 
@@ -66,7 +66,7 @@ public class RobotContainer {
     // joystick is pressed
 
     
-    new JoystickButton(XBOXCONTROLLER, XboxController.Button.kY.value).whenPressed(new AutoAlignCommand(DRIVE_SUBSYSTEM));
+    //new JoystickButton(XBOXCONTROLLER, XboxController.Button.kY.value).whenPressed(new AutoAlignCommand(DRIVE_SUBSYSTEM));
     
     //driveButton.whileHeld(new DriveCommand(driveSubsystem));
   }

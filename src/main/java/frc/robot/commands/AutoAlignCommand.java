@@ -111,6 +111,7 @@ public class AutoAlignCommand extends CommandBase{
         //detect target
         double x = this.getX();
         //if center, end
+        System.out.println("The distance is "+ getDistance());
         System.out.println("x is "+ x);
         if(x <= max && x >= min){
             setLeftPower(0);
