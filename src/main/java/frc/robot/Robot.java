@@ -21,6 +21,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
     private final ColorMatch colorMatcher = new ColorMatch();
     private final Color redBall = new Color(0.412, 0.184, .405);
     private final Color blueBall = new Color(0.180, 0.404, .417);
+    private DigitalInput lineBreak = new DigitalInput(0);
 
     //private final Color redBallColor = ColorMatch.makeColor(0.119, 0.421, 0.459);
     //private final Color blueBallColor = ColorMatch.makeColor(0.183, 0.579, 0.247);
@@ -72,22 +74,17 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    Color detectedColor = colorSensor.getColor();
+    if(lineBreak.get()){
+      System.out.println("Detected");
+    }
+    
     /*System.out.println("Red: " + detectedColor.red);
     System.out.println("Green: " + detectedColor.green);
     System.out.println("Blue: " +  detectedColor.blue);*/
 
 
     //TODO: Possibly replace matchClosestColor call with matchColor call so that it can say if a color is neither red nor blue.
-    ColorMatchResult matchColor = colorMatcher.matchClosestColor(detectedColor);
-
-    if (matchColor.color == blueBall) {
-      System.out.println("Blue");
-    } else if (matchColor.color == redBall) 
-      System.out.println("Red");
-     else {
-      System.out.println("Nothing");
-    }
+    
 
   }
 
@@ -127,22 +124,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry ta = table.getEntry("ta");
-    NetworkTableEntry ts = table.getEntry("ts");
-
-    double x = tx.getDouble(0.0);
-    double y = ty.getDouble(0.0);
-    double area = ta.getDouble(0.0);
-    double skew = ts.getDouble(0.0);
-
-    System.out.println(x + " " + y + " " + area);
-    SmartDashboard.putNumber("LimelightX", x);
-    SmartDashboard.putNumber("LimelightY", y);
-    SmartDashboard.putNumber("LimelightArea", area);
-    SmartDashboard.putNumber("LimelightSkew", skew);
+    
     //min shooting range, 5 ft, max 30 ft
 
   }
@@ -153,7 +135,5 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().cancelAll();
   }
 
-  /** This function is called periodically during test mode. */
-  @Override
-  public void testPeriodic() {}
+  
 }
