@@ -4,11 +4,19 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
-public class ExampleSubsystem extends SubsystemBase {
+public class DriveSubsystem extends SubsystemBase {
+  public final Spark FrontRightDrive = new Spark(Constants.FRONT_RIGHT_DRIVE_PORT);
+  public final Spark FrontLeftDrive = new Spark(Constants.FRONT_LEFT_DRIVE_PORT);
+  public final Spark BackRightDrive = new Spark(Constants.BACK_RIGHT_DRIVE_PORT);
+  public final Spark BackLeftDrive = new Spark(Constants.BACK_LEFT_DRIVE_PORT);
+
   /** Creates a new ExampleSubsystem. */
-  public ExampleSubsystem() {}
+  public DriveSubsystem() {
+  }
 
   @Override
   public void periodic() {
