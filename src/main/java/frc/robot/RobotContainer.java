@@ -66,7 +66,7 @@ public class RobotContainer {
     // joystick is pressed
 
     
-    //new JoystickButton(XBOXCONTROLLER, XboxController.Button.kY.value).whenPressed(new AutoAlignCommand(DRIVE_SUBSYSTEM));
+    new JoystickButton(XBOXCONTROLLER, XboxController.Button.kY.value).whenPressed(new AutoAlignCommand(DRIVE_SUBSYSTEM));
     
     //driveButton.whileHeld(new DriveCommand(driveSubsystem));
   }

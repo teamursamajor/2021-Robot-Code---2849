@@ -63,10 +63,10 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    Color detectedColor = colorSensor.getColor();
-    System.out.println("Red: " + detectedColor.red);
-    System.out.println("Green: " + detectedColor.green);
-    System.out.println("Blue: " +  detectedColor.blue);
+    //Color detectedColor = colorSensor.getColor();
+    //System.out.println("Red: " + detectedColor.red);
+    //System.out.println("Green: " + detectedColor.green);
+    //System.out.println("Blue: " +  detectedColor.blue);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -116,7 +116,7 @@ public class Robot extends TimedRobot {
     double area = ta.getDouble(0.0);
     double skew = ts.getDouble(0.0);
 
-    System.out.println(x + " " + y + " " + area);
+    //System.out.println(x + " " + y + " " + area);
     SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);

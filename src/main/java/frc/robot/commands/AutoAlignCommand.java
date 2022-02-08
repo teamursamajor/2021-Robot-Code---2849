@@ -105,7 +105,7 @@ public class AutoAlignCommand extends CommandBase{
 
     @Override
     public void execute() {
-        System.out.println("is ececuting");
+        System.out.println("is executing");
         double max = 5;
         double min = -5;
         //detect target
@@ -116,31 +116,35 @@ public class AutoAlignCommand extends CommandBase{
         if(x <= max && x >= min){
             setLeftPower(0);
             setRightPower(0);
-            System.out.println(getDistance());
+            System.out.println("distance is: " + getDistance());
             if(getDistance() >= minShooting && getDistance() <= maxShooting ){
-                System.out.println(getDistance());
+                System.out.println("1 " + getDistance());
                 //call shooter
                 alignFinished = true;
             
             }else if(getDistance() < minShooting){
                 setLeftPower(-.25);
                 setRightPower(-.25);
-            
+                System.out.println("2");
             }else if(getDistance() > maxShooting){
                 
                 setLeftPower(.25);
                 setRightPower(.25);
+                System.out.println("3");
             }
         }
         //else move robot to make target in the center
         if(x > max){
             setLeftPower(.25);
             setRightPower(0);
-        }else if(x > min){
+            System.out.println("4");
+        }else if(x < min){
             setRightPower(.25);
             setLeftPower(0);
+            System.out.println("5");
         }
         //end
+        alignFinished = true;
     }
 
     @Override
