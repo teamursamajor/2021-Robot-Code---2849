@@ -18,17 +18,17 @@ public class IntakeCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    log(INTAKE_SUBSYSTEM.getName(), "intialzied");
+    LOGGER.log(INTAKE_SUBSYSTEM, "intialzied");
   }
 
   @Override
   public void execute() {
-    log(INTAKE_SUBSYSTEM.getName(), "Executing");
+    LOGGER.log(INTAKE_SUBSYSTEM, "Executing");
   }
 
   @Override
   public void end(boolean interrupted) {
-    log(INTAKE_SUBSYSTEM.getName(), "Done");
+    LOGGER.log(INTAKE_SUBSYSTEM, "Done");
   }
 
   @Override

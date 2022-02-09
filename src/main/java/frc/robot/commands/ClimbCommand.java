@@ -18,17 +18,17 @@ public class ClimbCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    log(CLIMB_SUBSYSTEM.getName(), "intialzied");
+    LOGGER.log(CLIMB_SUBSYSTEM, "intialzied");
   }
 
   @Override
   public void execute() {
-    log(CLIMB_SUBSYSTEM.getName(), "Execute");
+    LOGGER.log(CLIMB_SUBSYSTEM, "Execute");
   }
 
   @Override
   public void end(boolean interrupted) {
-    log(CLIMB_SUBSYSTEM.getName(), "Done");
+    LOGGER.log(CLIMB_SUBSYSTEM, "Done");
   }
 
   @Override

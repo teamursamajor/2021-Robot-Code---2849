@@ -30,7 +30,7 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void execute() {
     SHOOTER_SUBSYSTEM.SHOOTER.set(10);
-    log(SHOOTER_SUBSYSTEM.getName(), "Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.get());
+    LOGGER.log(SHOOTER_SUBSYSTEM, "Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.get());
   }
 
   // Called once the command ends or is interrupted.

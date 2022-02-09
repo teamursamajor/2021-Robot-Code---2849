@@ -35,7 +35,5 @@ public final class Constants {
 
   public static final XboxController XBOX_CONTROLLER = new XboxController(0);
 
-  public static final void log(String source, String msg) {
-    System.out.printf("%s @ %d: %s\n", source, RUNTIME.getUptime(), msg);
-  }
+  public static final Logger LOGGER = new Logger();
 }
