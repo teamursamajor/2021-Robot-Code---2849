@@ -68,20 +68,15 @@ public class AutoAlignCommand extends CommandBase{
     public double getX() {
        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
        NetworkTableEntry tx = table.getEntry("tx");
+       //double x = -40;
+        double x;
+        x = tx.getDouble(0.0);
+        System.out.println(x);
+        SmartDashboard.putNumber("LimelightX", x);
 
-       double x = tx.getDouble(0.0);
-       SmartDashboard.putNumber("LimelightX", x);
-
-       return x;
+        return x;
     }
-    public double getY() {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-        NetworkTableEntry ty = table.getEntry("ty");
- 
-        double y = ty.getDouble(0.0);
-        SmartDashboard.putNumber("LimelightX", y);
-        return y;
-     }
+    
      public double getAngle() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry ts = table.getEntry("ts");
@@ -93,48 +88,33 @@ public class AutoAlignCommand extends CommandBase{
      }
     
     
-    
-    
-    public double getDistance(){
-       
-        double anglesAdded = 34.0+getY();
-        
-        double distance = (104-6)/Math.tan(anglesAdded);
-        return distance;
-    }
+  
 
     @Override
     public void execute() {
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+       NetworkTableEntry tx = table.getEntry("tx");
         System.out.println("is executing");
         double max = 5;
         double min = -5;
         //detect target
-        double x = this.getX();
+        System.out.println(getX());
+        double x = tx.getDouble(0.0);
+        System.out.println(x);
         //if center, end
-        System.out.println("The distance is "+ getDistance());
+    
         System.out.println("x is "+ x);
-        if(x <= max && x >= min){
-            setLeftPower(0);
-            setRightPower(0);
-            System.out.println("distance is: " + getDistance());
-            if(getDistance() >= minShooting && getDistance() <= maxShooting ){
-                System.out.println("1 " + getDistance());
-                //call shooter
-                alignFinished = true;
-            
-            }else if(getDistance() < minShooting){
-                setLeftPower(-.25);
-                setRightPower(-.25);
-                System.out.println("2");
-            }else if(getDistance() > maxShooting){
-                
-                setLeftPower(.25);
-                setRightPower(.25);
-                System.out.println("3");
-            }
+        if(x == -40){
+            System.out.println("Couldn't detect limelight");
+            alignFinished = true;
         }
-        //else move robot to make target in the center
-        if(x > max){
+        else if(x <= max && x >= min){
+            //setLeftPower(0);
+            //setRightPower(0);
+            System.out.println("We are alined");
+            alignFinished = true;
+        }
+        else if(x > max){
             setLeftPower(.25);
             setRightPower(0);
             System.out.println("4");
@@ -144,7 +124,7 @@ public class AutoAlignCommand extends CommandBase{
             System.out.println("5");
         }
         //end
-        alignFinished = true;
+        
     }
 
     @Override
@@ -152,4 +132,11 @@ public class AutoAlignCommand extends CommandBase{
         
         return alignFinished;
     }
+   /** @Override
+    public void end(boolean interrupted){
+        System.out.println("end");
+        setLeftPower(0);
+        setRightPower(0);
+    }
+    */
 }

@@ -65,9 +65,9 @@ public class RobotContainer {
     // Binds an ExampleCommand to be scheduled when the trigger of the example
     // joystick is pressed
 
-    
+
     new JoystickButton(XBOXCONTROLLER, XboxController.Button.kY.value).whenPressed(new AutoAlignCommand(DRIVE_SUBSYSTEM));
-    
+    //new JoystickButton(XBOXCONTROLLER, XboxController.Button.kY.value).whenPressed((new AutoAlignCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
     //driveButton.whileHeld(new DriveCommand(driveSubsystem));
   }
 
