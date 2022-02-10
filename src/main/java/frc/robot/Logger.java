@@ -33,7 +33,7 @@ public class Logger {
     logs.forEach(
         (k, v) -> {
           try {
-            File f = new File(k + FILE_FMT.format(new Date(System.currentTimeMillis())));
+            File f = new File("logs/" + k + FILE_FMT.format(new Date(System.currentTimeMillis())));
             f.createNewFile();
             FileWriter fw = new FileWriter(f);
             v.forEach(
