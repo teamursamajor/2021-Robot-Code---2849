@@ -6,15 +6,12 @@ package frc.robot;
 
 import static frc.robot.Constants.LOGGER;
 
-import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.I2C;
 // import edu.wpli.first.wpilibj2.
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -28,9 +25,6 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-
-  private final I2C.Port i2cPort = I2C.Port.kOnboard;
-  private final ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
   // private final ColorMatch colorMatcher = new ColorMatch();
 
   /**
@@ -58,15 +52,14 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    Color detectedColor = colorSensor.getColor();
-    System.out.println("Red: " + detectedColor.red);
-    System.out.println("Green: " + detectedColor.green);
-    System.out.println("Blue: " + detectedColor.blue);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {
+  public void disabledInit() {}
+
+  @Override
+  public void testExit() {
     LOGGER.exit();
   }
 
