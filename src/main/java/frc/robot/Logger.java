@@ -1,16 +1,18 @@
 package frc.robot;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Logger {
+public class Logger implements Runnable {
   private final SimpleDateFormat FILE_FMT = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
   private final SimpleDateFormat LOG_FMT = new SimpleDateFormat("HH:mm:ss");
-  private HashMap<String, ArrayList<String>> logs = new HashMap<String, ArrayList<String>>();
+  private boolean running = false;
+  private Thread logger;
+  private HashMap<String, File> logs = new HashMap<String, File>();
 
   public void log(Object source, String message) {
     String src = source.getClass().getName();
@@ -29,25 +31,25 @@ public class Logger {
     logs.put(src, list);
   }
 
-  public void exit() {
-    logs.forEach(
-        (k, v) -> {
-          try {
-            File f = new File("logs/" + k + FILE_FMT.format(new Date(System.currentTimeMillis())));
-            f.createNewFile();
-            FileWriter fw = new FileWriter(f);
-            v.forEach(
-                (x) -> {
-                  try {
-                    fw.write(x);
-                  } catch (Exception e) {
-                    e.printStackTrace();
-                  }
-                });
-            fw.close();
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
-        });
+  public void run() {
+    while (running) {
+      
+    }
+    stop();
+  }
+
+  public synchronized void start() {
+    if (running) return;
+    running = true;
+    logger = new Thread(this);
+  }
+  public synchronized void stop() {
+    if (!running) return;
+    try {
+      running = false;
+      logger.join();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 }
