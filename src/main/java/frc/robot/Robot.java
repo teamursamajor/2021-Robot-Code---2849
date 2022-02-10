@@ -1,27 +1,17 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
+// :D
 
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-//Color Stuff
-import edu.wpi.first.wpilibj.util.Color;
-import com.revrobotics.ColorMatch;
-import com.revrobotics.ColorMatchResult;
-import com.revrobotics.ColorSensorV3;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
-
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -33,13 +23,9 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-
-    private final I2C.Port i2cPort = I2C.Port.kOnboard;
-    private final ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
-    private final ColorMatch colorMatcher = new ColorMatch();
-    private final Color redBall = new Color(0.412, 0.184, .405);
-    private final Color blueBall = new Color(0.180, 0.404, .417);
-    private DigitalInput lineBreak = new DigitalInput(0);
+  private DigitalInput lineBreak = new DigitalInput(8);
+  int ballCount = 0;
+  
 
     //private final Color redBallColor = ColorMatch.makeColor(0.119, 0.421, 0.459);
     //private final Color blueBallColor = ColorMatch.makeColor(0.183, 0.579, 0.247);
@@ -52,8 +38,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    colorMatcher.addColorMatch(redBall);
-    colorMatcher.addColorMatch(blueBall);
+   
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
@@ -74,18 +59,13 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    if(lineBreak.get()){
-      System.out.println("Detected");
+    if (lineBreak.get() == true) {  
+      ballCount++;
+      System.out.println("Number of BALLS: " + ballCount);
+      // yay we did it
     }
     
-    /*System.out.println("Red: " + detectedColor.red);
-    System.out.println("Green: " + detectedColor.green);
-    System.out.println("Blue: " +  detectedColor.blue);*/
-
-
-    //TODO: Possibly replace matchClosestColor call with matchColor call so that it can say if a color is neither red nor blue.
-    
-
+   
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
