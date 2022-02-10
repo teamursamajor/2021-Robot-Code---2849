@@ -20,7 +20,7 @@ public class ColorSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     ColorRGB c = new ColorRGB(COLOR_SENSOR.getColor());
-    System.out.println(c);
+    LOGGER.log(this, c.toString());
   }
 
   @Override
