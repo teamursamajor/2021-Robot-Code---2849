@@ -8,9 +8,13 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.ClimbCommand;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import static frc.robot.Constants.*;
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -32,6 +36,10 @@ public class RobotContainer {
 
   private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
 
+  private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
+
+  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM);
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -51,6 +59,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    JoystickButton shootButton = new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
+    shootButton.whileHeld(SHOOTER_COMMAND);
     //JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new JoystickButton object for
                                                                         // button 1 on exampleStick
     // Binds an ExampleCommand to be scheduled when the trigger of the example
