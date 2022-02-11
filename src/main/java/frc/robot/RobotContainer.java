@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import static frc.robot.Constants.XBOXCONTROLLER;
 import frc.robot.commands.AutoAlignCommand;
+import frc.robot.commands.DistanceCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -66,8 +67,9 @@ public class RobotContainer {
     // joystick is pressed
 
 
-    new JoystickButton(XBOXCONTROLLER, XboxController.Button.kY.value).whenPressed(new AutoAlignCommand(DRIVE_SUBSYSTEM));
-    //new JoystickButton(XBOXCONTROLLER, XboxController.Button.kY.value).whenPressed((new AutoAlignCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
+    //new JoystickButton(XBOXCONTROLLER, XboxController.Button.kY.value).whenPressed(new AutoAlignCommand(DRIVE_SUBSYSTEM));
+    new JoystickButton(XBOXCONTROLLER, XboxController.Button.kY.value).whenPressed((new AutoAlignCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
+    new JoystickButton(XBOXCONTROLLER, XboxController.Button.kB.value).whenPressed((new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
     //driveButton.whileHeld(new DriveCommand(driveSubsystem));
   }
 

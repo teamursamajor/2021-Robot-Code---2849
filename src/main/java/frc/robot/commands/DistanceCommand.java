@@ -12,8 +12,11 @@ public class DistanceCommand extends CommandBase{
     @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
     private final DriveSubsystem driveSubsystem;
     private boolean alignFinished = false;
-    public double maxShooting;
-    public double minShooting;
+    //This is for values on the cart
+    //public double maxShooting = -17;
+    //public double minShooting = -8;
+      public double minShooting = 3.9;
+      public double maxShooting = -5.8;
 
     /**
      * 
@@ -30,6 +33,8 @@ public class DistanceCommand extends CommandBase{
     @Override
     public void initialize() {
         System.out.println("initialized");
+        alignFinished = false;
+
     }
 
 
@@ -49,8 +54,14 @@ public class DistanceCommand extends CommandBase{
     public double getY() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry ty = table.getEntry("ty");
-    
-        double y = ty.getDouble(0.0);
+        NetworkTableEntry tv = table.getEntry("tv");
+        double y;
+        double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
+        if(canDetectLimelight == 0){
+            y = Double.MIN_VALUE;
+        }else{
+            y = ty.getDouble(Double.MIN_VALUE);
+        }
         SmartDashboard.putNumber("LimelightX", y);
         return y;
         }
@@ -70,33 +81,52 @@ public class DistanceCommand extends CommandBase{
     
     
     public double getDistance(){
-        
-        double anglesAdded = 34.0+getY();
-        
-        double distance = (104-6)/Math.tan(anglesAdded);
-        return distance;
+        double angleOfCamera = 30.0;
+        double heightOfTarget = 95.0;
+        double y = getY(); 
+        double heightOfRobo = 33.5;
+        //9
+
+        if(y == Double.MIN_VALUE){
+            System.out.println("Couldn't detect");
+            return y;
+        }else{
+            System.out.println("y = "+ y);
+            double anglesAdded = (double)angleOfCamera+y;
+            anglesAdded = (anglesAdded*Math.PI)/180;
+            System.out.println("angles added: "+anglesAdded);
+            System.out.println("tangent is: "+Math.tan(anglesAdded));
+            double distance = ((double)heightOfTarget-(double)heightOfRobo)/Math.tan(anglesAdded);
+            System.out.println("Distance = "+distance);
+            return distance;  
+        }
     }
 
     @Override
     public void execute() {
+        double y = getY();
         System.out.println("is executing");
-        System.out.println("The distance is "+ getDistance());
-        System.out.println("distance is: " + getDistance());
-        if(getDistance() >= minShooting && getDistance() <= maxShooting ){
-            System.out.println("1 " + getDistance());
+        System.out.println("y is: +" + y);
+
+        if(y == Double.MIN_VALUE){
+            System.out.println("Couldn't detect limelight");
+            return;
+        }else if(y <= minShooting && y >= maxShooting ){
+            System.out.println("y = " + y);
             //call shooter
             alignFinished = true;
         
-        }else if(getDistance() < minShooting){
-            setLeftPower(-.25);
-            setRightPower(-.25);
-            System.out.println("2");
-        }else if(getDistance() > maxShooting){
-            
+        }else if(y > minShooting){
             setLeftPower(.25);
             setRightPower(.25);
-            System.out.println("3");
+            System.out.println("To close");
+        }else if(y < maxShooting){
+            
+            setLeftPower(-.25);
+            setRightPower(-.25);
+            System.out.println("to far");
         }
+      
     }
 
     @Override
@@ -106,6 +136,7 @@ public class DistanceCommand extends CommandBase{
     }
     @Override
     public void end(boolean interrupted){
+        System.out.println("End");
         setLeftPower(0);
         setRightPower(0);
     }

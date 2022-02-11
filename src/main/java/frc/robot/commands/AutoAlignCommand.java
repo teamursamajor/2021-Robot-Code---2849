@@ -30,6 +30,7 @@ public class AutoAlignCommand extends CommandBase{
     @Override
     public void initialize() {
         System.out.println("initialized");
+        alignFinished = false;
     }
 
 
@@ -66,14 +67,20 @@ public class AutoAlignCommand extends CommandBase{
       }
     
     public double getX() {
-       NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-       NetworkTableEntry tx = table.getEntry("tx");
-       //double x = -40;
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTableEntry tx = table.getEntry("tx");
+        NetworkTableEntry tv = table.getEntry("tv");
         double x;
-        x = tx.getDouble(0.0);
+
+        double isThereLimelight = tv.getDouble(0.0);
+        if(isThereLimelight == 0){
+            x= Double.MIN_VALUE;
+        }else{
+            x =  tx.getDouble(Double.MIN_VALUE);
+        }
+        System.out.println(isThereLimelight);
         System.out.println(x);
         SmartDashboard.putNumber("LimelightX", x);
-
         return x;
     }
     
@@ -93,20 +100,20 @@ public class AutoAlignCommand extends CommandBase{
     @Override
     public void execute() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-       NetworkTableEntry tx = table.getEntry("tx");
+        NetworkTableEntry tx = table.getEntry("tx");
         System.out.println("is executing");
-        double max = 5;
-        double min = -5;
+        double max = 3;
+        double min = -3;
         //detect target
         System.out.println(getX());
-        double x = tx.getDouble(0.0);
+        double x = getX();
         System.out.println(x);
         //if center, end
-    
+        
         System.out.println("x is "+ x);
-        if(x == -40){
+        if(x == Double.MIN_VALUE){
             System.out.println("Couldn't detect limelight");
-            alignFinished = true;
+            return;
         }
         else if(x <= max && x >= min){
             //setLeftPower(0);
@@ -115,16 +122,15 @@ public class AutoAlignCommand extends CommandBase{
             alignFinished = true;
         }
         else if(x > max){
-            setLeftPower(.25);
-            setRightPower(0);
+            setLeftPower(0);
+            setRightPower(.25);
             System.out.println("4");
         }else if(x < min){
-            setRightPower(.25);
-            setLeftPower(0);
+            setRightPower(0);
+            setLeftPower(.25);
             System.out.println("5");
         }
         //end
-        
     }
 
     @Override
@@ -132,11 +138,11 @@ public class AutoAlignCommand extends CommandBase{
         
         return alignFinished;
     }
-   /** @Override
+   @Override
     public void end(boolean interrupted){
         System.out.println("end");
         setLeftPower(0);
         setRightPower(0);
     }
-    */
+    
 }
