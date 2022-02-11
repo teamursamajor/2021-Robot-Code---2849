@@ -33,7 +33,7 @@ public class Logger implements Runnable {
         try {
           String fn =
               String.format(
-                  "%s_%s.log",
+                  "logs/%s_%s.log",
                   src.getClass().getName(), FILE_FMT.format(new Date(System.currentTimeMillis())));
           File file = new File(fn);
           file.createNewFile();
