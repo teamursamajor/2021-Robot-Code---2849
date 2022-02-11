@@ -1,53 +1,58 @@
 package frc.robot;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
-public class Logger {
-  private final SimpleDateFormat FILE_FMT = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+public class Logger implements Runnable {
+  private final SimpleDateFormat FILE_FMT = new SimpleDateFormat("yyyy-MM-dd");
   private final SimpleDateFormat LOG_FMT = new SimpleDateFormat("HH:mm:ss");
-  private HashMap<String, ArrayList<String>> logs = new HashMap<String, ArrayList<String>>();
+  private Thread t;
+  private boolean running = false;
+  private Object src = null;
+  private String msg = null;
 
-  public void log(Object source, String message) {
-    String src = source.getClass().getName();
-    String msg =
-        String.format(
-            "[%s]\t%s -> %s\n",
-            LOG_FMT.format(new Date(System.currentTimeMillis())),
-            source.getClass().getName(),
-            message);
-    System.out.print(msg);
-    if (logs.get(src) == null) {
-      logs.put(src, new ArrayList<String>());
-    }
-    ArrayList<String> list = logs.get(src);
-    list.add(msg);
-    logs.put(src, list);
+  public synchronized void log(Object source, String message) {
+    this.src = source;
+    this.msg = String.format("[%s] @ %s -> %s", LOG_FMT.format(new Date(System.currentTimeMillis())), source.getClass().getName(), message);
+    System.out.println(msg);
   }
 
-  public void exit() {
-    logs.forEach(
-        (k, v) -> {
-          try {
-            File f = new File(k + FILE_FMT.format(new Date(System.currentTimeMillis())));
-            f.createNewFile();
-            FileWriter fw = new FileWriter(f);
-            v.forEach(
-                (x) -> {
-                  try {
-                    fw.write(x);
-                  } catch (Exception e) {
-                    e.printStackTrace();
-                  }
-                });
-            fw.close();
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
-        });
+  @Override
+  public void run() {
+    while (running) {
+      if (src != null && msg != null) {
+        try {
+          String fn = String.format("%s_%s.log", src.getClass().getName(), FILE_FMT.format(new Date(System.currentTimeMillis())));
+          File file = new File(fn);
+          file.createNewFile();
+          BufferedWriter bf = new BufferedWriter(new FileWriter(file));
+          bf.write(msg);
+          bf.close();
+        } catch (IOException e) {
+
+        }
+      }
+    }
+  }
+
+  public synchronized void start() {
+    if (running) return;
+    running = true;
+    t = new Thread(this);
+    t.run();
+  }
+
+  public synchronized void stop() {
+    if (!running) return;
+    try {
+      running = false;
+      t.join();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 }
