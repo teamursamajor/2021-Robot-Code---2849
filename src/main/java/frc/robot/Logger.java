@@ -46,6 +46,7 @@ public class Logger implements Runnable {
         }
       }
     }
+    stop();
   }
 
   public synchronized void start() {
