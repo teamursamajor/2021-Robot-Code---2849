@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import static frc.robot.Constants.LOGGER;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;

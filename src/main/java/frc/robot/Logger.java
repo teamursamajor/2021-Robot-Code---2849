@@ -17,7 +17,12 @@ public class Logger implements Runnable {
 
   public synchronized void log(Object source, String message) {
     this.src = source;
-    this.msg = String.format("[%s] @ %s -> %s", LOG_FMT.format(new Date(System.currentTimeMillis())), source.getClass().getName(), message);
+    this.msg =
+        String.format(
+            "[%s] @ %s -> %s",
+            LOG_FMT.format(new Date(System.currentTimeMillis())),
+            source.getClass().getName(),
+            message);
     System.out.println(msg);
   }
 
@@ -26,7 +31,10 @@ public class Logger implements Runnable {
     while (running) {
       if (src != null && msg != null) {
         try {
-          String fn = String.format("%s_%s.log", src.getClass().getName(), FILE_FMT.format(new Date(System.currentTimeMillis())));
+          String fn =
+              String.format(
+                  "%s_%s.log",
+                  src.getClass().getName(), FILE_FMT.format(new Date(System.currentTimeMillis())));
           File file = new File(fn);
           file.createNewFile();
           BufferedWriter bf = new BufferedWriter(new FileWriter(file));
@@ -45,6 +53,7 @@ public class Logger implements Runnable {
     t = new Thread(this);
     t.run();
   }
+
   public synchronized void stop() {
     if (!running) return;
     try {
