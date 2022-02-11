@@ -45,7 +45,6 @@ public class Logger implements Runnable {
     t = new Thread(this);
     t.run();
   }
-
   public synchronized void stop() {
     if (!running) return;
     try {
