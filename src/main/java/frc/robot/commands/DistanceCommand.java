@@ -40,14 +40,14 @@ public class DistanceCommand extends CommandBase{
 
 
     public void setRightPower(final double power) {
-        driveSubsystem.BackRightDrive.set(power);
-        driveSubsystem.FrontRightDrive.set(power);
+        driveSubsystem.BACK_RIGHT_DRIVE.set(power);
+        driveSubsystem.FRONT_RIGHT_DRIVE.set(power);
         System.out.println("right speed: " + power);
         }
 
         public void setLeftPower(final double power) {
-        driveSubsystem.BackLeftDrive.set(-power);
-        driveSubsystem.FrontLeftDrive.set(-power);
+        driveSubsystem.BACK_LEFT_DRIVE.set(-power);
+        driveSubsystem.FRONT_LEFT_DRIVE.set(-power);
         System.out.println("left speed: " + power);
         }
     
