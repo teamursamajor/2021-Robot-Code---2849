@@ -25,7 +25,15 @@ public class ClimbCommand extends CommandBase {
     boolean touchRight;
     boolean touchLeft;
     private boolean isExtended;
+    public int sensor;
+    boolean isFinished == false;
     private final ClimbSubsystem climbSubsystem;
+
+    public ClimbCommand(ClimbSubsystem subsystem) {
+      ClimbSubsystem = subsystem;
+      // Use addRequirements() here to declare subsystem dependencies.
+      addRequirements(subsystem);
+    }
 
     public ClimbCommand(ClimbSubsystem subsystem){
         System.out.println("construct");
@@ -52,13 +60,13 @@ public class ClimbCommand extends CommandBase {
         climbSubsystem.moterMove(-.25);
       }
       if(count >= 5){
-        //get sensor number
-        //if sensor number == falconMaxSensor && isExtended == false
-        //than set isExtended = true 
-        //and println to tell the driver isExtended is true 
-        //else if sensor number == falconMinSensor && 
-        //touchRight == true && touchLeft == true
-        //
+        sensor = climbOne.getSelectedSensorPosition();
+        if((sensor == falconMaxSensor)&&(isExtended == false)){
+          System.out.println("We are extended");
+          isExtended = true;
+        }else if((sensor==falsonMinSensor)&&(touchRight == true)&&(touchLeft == true)){
+          isFinished == true;
+        }
 
       }
 
@@ -93,7 +101,7 @@ public class ClimbCommand extends CommandBase {
 
     @Override
     public boolean isFinished(){
-        return false;
+      return isFinished;
     }
 
 
