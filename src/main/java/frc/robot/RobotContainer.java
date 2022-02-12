@@ -7,7 +7,7 @@ package frc.robot;
 import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XBOX_CONTROLLER;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
@@ -88,8 +88,8 @@ public class RobotContainer {
 
 
     //new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kY.value).whenPressed(new AutoAlignCommand(DRIVE_SUBSYSTEM));
-    new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kY.value).whenPressed((new AutoAlignCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
-    new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kB.value).whenPressed((new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value).whenPressed((new AutoAlignCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value).whenPressed((new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
     //driveButton.whileHeld(new DriveCommand(driveSubsystem));
   }
 
