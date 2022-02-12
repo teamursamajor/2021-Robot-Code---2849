@@ -2,12 +2,16 @@ package frc.robot.subsystems;
 
 import static frc.robot.Constants.*;
 
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClimbSubsystem extends SubsystemBase {
   // private final ClimbSubsystem m_ClimbSubsystem;
-  public final Spark CLIMB = new Spark(CLIMB_PORT);
+  public Spark climber = new Spark(3);
+  public TalonFX climbOne = new TalonFX(3);
+  public TalonFX climbTwo = new TalonFX(0);
 
   public ClimbSubsystem() {
     setName("Climb");
@@ -18,4 +22,9 @@ public class ClimbSubsystem extends SubsystemBase {
 
   // @Override
   public void SimulationPeriodic() {}
+
+  public void moterMove(double speed) {
+    climbOne.set(TalonFXControlMode.PercentOutput, speed);
+    climbOne.set(TalonFXControlMode.PercentOutput, speed);
+  }
 }
