@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public final class Constants {
 
-  public static final int BACK_LEFT_DRIVER_PORT = 8;
+  public static final int BACK_LEFT_DRIVE_PORT = 8;
   public static final int BACK_RIGHT_DRIVE_PORT = 0;
   public static final int FRONT_LEFT_DRIVE_PORT = 9;
   public static final int FRONT_RIGHT_DRIVE_PORT = 1;

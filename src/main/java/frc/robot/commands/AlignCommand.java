@@ -1,7 +1,4 @@
 package frc.robot.commands;
-
-import static frc.robot.Constants.*;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -9,7 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
-public class AutoAlignCommand extends CommandBase {
+public class AlignCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem DRIVE_SUBSYSTEM;
 
@@ -18,7 +15,7 @@ public class AutoAlignCommand extends CommandBase {
   public double minShooting;
 
   /** @param subsystem */
-  public AutoAlignCommand(DriveSubsystem subsystem) {
+  public AlignCommand(DriveSubsystem subsystem) {
     DRIVE_SUBSYSTEM = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);

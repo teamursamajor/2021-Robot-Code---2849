@@ -13,7 +13,7 @@ public class DriveSubsystem extends SubsystemBase {
   public final Spark FRONT_RIGHT_DRIVE = new Spark(FRONT_RIGHT_DRIVE_PORT);
   public final Spark FRONT_LEFT_DRIVE = new Spark(FRONT_LEFT_DRIVE_PORT);
   public final Spark BACK_RIGHT_DRIVE = new Spark(BACK_RIGHT_DRIVE_PORT);
-  public final Spark BACK_LEFT_DRIVE = new Spark(BACK_LEFT_DRIVER_PORT);
+  public final Spark BACK_LEFT_DRIVE = new Spark(BACK_LEFT_DRIVE_PORT);
 
   /** Creates a new ExampleSubsystem. */
   public DriveSubsystem() {
