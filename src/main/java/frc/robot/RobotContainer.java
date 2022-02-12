@@ -11,8 +11,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.ShooterCommand;
 import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.ColorSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ShooterCommand;
@@ -42,15 +46,22 @@ public class RobotContainer {
 
   private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM);
 
-  /**
-   * The container for the robot. Contains subsystems, OI devices, and commands.
-   */
+  private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
+  private final ColorSubsystem COLOR_SUBSYSTEM = new ColorSubsystem();
+
+  private final IntakeCommand INTAKE_COMMAND = new IntakeCommand(INTAKE_SUBSYSTEM, COLOR_SUBSYSTEM);
+
+  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
     // Configure the button bindings
     DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
     CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
+    INTAKE_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
+    SHOOTER_SUBSYSTEM.setDefaultCommand(SHOOTER_COMMAND);
+    COLOR_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
     configureButtonBindings();
+    LOGGER.start();
   }
 
   /**

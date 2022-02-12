@@ -40,8 +40,8 @@ public class DriveCommand extends CommandBase {
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOX_CONTROLLER.getRawAxis(1);
     rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
-    log(DRIVE_SUBSYSTEM.getName(), "Left Stick: " + leftStickY);
-    log(DRIVE_SUBSYSTEM.getName(), "Right Stick: " + rightStickX);
+    LOGGER.log(DRIVE_SUBSYSTEM, "Left Stick: " + leftStickY, INFO);
+    LOGGER.log(DRIVE_SUBSYSTEM, "Right Stick: " + rightStickX, INFO);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
 
@@ -64,13 +64,13 @@ public class DriveCommand extends CommandBase {
   public void setLeftPower(final double power) {
     DRIVE_SUBSYSTEM.BACK_LEFT_DRIVE.set(-power);
     DRIVE_SUBSYSTEM.FRONT_LEFT_DRIVE.set(-power);
-    log(DRIVE_SUBSYSTEM.getName(), "left speed: " + power);
+    LOGGER.log(DRIVE_SUBSYSTEM, "left speed: " + power, INFO);
   }
 
   public void setRightPower(final double power) {
     DRIVE_SUBSYSTEM.BACK_RIGHT_DRIVE.set(power);
     DRIVE_SUBSYSTEM.FRONT_RIGHT_DRIVE.set(power);
-    log(DRIVE_SUBSYSTEM.getName(), "right speed: " + power);
+    LOGGER.log(DRIVE_SUBSYSTEM, "right speed: " + power, INFO);
   }
 
   // Called once the command ends or is interrupted.
