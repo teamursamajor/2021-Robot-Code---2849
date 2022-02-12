@@ -7,7 +7,7 @@ package frc.robot;
 import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XBOX_CONTROLLER;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
@@ -23,6 +23,11 @@ import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.ClimbCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import static frc.robot.Constants.XBOX_CONTROLLER;
+import frc.robot.commands.AutoAlignCommand;
+import frc.robot.commands.DistanceCommand;
+import frc.robot.subsystems.ShooterSubsystem;
+
 
 import static frc.robot.Constants.*;
 /**
@@ -36,11 +41,14 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
 
+  private final AutoAlignCommand AUTOALIGN_COMMAND = new AutoAlignCommand(DRIVE_SUBSYSTEM);
+
   private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
   private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
   private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
+
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
@@ -67,26 +75,25 @@ public class RobotContainer {
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
+   * edu.wpi.first.wpilibj.Joystick} or {@link XBOX_CONTROLLER}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton shootButton = new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
+    JoystickButton shootButton = new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kA.value);
     shootButton.whileHeld(SHOOTER_COMMAND);
-    //JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new JoystickButton object for
+    //JoystickButton driveButton = new JoystickButton(XBOX_CONTROLLER, 0); // Creates a new JoystickButton object for
                                                                         // button 1 on exampleStick
     // Binds an ExampleCommand to be scheduled when the trigger of the example
     // joystick is pressed
 
-    /*
-    new JoystickButton(xboxController, XboxController.Axis.kLeftX.value)
-    .and(new JoystickButton(xboxController, XboxController.Axis.kLeftY.value)).and(new JoystickButton(xboxController,XboxController.Axis.kRightX.value)).
-    and(new JoystickButton(xboxController, XboxController.Axis.kRightY.value)).whenActive(new DriveCommand(driveSubsystem));
-    */
-    // driveButton.whileHeld(new DriveCommand(driveSubsystem));
+
+    //new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kY.value).whenPressed(new AutoAlignCommand(DRIVE_SUBSYSTEM));
+    new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kY.value).whenPressed((new AutoAlignCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
+    new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kB.value).whenPressed((new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
+    //driveButton.whileHeld(new DriveCommand(driveSubsystem));
   }
 
-  /**
+  /***
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
