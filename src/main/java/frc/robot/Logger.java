@@ -33,8 +33,9 @@ public class Logger implements Runnable {
         try {
           String fn =
               String.format(
-                  System.getenv().get("HOME")+"/logs/%s_%s.log",
-                  src.getClass().getName(), FILE_FMT.format(new Date(System.currentTimeMillis())));
+                  "/home/lvuser/logs/%s_%s.log",
+                  src.getClass().getName(),
+                  FILE_FMT.format(new Date(System.currentTimeMillis())));
           File file = new File(fn);
           file.createNewFile();
           BufferedWriter bf = new BufferedWriter(new FileWriter(file));
@@ -45,6 +46,7 @@ public class Logger implements Runnable {
         }
       }
     }
+    stop();
   }
 
   public synchronized void start() {
