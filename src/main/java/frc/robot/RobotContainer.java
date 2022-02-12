@@ -4,64 +4,58 @@
 
 package frc.robot;
 
+import static frc.robot.Constants.*;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.ClimbCommand;
+import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.commands.DriveCommand;
-import frc.robot.commands.ClimbCommand;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
- * This class is where the bulk of the robot should be declared. Since
- * Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in
- * the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of
- * the robot (including
+ * This class is where the bulk of the robot should be declared. Since Command-based is a
+ * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
+ * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
 
   // define the joystick.
 
-  XboxController xboxController = new XboxController(1); // Creates an XboxController on port 0.
-
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
 
-  private final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
+  private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
-  private final ClimbSubsystem climbSubsystem = new ClimbSubsystem();
+  private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
-  private final ClimbCommand climbCommand = new ClimbCommand(climbSubsystem);
+  private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
 
-  /**
-   * The container for the robot. Contains subsystems, OI devices, and commands.
-   */
+  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    
+
     // Configure the button bindings
-    //driveSubsystem.setDefaultCommand(driveCommand);
-    System.out.println("1");
-    climbSubsystem.setDefaultCommand(climbCommand);
+    DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
+    CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
     configureButtonBindings();
     
   }
 
   /**
-   * Use this method to define your button->command mappings. Buttons can be
-   * created by
+   * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing
-   * it to a {@link
+   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
 
     //JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new JoystickButton object for
                                                                         // button 1 on exampleStick
+    // JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new
+    // JoystickButton object for
+    // button 1 on exampleStick
     // Binds an ExampleCommand to be scheduled when the trigger of the example
     // joystick is pressed
 
@@ -70,7 +64,7 @@ public class RobotContainer {
     .and(new JoystickButton(xboxController, XboxController.Axis.kLeftY.value)).and(new JoystickButton(xboxController,XboxController.Axis.kRightX.value)).
     and(new JoystickButton(xboxController, XboxController.Axis.kRightY.value)).whenActive(new DriveCommand(driveSubsystem));
     */
-    //driveButton.whileHeld(new DriveCommand(driveSubsystem));
+    // driveButton.whileHeld(new DriveCommand(driveSubsystem));
   }
 
   /**

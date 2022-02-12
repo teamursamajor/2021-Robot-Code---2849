@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimbSubsystem;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.robot.Constants;
+import static frc.robot.Constants.*;
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 
@@ -21,24 +21,18 @@ public class ClimbCommand extends CommandBase {
     private static int num = 0;
     private int count;
     private int falconMaxSensor = 7;
-    private int falconNinSensor = 0;
+    private int falconMinSensor = 0;
     boolean touchRight;
     boolean touchLeft;
     private boolean isExtended;
-    public int sensor;
-    boolean isFinished == false;
-    private final ClimbSubsystem climbSubsystem;
+    public double sensor;
+    boolean isFinished = false;
+    private final ClimbSubsystem CLIMB_SUBSYSTEM;
 
     public ClimbCommand(ClimbSubsystem subsystem) {
-      ClimbSubsystem = subsystem;
+      CLIMB_SUBSYSTEM = subsystem;
       // Use addRequirements() here to declare subsystem dependencies.
       addRequirements(subsystem);
-    }
-
-    public ClimbCommand(ClimbSubsystem subsystem){
-        System.out.println("construct");
-        climbSubsystem = subsystem;
-        addRequirements(subsystem);
     }
 
     @Override
@@ -55,17 +49,17 @@ public class ClimbCommand extends CommandBase {
       num++;
       count = num;
       if(isExtended == false){
-        climbSubsystem.moterMove(.25);
+        CLIMB_SUBSYSTEM.moterMove(.25);
       }else if((isExtended == true)&&(touchRight == true)&&(touchLeft == true)){
-        climbSubsystem.moterMove(-.25);
+        CLIMB_SUBSYSTEM.moterMove(-.25);
       }
       if(count >= 5){
-        sensor = climbOne.getSelectedSensorPosition();
+        sensor = CLIMB_SUBSYSTEM.climbOne.getSelectedSensorPosition();
         if((sensor == falconMaxSensor)&&(isExtended == false)){
           System.out.println("We are extended");
           isExtended = true;
-        }else if((sensor==falsonMinSensor)&&(touchRight == true)&&(touchLeft == true)){
-          isFinished == true;
+        }else if((sensor==falconMinSensor)&&(touchRight == true)&&(touchLeft == true)){
+          isFinished = true;
         }
 
       }
@@ -89,20 +83,5 @@ public class ClimbCommand extends CommandBase {
         //count = num;
 
       
-    }
-        
-
-    
-
-    @Override
-    public void end(boolean interrupted) {
-        System.out.println("Done");
-    }
-
-    @Override
-    public boolean isFinished(){
-      return isFinished;
-    }
-
-
+  }
 }
