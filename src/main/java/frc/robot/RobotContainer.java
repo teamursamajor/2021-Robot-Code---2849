@@ -57,6 +57,7 @@ public class RobotContainer {
     SHOOTER_SUBSYSTEM.setDefaultCommand(SHOOTER_COMMAND);
     COLOR_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
     configureButtonBindings();
+    LOGGER.start();
   }
 
   /**
