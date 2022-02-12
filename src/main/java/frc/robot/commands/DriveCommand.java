@@ -2,13 +2,12 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 package frc.robot.commands;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.*;
+
 import static frc.robot.Constants.*;
-import frc.robot.subsystems.DriveSubsystem;
+
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
-
 
 /** An example command that uses an example subsystem. */
 public class DriveCommand extends CommandBase {
@@ -41,8 +40,8 @@ public class DriveCommand extends CommandBase {
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOX_CONTROLLER.getRawAxis(1);
     rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
-    //log(DRIVE_SUBSYSTEM.getName(), "Left Stick: " + leftStickY);
-    //log(DRIVE_SUBSYSTEM.getName(), "Right Stick: " + rightStickX);
+    // log(DRIVE_SUBSYSTEM.getName(), "Left Stick: " + leftStickY);
+    // log(DRIVE_SUBSYSTEM.getName(), "Right Stick: " + rightStickX);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
 
@@ -65,13 +64,13 @@ public class DriveCommand extends CommandBase {
   public void setLeftPower(final double power) {
     DRIVE_SUBSYSTEM.BACK_LEFT_DRIVE.set(-power);
     DRIVE_SUBSYSTEM.FRONT_LEFT_DRIVE.set(-power);
-    //log(DRIVE_SUBSYSTEM.getName(), "left speed: " + power);
+    // log(DRIVE_SUBSYSTEM.getName(), "left speed: " + power);
   }
 
   public void setRightPower(final double power) {
     DRIVE_SUBSYSTEM.BACK_RIGHT_DRIVE.set(power);
     DRIVE_SUBSYSTEM.FRONT_RIGHT_DRIVE.set(power);
-    //log(DRIVE_SUBSYSTEM.getName(), "right speed: " + power);
+    // log(DRIVE_SUBSYSTEM.getName(), "right speed: " + power);
   }
 
   // Called once the command ends or is interrupted.

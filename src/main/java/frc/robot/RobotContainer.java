@@ -40,7 +40,6 @@ public class RobotContainer {
     DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
     CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
     configureButtonBindings();
-    
   }
 
   /**
@@ -51,8 +50,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    //JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new JoystickButton object for
-                                                                        // button 1 on exampleStick
+    // JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new
+    // JoystickButton object for
+    // button 1 on exampleStick
     // JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new
     // JoystickButton object for
     // button 1 on exampleStick
