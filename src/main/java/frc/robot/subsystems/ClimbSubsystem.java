@@ -1,21 +1,21 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import static frc.robot.Constants.*;
+
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
-public class ClimbSubsystem extends SubsystemBase{
-   // private final ClimbSubsystem m_ClimbSubsystem;
-    public Spark climber = new Spark(3);
-    public ClimbSubsystem() {
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-    }
+public class ClimbSubsystem extends SubsystemBase {
+  // private final ClimbSubsystem m_ClimbSubsystem;
+  public final Spark CLIMB = new Spark(CLIMB_PORT);
 
-    //@Override
-    public void periodic() {
+  public ClimbSubsystem() {
+    setName("Climb");
+  }
 
-    }
+  // @Override
+  public void periodic() {}
 
-    //@Override
-    public void SimulationPeriodic() {
-        
-    }
+  // @Override
+  public void SimulationPeriodic() {}
 }

@@ -10,7 +10,7 @@ import static frc.robot.Constants.XBOXCONTROLLER;
 /** An example command that uses an example subsystem. */
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private final DriveSubsystem driveSubsystem;
+  private final DriveSubsystem DRIVE_SUBSYSTEM;
   
 
   /**
@@ -19,9 +19,11 @@ public class DriveCommand extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
   public DriveCommand(DriveSubsystem subsystem) {
-    driveSubsystem = subsystem;
+    DRIVE_SUBSYSTEM = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
+
+    setName("Drive (Command)");
   }
 
   // Called when the command is initially scheduled.
@@ -33,7 +35,7 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //System.out.println("it works");
+    // System.out.println("it works");
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOXCONTROLLER.getRawAxis(1);
     rightStickX = -XBOXCONTROLLER.getRawAxis(4);
@@ -41,7 +43,7 @@ public class DriveCommand extends CommandBase {
     System.out.println("Right Stick: " + rightStickX);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
-    
+
     double max = Math.max(leftSpeed, rightSpeed); // the greater of the two values
     double min = Math.min(leftSpeed, rightSpeed); // the lesser of the two values
 
@@ -55,22 +57,18 @@ public class DriveCommand extends CommandBase {
 
     setLeftPower(leftSpeed);
     setRightPower(rightSpeed);
-    //System.out.println("it works 2");
+    // System.out.println("it works 2");
   }
 
   public void setLeftPower(final double power) {
-    driveSubsystem.BackLeftDrive.set(-power);
-    driveSubsystem.FrontLeftDrive.set(-power);
-    System.out.println("left speed: " + power);
+    DRIVE_SUBSYSTEM.BACK_LEFT_DRIVE.set(-power);
+    DRIVE_SUBSYSTEM.FRONT_LEFT_DRIVE.set(-power);
   }
 
   public void setRightPower(final double power) {
-    driveSubsystem.BackRightDrive.set(power);
-    driveSubsystem.FrontRightDrive.set(power);
-    System.out.println("right speed: " + power);
+    DRIVE_SUBSYSTEM.BACK_RIGHT_DRIVE.set(power);
+    DRIVE_SUBSYSTEM.FRONT_RIGHT_DRIVE.set(power);
   }
-
-
 
   // Called once the command ends or is interrupted.
   @Override

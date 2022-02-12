@@ -4,22 +4,15 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import com.revrobotics.ColorSensorV3;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.I2C;
-import frc.robot.commands.AutoAlignCommand;
-import frc.robot.subsystems.DriveSubsystem;
-
-import static frc.robot.Constants.XBOXCONTROLLER;
-//import edu.wpli.first.wpilibj2.
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -32,10 +25,9 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-    private final I2C.Port i2cPort = I2C.Port.kOnboard;
-    private final ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
-    //private final ColorMatch colorMatcher = new ColorMatch();
-    
+  private final I2C.Port i2cPort = I2C.Port.kOnboard;
+  private final ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
+  // private final ColorMatch colorMatcher = new ColorMatch();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -46,7 +38,6 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    
   }
 
   /**
@@ -121,7 +112,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
     SmartDashboard.putNumber("LimelightSkew", skew);
-    //min shooting range, 5 ft, max 30 ft
+    // min shooting range, 5 ft, max 30 ft
 
     
   }
