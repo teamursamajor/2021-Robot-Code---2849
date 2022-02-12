@@ -4,6 +4,7 @@ import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 public class ShooterSubsystem extends SubsystemBase {
   public final Spark SHOOTER = new Spark(SHOOTER_PORT);
 

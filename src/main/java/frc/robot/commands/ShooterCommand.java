@@ -9,6 +9,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class ShooterCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
+
   boolean finished = false;
 
   /**
