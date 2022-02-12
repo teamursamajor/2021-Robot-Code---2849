@@ -10,7 +10,7 @@ import java.lang.Math;
 
 public class AutoAlignCommand extends CommandBase{
     @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-    private final DriveSubsystem driveSubsystem;
+    private final DriveSubsystem DRIVE_SUBSYSTEM;
     private boolean alignFinished = false;
     public double maxShooting;
     public double minShooting;
@@ -21,7 +21,7 @@ public class AutoAlignCommand extends CommandBase{
      */
 
     public AutoAlignCommand(DriveSubsystem subsystem){
-        driveSubsystem = subsystem;
+        DRIVE_SUBSYSTEM = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(subsystem);
     }
@@ -53,18 +53,6 @@ public class AutoAlignCommand extends CommandBase{
         SmartDashboard.putNumber("LimelightSkew", skew);
         //min shooting range, 5 ft, max 30 ft
     }
-
-    public void setRightPower(final double power) {
-        driveSubsystem.BACK_RIGHT_DRIVE.set(power);
-        driveSubsystem.FRONT_RIGHT_DRIVE.set(power);
-        System.out.println("right speed: " + power);
-      }
-
-      public void setLeftPower(final double power) {
-        driveSubsystem.BACK_LEFT_DRIVE.set(-power);
-        driveSubsystem.FRONT_LEFT_DRIVE.set(-power);
-        System.out.println("left speed: " + power);
-      }
     
     public double getX() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -122,12 +110,12 @@ public class AutoAlignCommand extends CommandBase{
             alignFinished = true;
         }
         else if(x > max){
-            setLeftPower(0);
-            setRightPower(.25);
+            DRIVE_SUBSYSTEM.setLeftPower(0);
+            DRIVE_SUBSYSTEM.setRightPower(.25);
             System.out.println("4");
         }else if(x < min){
-            setRightPower(0);
-            setLeftPower(.25);
+            DRIVE_SUBSYSTEM.setRightPower(0);
+            DRIVE_SUBSYSTEM.setLeftPower(.25);
             System.out.println("5");
         }
         //end
@@ -141,8 +129,8 @@ public class AutoAlignCommand extends CommandBase{
    @Override
     public void end(boolean interrupted){
         System.out.println("end");
-        setLeftPower(0);
-        setRightPower(0);
+        DRIVE_SUBSYSTEM.setLeftPower(0);
+        DRIVE_SUBSYSTEM.setRightPower(0);
     }
     
 }
