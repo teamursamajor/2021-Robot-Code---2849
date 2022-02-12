@@ -17,7 +17,10 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import static frc.robot.Constants.XBOXCONTROLLER;
 import frc.robot.commands.AutoAlignCommand;
 import frc.robot.commands.DistanceCommand;
+import frc.robot.subsystems.ShooterSubsystem;
 
+
+import static frc.robot.Constants.*;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -25,8 +28,6 @@ import frc.robot.commands.DistanceCommand;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-
-  // define the joystick.
 
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
@@ -40,7 +41,13 @@ public class RobotContainer {
   //private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
 
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
+
+  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM);
+
+  /**
+   * The container for the robot. Contains subsystems, OI devices, and commands.
+   */
   public RobotContainer() {
 
     // Configure the button bindings
@@ -56,9 +63,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new
-    // JoystickButton object for
-    // button 1 on exampleStick
+    JoystickButton shootButton = new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
+    shootButton.whileHeld(SHOOTER_COMMAND);
+    //JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new JoystickButton object for
+                                                                        // button 1 on exampleStick
     // Binds an ExampleCommand to be scheduled when the trigger of the example
     // joystick is pressed
 
