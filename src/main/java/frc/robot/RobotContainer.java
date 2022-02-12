@@ -73,7 +73,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     JoystickButton shootButton =
         new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
-    shootButton.whileHeld(SHOOTER_COMMAND);
+    shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
     // JoystickButton driveButton = new JoystickButton(XBOX_CONTROLLER, 0); // Creates a new
     // JoystickButton object for
     // button 1 on exampleStick
