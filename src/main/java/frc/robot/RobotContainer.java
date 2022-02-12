@@ -58,8 +58,15 @@ public class RobotContainer {
     INTAKE_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
     SHOOTER_SUBSYSTEM.setDefaultCommand(SHOOTER_COMMAND);
     COLOR_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
+    System.out.println("1");
+    CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
+    configureButtonBindings();
     configureButtonBindings();
     LOGGER.start();
+
+    // Configure the button bindings
+    // driveSubsystem.setDefaultCommand(driveCommand);
+
   }
 
   /**
