@@ -6,10 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Logger.Level;
-
-import java.lang.management.ManagementFactory;
-import java.lang.management.RuntimeMXBean;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -20,8 +16,6 @@ import java.lang.management.RuntimeMXBean;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
-  public static final RuntimeMXBean RUNTIME = ManagementFactory.getRuntimeMXBean();
 
   public static final int BACK_LEFT_DRIVER_PORT = 8;
   public static final int BACK_RIGHT_DRIVE_PORT = 0;
