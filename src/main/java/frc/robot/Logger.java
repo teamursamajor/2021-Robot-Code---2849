@@ -15,12 +15,19 @@ public class Logger implements Runnable {
   private Object src = null;
   private String msg = null;
 
-  public synchronized void log(Object source, String message) {
+  public static enum Level {
+    INFO,
+    WARN,
+    CRIT,
+  }
+
+  public synchronized void log(Object source, String message, Level lvl) {
     this.src = source;
     this.msg =
         String.format(
-            "[%s] @ %s -> %s",
+            "[%s] (%s) @ %s -> %s",
             LOG_FMT.format(new Date(System.currentTimeMillis())),
+            lvl,
             source.getClass().getName(),
             message);
     System.out.println(msg);
@@ -34,8 +41,7 @@ public class Logger implements Runnable {
           String fn =
               String.format(
                   "/home/lvuser/logs/%s_%s.log",
-                  src.getClass().getName(),
-                  FILE_FMT.format(new Date(System.currentTimeMillis())));
+                  src.getClass().getName(), FILE_FMT.format(new Date(System.currentTimeMillis())));
           File file = new File(fn);
           file.createNewFile();
           BufferedWriter bf = new BufferedWriter(new FileWriter(file));

@@ -6,6 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Logger.Level;
+
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 
@@ -31,9 +33,12 @@ public final class Constants {
   public static final int INTAKE_PORT = 4; // TODO: real port num
   public static final int BELT_PORT = 2849; // TODO: real port num
 
-  public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
+  public static final I2C.Port I2C_PORT = I2C.Port.kMXP;
 
   public static final XboxController XBOX_CONTROLLER = new XboxController(0);
 
   public static final Logger LOGGER = new Logger();
+  public static final Logger.Level INFO = Logger.Level.INFO;
+  public static final Logger.Level WARN = Logger.Level.WARN;
+  public static final Logger.Level CRIT = Logger.Level.CRIT;
 }
