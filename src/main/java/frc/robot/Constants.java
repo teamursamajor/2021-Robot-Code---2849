@@ -27,7 +27,7 @@ public final class Constants {
   public static final int INTAKE_PORT = 4; // TODO: real port num
   public static final int BELT_PORT = 2849; // TODO: real port num
 
-  public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
+  public static final I2C.Port I2C_PORT = I2C.Port.kMXP;
 
   public static final XboxController XBOX_CONTROLLER = new XboxController(0);
 
