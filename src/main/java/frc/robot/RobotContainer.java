@@ -52,14 +52,10 @@ public class RobotContainer {
 
     // Configure the button bindings
     DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
-    CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
-    INTAKE_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
-    COLOR_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
+
     System.out.println("1");
-    // CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
     configureButtonBindings();
-    configureButtonBindings();
-    LOGGER.start();
+    //LOGGER.start();
 
     // Configure the button bindings
     // driveSubsystem.setDefaultCommand(driveCommand);
@@ -73,8 +69,11 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
-    shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
+    JoystickButton shootButton =
+        new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
+    shootButton.whileHeld(SHOOTER_COMMAND);
+    
+
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
         .whenPressed((new AlignCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)

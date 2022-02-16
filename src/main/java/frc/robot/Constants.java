@@ -17,17 +17,17 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public final class Constants {
 
-  public static final int BACK_LEFT_DRIVE_PORT = 8;
-  public static final int BACK_RIGHT_DRIVE_PORT = 0;
-  public static final int FRONT_LEFT_DRIVE_PORT = 9;
-  public static final int FRONT_RIGHT_DRIVE_PORT = 1;
+  public static final int BACK_LEFT_DRIVE_PORT = 4;
+  public static final int BACK_RIGHT_DRIVE_PORT = 5;
+  public static final int FRONT_LEFT_DRIVE_PORT = 2;
+  public static final int FRONT_RIGHT_DRIVE_PORT = 3;
 
   public static final int SHOOTER_PORT = 2; // TODO: real port num
   public static final int CLIMB_PORT = 3; // TODO: real port num
-  public static final int INTAKE_PORT = 4; // TODO: real port num
+  public static final int INTAKE_PORT = 8; // TODO: real port num
   public static final int BELT_PORT = 2849; // TODO: real port num
 
-  public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
+  public static final I2C.Port I2C_PORT = I2C.Port.kMXP;
 
   public static final XboxController XBOX_CONTROLLER = new XboxController(0);
 

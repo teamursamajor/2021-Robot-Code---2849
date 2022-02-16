@@ -81,8 +81,8 @@ public class AlignCommand extends CommandBase {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
     System.out.println("is executing");
-    double max = 3;
-    double min = -3;
+    double max = 1;
+    double min = -1;
     // detect target
     System.out.println(getX());
     double x = getX();
