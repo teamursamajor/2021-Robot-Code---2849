@@ -71,7 +71,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     JoystickButton shootButton =
         new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
-    shootButton.whileHeld(SHOOTER_COMMAND);
+    shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
     
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
