@@ -57,7 +57,7 @@ public class RobotContainer {
 
     System.out.println("1");
     configureButtonBindings();
-    //LOGGER.start();
+    // LOGGER.start();
 
     // Configure the button bindings
     // driveSubsystem.setDefaultCommand(driveCommand);
@@ -74,12 +74,14 @@ public class RobotContainer {
     JoystickButton shootButton =
         new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
     shootButton.whileHeld(SHOOTER_COMMAND);
-    
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
-        .whenPressed((new AlignCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
-    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
-        .whenPressed((new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
+        .whenPressed(
+            (new AlignCommand(DRIVE_SUBSYSTEM))
+                .withTimeout(5)
+                .andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
+    // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
+    // .whenPressed((new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
     // driveButton.whileHeld(new DriveCommand(driveSubsystem));
   }
 
