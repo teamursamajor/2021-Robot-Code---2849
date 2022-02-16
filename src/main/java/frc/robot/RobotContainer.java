@@ -5,7 +5,6 @@
 package frc.robot;
 
 import static frc.robot.Constants.*;
-import static frc.robot.Constants.XBOX_CONTROLLER;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;

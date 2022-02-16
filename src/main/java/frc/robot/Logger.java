@@ -59,7 +59,7 @@ public class Logger implements Runnable {
     if (running) return;
     running = true;
     t = new Thread(this);
-    t.run();
+    t.start();
   }
 
   public synchronized void stop() {
