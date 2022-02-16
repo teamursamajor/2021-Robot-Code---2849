@@ -13,6 +13,7 @@ import frc.robot.subsystems.ClimbSubsystem;
  *
  * <p>Will say on Driver Station "Ready to go."
  */
+
 public class ClimbCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private static int num = 0;
@@ -59,33 +60,16 @@ public class ClimbCommand extends CommandBase {
 
     }
 
-    /*
-    Old Code
-     boolean isAPressed = Constants.XBOXCONTROLLER.getAButton();
-     System.out.println("Varible a "+ isAPressed );
-     boolean isBPressed = Constants.XBOXCONTROLLER.getBButton();
-     System.out.println("Varible b "+ isBPressed );
-     if(isAPressed){
-         climbSubsystem.moterMove(.25);
-     }else if(isBPressed){
-         climbSubsystem.moterMove(-.25);
-     }else{
-         climbSubsystem.moterMove(0);
+      }
 
-     }
-     */
-    // num++;
-    // count = num;
+      @Override
+      public void end(boolean interrupted) {
+        System.out.println("Done");
+      }
 
-  }
-
-  @Override
-  public void end(boolean interrupted) {
-    System.out.println("Done");
-  }
-
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
-}
+      @Override
+      public boolean isFinished() {
+        return false;
+      }
+    }
+    */

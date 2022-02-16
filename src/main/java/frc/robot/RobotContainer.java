@@ -42,8 +42,6 @@ public class RobotContainer {
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
-  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM);
-
   private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
   private final ColorSubsystem COLOR_SUBSYSTEM = new ColorSubsystem();
 
@@ -56,10 +54,9 @@ public class RobotContainer {
     DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
     CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
     INTAKE_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
-    SHOOTER_SUBSYSTEM.setDefaultCommand(SHOOTER_COMMAND);
     COLOR_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
     System.out.println("1");
-    CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
+    // CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
     configureButtonBindings();
     configureButtonBindings();
     LOGGER.start();
@@ -76,17 +73,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton shootButton =
-        new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
-    shootButton.whileHeld(SHOOTER_COMMAND);
-    // JoystickButton driveButton = new JoystickButton(XBOX_CONTROLLER, 0); // Creates a new
-    // JoystickButton object for
-    // button 1 on exampleStick
-    // Binds an ExampleCommand to be scheduled when the trigger of the example
-    // joystick is pressed
-
-    // new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kY.value).whenPressed(new
-    // AutoAlignCommand(DRIVE_SUBSYSTEM));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
+    shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
         .whenPressed((new AlignCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
