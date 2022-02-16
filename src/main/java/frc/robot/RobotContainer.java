@@ -42,8 +42,6 @@ public class RobotContainer {
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
-  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM);
-
   private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
   private final ColorSubsystem COLOR_SUBSYSTEM = new ColorSubsystem();
 
