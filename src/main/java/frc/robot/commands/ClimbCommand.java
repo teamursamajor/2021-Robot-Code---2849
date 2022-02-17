@@ -72,5 +72,3 @@ public class ClimbCommand extends CommandBase {
         return false;
       }
     }
-  
-    
