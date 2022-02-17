@@ -5,7 +5,6 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.*;
 
-import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -13,6 +12,8 @@ import frc.robot.subsystems.DriveSubsystem;
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem DRIVE_SUBSYSTEM;
+  private Double driveDistance;
+  private boolean finished = false;
 
   /**
    * Creates a new ExampleCommand.
@@ -27,16 +28,15 @@ public class DriveCommand extends CommandBase {
     setName("Drive (Command)");
   }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    System.out.println("intialzied");
+  public DriveCommand(DriveSubsystem subsystem, Double driveDistance) {
+    DRIVE_SUBSYSTEM = subsystem;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(subsystem);
+    this.driveDistance = driveDistance;
+    setName("Drive (Command)");
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    // System.out.println("it works");
+  public void manualDrive(){
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOX_CONTROLLER.getRawAxis(1);
     rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
@@ -58,7 +58,26 @@ public class DriveCommand extends CommandBase {
 
     DRIVE_SUBSYSTEM.setLeftPower(leftSpeed);
     DRIVE_SUBSYSTEM.setRightPower(rightSpeed);
-    // System.out.println("it works 2");
+    finished = true;
+  }
+
+  public void autoDrive(){
+    finished = true;
+  }
+
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+    System.out.println("intialzied");
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    if(driveDistance != null)
+      manualDrive();
+    else
+      autoDrive();
   }
 
   // Called once the command ends or is interrupted.
@@ -71,6 +90,6 @@ public class DriveCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }
