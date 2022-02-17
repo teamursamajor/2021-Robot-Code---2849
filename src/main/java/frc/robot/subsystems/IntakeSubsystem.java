@@ -23,6 +23,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public void periodic() {
     ColorRGB c = new ColorRGB(COLOR_SENSOR.getColor());
     log(this, c.toString(), INFO);
+   // log(this, COLOR_SENSOR.getColor().toString(), INFO);
   }
 
   @Override
