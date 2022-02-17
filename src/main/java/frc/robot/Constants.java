@@ -4,11 +4,10 @@
 
 package frc.robot;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.XboxController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -40,18 +39,18 @@ public final class Constants {
   public static final I2C.Port I2C_PORT = I2C.Port.kMXP;
 
   public static final XboxController XBOX_CONTROLLER = new XboxController(0);
-  
+
   public static final Level INFO = Level.INFO;
   public static final Level WARN = Level.WARN;
   public static final Level CRIT = Level.CRIT;
 
-
   public static void log(Object source, String message, Level lvl) {
-    System.out.println(String.format(
-      "[%s] (%s) @ %s -> %s",
-      LOG_FMT.format(new Date(System.currentTimeMillis())),
-      lvl,
-      source.getClass().getName(),
-      message));
+    System.out.println(
+        String.format(
+            "[%s] (%s) @ %s -> %s",
+            LOG_FMT.format(new Date(System.currentTimeMillis())),
+            lvl,
+            source.getClass().getName(),
+            message));
   }
 }
