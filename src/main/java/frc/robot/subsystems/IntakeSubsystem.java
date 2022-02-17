@@ -21,7 +21,10 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {}
+  public void periodic() {
+    ColorRGB c = new ColorRGB(COLOR_SENSOR.getColor());
+    log(this, c.toString(), INFO);
+  }
 
   @Override
   public void simulationPeriodic() {}
