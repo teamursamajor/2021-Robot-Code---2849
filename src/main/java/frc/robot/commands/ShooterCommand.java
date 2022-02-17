@@ -39,7 +39,7 @@ public class ShooterCommand extends CommandBase {
       e.printStackTrace();
     }
     finished = true;
-    LOGGER.log(SHOOTER_SUBSYSTEM, "Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.get(), INFO);
+    log(SHOOTER_SUBSYSTEM, "Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.get(), INFO);
   }
 
   // Called once the command ends or is interrupted.

@@ -39,8 +39,8 @@ public class DriveCommand extends CommandBase {
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOX_CONTROLLER.getRawAxis(1);
     rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
-    LOGGER.log(DRIVE_SUBSYSTEM, "Left Stick: " + leftStickY, INFO);
-    LOGGER.log(DRIVE_SUBSYSTEM, "Right Stick: " + rightStickX, INFO);
+    log(DRIVE_SUBSYSTEM, "Left Stick: " + leftStickY, INFO);
+    log(DRIVE_SUBSYSTEM, "Right Stick: " + rightStickX, INFO);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
 
