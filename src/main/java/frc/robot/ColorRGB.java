@@ -12,6 +12,12 @@ public final class ColorRGB {
     this.BLUE = (int) (c.blue * 255);
   }
 
+  public ColorRGB(int r, int g, int b) {
+    this.RED = r;
+    this.GREEN = g;
+    this.BLUE = b;
+  }
+
   @Override
   public String toString() {
     return String.format("%d:%d:%d", RED, GREEN, BLUE);
