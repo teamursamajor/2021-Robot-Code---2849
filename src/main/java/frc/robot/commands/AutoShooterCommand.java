@@ -13,12 +13,13 @@ public class AutoShooterCommand extends CommandBase {
     public boolean isFinished = false;
     public double maxYValue = -10.0;
     public double minYValue = 10.0;
-    public double maxMotorSpeed = 400;
+    public double maxMotorSpeed = 400; //find out what the rpm is when the motor speed is at 1
     public double minMotorSpeed = 300;
     public double maxMotorPower = 1.0;
-    public double minMotorPower = .25;
+    public double minMotorPower = .25; //find the motor speed for when the robot is closest the target
     private final ShooterSubsystem shooterSubsystem;
     
+
     public AutoShooterCommand(ShooterSubsystem subsystem) {
         System.out.println("construct");
         shooterSubsystem = subsystem;
