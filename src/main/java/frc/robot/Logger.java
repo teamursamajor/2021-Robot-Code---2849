@@ -34,8 +34,7 @@ public class Logger implements Runnable {
           String fn =
               String.format(
                   "/home/lvuser/logs/%s_%s.log",
-                  src.getClass().getName(),
-                  FILE_FMT.format(new Date(System.currentTimeMillis())));
+                  src.getClass().getName(), FILE_FMT.format(new Date(System.currentTimeMillis())));
           File file = new File(fn);
           file.createNewFile();
           BufferedWriter bf = new BufferedWriter(new FileWriter(file));
