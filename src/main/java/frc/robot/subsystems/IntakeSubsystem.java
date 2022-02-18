@@ -4,7 +4,6 @@ import static frc.robot.Constants.*;
 
 import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
-import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.ColorRGB;
 
@@ -25,20 +24,19 @@ public class IntakeSubsystem extends SubsystemBase {
   public void periodic() {
     ColorRGB c = new ColorRGB(COLOR_SENSOR.getColor());
     log(this, checkColor(c), INFO);
-   // log(this, COLOR_SENSOR.getColor().toString(), INFO);
   }
 
   @Override
   public void simulationPeriodic() {}
 
   public String checkColor(ColorRGB c) {
-    if ((c.RED <= RED_MAX.RED && c.RED >= RED_MIN.RED) &&
-        (c.GREEN <= RED_MAX.GREEN && c.GREEN >= RED_MIN.GREEN) &&
-        (c.BLUE <= RED_MAX.BLUE && c.BLUE >= RED_MIN.BLUE)) {
+    if ((c.RED <= RED_MAX.RED && c.RED >= RED_MIN.RED)
+        && (c.GREEN <= RED_MAX.GREEN && c.GREEN >= RED_MIN.GREEN)
+        && (c.BLUE <= RED_MAX.BLUE && c.BLUE >= RED_MIN.BLUE)) {
       return "red";
-    } else if ((c.RED <= BLUE_MAX.RED && c.RED >= BLUE_MIN.RED) &&
-              (c.GREEN <= BLUE_MAX.GREEN && c.GREEN >= BLUE_MIN.GREEN) &&
-              (c.BLUE <= BLUE_MAX.BLUE && c.BLUE >= BLUE_MIN.BLUE)) {
+    } else if ((c.RED <= BLUE_MAX.RED && c.RED >= BLUE_MIN.RED)
+        && (c.GREEN <= BLUE_MAX.GREEN && c.GREEN >= BLUE_MIN.GREEN)
+        && (c.BLUE <= BLUE_MAX.BLUE && c.BLUE >= BLUE_MIN.BLUE)) {
       return "blue";
     } else {
       return "neither";
