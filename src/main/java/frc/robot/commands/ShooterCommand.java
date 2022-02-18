@@ -31,7 +31,7 @@ public class ShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SHOOTER_SUBSYSTEM.SHOOTER.set(0.5);
+    SHOOTER_SUBSYSTEM.SHOOTER.set(0.2);
     try {
       wait(500L);
     } catch (InterruptedException e) {

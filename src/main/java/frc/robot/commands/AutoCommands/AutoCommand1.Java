@@ -52,7 +52,9 @@ public class AutoCommand1 extends CommandBase {
   public boolean isFinished() {
     return finished;
   }
-    
+
+  // Waiting for the day that this line will be used...
+  // Don't worry line56, you will be used someday.
 
 
 
