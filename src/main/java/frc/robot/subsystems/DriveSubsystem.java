@@ -4,15 +4,16 @@
 
 package frc.robot.subsystems;
 
+import static frc.robot.Constants.*;
+
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
-  public final Spark FRONT_RIGHT_DRIVE = new Spark(Constants.FRONT_RIGHT_DRIVE_PORT);
-  public final Spark FRONT_LEFT_DRIVE = new Spark(Constants.FRONT_LEFT_DRIVE_PORT);
-  public final Spark BACK_RIGHT_DRIVE = new Spark(Constants.BACK_RIGHT_DRIVE_PORT);
-  public final Spark BACK_LEFT_DRIVE = new Spark(Constants.BACK_LEFT_DRIVER_PORT);
+  public final Spark FRONT_RIGHT_DRIVE = new Spark(FRONT_RIGHT_DRIVE_PORT);
+  public final Spark FRONT_LEFT_DRIVE = new Spark(FRONT_LEFT_DRIVE_PORT);
+  public final Spark BACK_RIGHT_DRIVE = new Spark(BACK_RIGHT_DRIVE_PORT);
+  public final Spark BACK_LEFT_DRIVE = new Spark(BACK_LEFT_DRIVER_PORT);
 
   /** Creates a new ExampleSubsystem. */
   public DriveSubsystem() {
@@ -27,5 +28,17 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
+  }
+
+  public void setLeftPower(final double power) {
+    BACK_LEFT_DRIVE.set(-power);
+    FRONT_LEFT_DRIVE.set(-power);
+    log(this, "left speed: " + power, INFO);
+  }
+
+  public void setRightPower(final double power) {
+    BACK_RIGHT_DRIVE.set(power);
+    FRONT_RIGHT_DRIVE.set(power);
+    log(this, "right speed: " + power, INFO);
   }
 }

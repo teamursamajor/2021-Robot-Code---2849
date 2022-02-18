@@ -10,6 +10,8 @@ public class ShooterCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
 
+  boolean finished = false;
+
   /**
    * Creates a new ShooterCommand.
    *
@@ -29,19 +31,26 @@ public class ShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SHOOTER_SUBSYSTEM.SHOOTER.set(10);
-    LOGGER.log(SHOOTER_SUBSYSTEM, "Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.get());
+    SHOOTER_SUBSYSTEM.SHOOTER.set(0.4);
+    try {
+      wait(500L);
+    } catch (InterruptedException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    finished = true;
+    log(SHOOTER_SUBSYSTEM, "Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.get(), INFO);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SHOOTER_SUBSYSTEM.SHOOTER.set(0);
+    SHOOTER_SUBSYSTEM.SHOOTER.set(0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }
