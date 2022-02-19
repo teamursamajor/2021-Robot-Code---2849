@@ -34,14 +34,13 @@ public class ShooterCommand extends CommandBase {
   public void initialize() {
     SHOOTER_SUBSYSTEM.SHOOTER.configFactoryDefault();
     SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 1);
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -1);
-    
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -0.5);
+
   }
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     System.out.println("Execute");
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -0.5);
     // try {
     //  wait(500L);
     // } catch (InterruptedException e) {
