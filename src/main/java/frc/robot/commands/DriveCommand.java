@@ -5,7 +5,6 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.*;
 
-import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -13,6 +12,9 @@ import frc.robot.subsystems.DriveSubsystem;
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem DRIVE_SUBSYSTEM;
+
+  private Double driveDistance;
+  private boolean finished = false;
 
   /**
    * Creates a new ExampleCommand.
@@ -27,20 +29,20 @@ public class DriveCommand extends CommandBase {
     setName("Drive (Command)");
   }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    System.out.println("intialzied");
+  public DriveCommand(DriveSubsystem subsystem, Double driveDistance) {
+    DRIVE_SUBSYSTEM = subsystem;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(subsystem);
+    this.driveDistance = driveDistance;
+    setName("Drive (Command)");
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    // System.out.println("it works");
+  public void manualDrive() {
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOX_CONTROLLER.getRawAxis(1);
     rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
-
+    log(DRIVE_SUBSYSTEM, "Left Stick: " + leftStickY, INFO);
+    log(DRIVE_SUBSYSTEM, "Right Stick: " + rightStickX, INFO);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
 
@@ -57,7 +59,36 @@ public class DriveCommand extends CommandBase {
 
     DRIVE_SUBSYSTEM.setLeftPower(leftSpeed);
     DRIVE_SUBSYSTEM.setRightPower(rightSpeed);
-    // System.out.println("it works 2");
+  }
+
+  public void autoDrive() {
+    finished = true;
+
+    // REMEMBER TO SET DISTANCE IN "initialize()"
+    // double temporarySpeedVariable = 1.0;
+    // double temporarySubtractValue = 1.0 / driveDistance;
+    // while (temporarySpeedVariable != 0) {
+    //   DRIVE_SUBSYSTEM.setLeftPower(temporarySpeedVariable);
+    //   DRIVE_SUBSYSTEM.setRightPower(temporarySpeedVariable);
+    //   temporarySpeedVariable = temporarySpeedVariable - temporarySubtractValue;
+    //   driveDistance--;
+    // }
+
+  }
+
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+    System.out.println("intialzied");
+    // Set the autonomous distance here
+    driveDistance = 200.0;
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    if (driveDistance != 0) autoDrive();
+    else manualDrive();
   }
 
   // Called once the command ends or is interrupted.
@@ -70,6 +101,6 @@ public class DriveCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }

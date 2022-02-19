@@ -9,7 +9,7 @@ import frc.robot.subsystems.DriveSubsystem;
 
 public class DistanceCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final DriveSubsystem driveSubsystem;
+  private final DriveSubsystem DRIVE_SUBSYSTEM;
 
   private boolean alignFinished = false;
   // This is for values on the cart
@@ -20,7 +20,7 @@ public class DistanceCommand extends CommandBase {
 
   /** @param subsystem */
   public DistanceCommand(DriveSubsystem subsystem) {
-    driveSubsystem = subsystem;
+    DRIVE_SUBSYSTEM = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -29,18 +29,6 @@ public class DistanceCommand extends CommandBase {
   public void initialize() {
     System.out.println("initialized");
     alignFinished = false;
-  }
-
-  public void setRightPower(final double power) {
-    driveSubsystem.BACK_RIGHT_DRIVE.set(power);
-    driveSubsystem.FRONT_RIGHT_DRIVE.set(power);
-    // System.out.println("right speed: " + power);
-  }
-
-  public void setLeftPower(final double power) {
-    driveSubsystem.BACK_LEFT_DRIVE.set(-power);
-    driveSubsystem.FRONT_LEFT_DRIVE.set(-power);
-    // System.out.println("left speed: " + power);
   }
 
   public double getY() {
@@ -105,13 +93,13 @@ public class DistanceCommand extends CommandBase {
       alignFinished = true;
 
     } else if (y > minShooting) {
-      setLeftPower(.25);
-      setRightPower(.25);
+      DRIVE_SUBSYSTEM.setLeftPower(.25);
+      DRIVE_SUBSYSTEM.setRightPower(.25);
       System.out.println("To close");
     } else if (y < maxShooting) {
 
-      setLeftPower(-.25);
-      setRightPower(-.25);
+      DRIVE_SUBSYSTEM.setLeftPower(-.25);
+      DRIVE_SUBSYSTEM.setRightPower(-.25);
       System.out.println("to far");
     }
   }
@@ -125,7 +113,7 @@ public class DistanceCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     System.out.println("End");
-    setLeftPower(0);
-    setRightPower(0);
+    DRIVE_SUBSYSTEM.setLeftPower(0);
+    DRIVE_SUBSYSTEM.setRightPower(0);
   }
 }

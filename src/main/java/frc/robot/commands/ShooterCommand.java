@@ -36,12 +36,15 @@ public class ShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println(
-        "The motor velocity " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
-    //System.out.println(
-        //"The motor position: " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorPosition());
-    //output = kd * error + intrgal
-
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.2);
+    try {
+      wait(500L);
+    } catch (InterruptedException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    finished = true;
+    log(SHOOTER_SUBSYSTEM, "Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity(), INFO);
   }
 
   // Called once the command ends or is interrupted.
