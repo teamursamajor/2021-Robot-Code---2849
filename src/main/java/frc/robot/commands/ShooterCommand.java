@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.*;
 
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterSubsystem;
 
@@ -26,26 +27,25 @@ public class ShooterCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    SHOOTER_SUBSYSTEM.SHOOTER.configFactoryDefault();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SHOOTER_SUBSYSTEM.SHOOTER.set(0.5);
-    try {
-      wait(500L);
-    } catch (InterruptedException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    finished = true;
-    LOGGER.log(SHOOTER_SUBSYSTEM, "Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.get(), INFO);
+    System.out.println(
+        "The motor velocity " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
+    //System.out.println(
+        //"The motor position: " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorPosition());
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -0.2);
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SHOOTER_SUBSYSTEM.SHOOTER.set(0.0);
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.0);
   }
 
   // Returns true when the command should end.

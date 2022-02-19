@@ -33,12 +33,10 @@ public class DriveSubsystem extends SubsystemBase {
   public void setLeftPower(final double power) {
     BACK_LEFT_DRIVE.set(-power);
     FRONT_LEFT_DRIVE.set(-power);
-    LOGGER.log(this, "left speed: " + power, INFO);
   }
 
   public void setRightPower(final double power) {
     BACK_RIGHT_DRIVE.set(power);
     FRONT_RIGHT_DRIVE.set(power);
-    LOGGER.log(this, "right speed: " + power, INFO);
   }
 }

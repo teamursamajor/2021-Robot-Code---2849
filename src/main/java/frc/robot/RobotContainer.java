@@ -47,6 +47,8 @@ public class RobotContainer {
 
   private final IntakeCommand INTAKE_COMMAND = new IntakeCommand(INTAKE_SUBSYSTEM, COLOR_SUBSYSTEM);
 
+  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 

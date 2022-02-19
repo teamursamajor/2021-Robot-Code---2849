@@ -13,7 +13,6 @@ import frc.robot.subsystems.ClimbSubsystem;
  *
  * <p>Will say on Driver Station "Ready to go."
  */
-
 public class ClimbCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private static int num = 0;
@@ -59,17 +58,15 @@ public class ClimbCommand extends CommandBase {
       //
 
     }
+  }
 
-      }
+  @Override
+  public void end(boolean interrupted) {
+    System.out.println("Done");
+  }
 
-      @Override
-      public void end(boolean interrupted) {
-        System.out.println("Done");
-      }
-
-      @Override
-      public boolean isFinished() {
-        return false;
-      }
-    }
-    */
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
+}
