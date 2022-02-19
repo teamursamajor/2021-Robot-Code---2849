@@ -20,15 +20,15 @@ public class ClimbCommand extends CommandBase {
 
   private int count;
   private int falconMaxSensor = 7;
-  private int falconNinSensor = 0;
+  private int falconMinSensor = 0;
   boolean touchRight;
   boolean touchLeft;
   private boolean isExtended;
-  private final ClimbSubsystem climbSubsystem;
+  private final ClimbSubsystem CLIMB_SUBSYSTEM;
 
   public ClimbCommand(ClimbSubsystem subsystem) {
     System.out.println("construct");
-    climbSubsystem = subsystem;
+    CLIMB_SUBSYSTEM = subsystem;
     addRequirements(subsystem);
   }
 
@@ -45,9 +45,9 @@ public class ClimbCommand extends CommandBase {
     num++;
     count = num;
     if (isExtended == false) {
-      climbSubsystem.moterMove(.25);
+      CLIMB_SUBSYSTEM.moterMove(.25);
     } else if ((isExtended == true) && (touchRight == true) && (touchLeft == true)) {
-      climbSubsystem.moterMove(-.25);
+      CLIMB_SUBSYSTEM.moterMove(-.25);
     }
     if (count >= 5) {
       // get sensor number

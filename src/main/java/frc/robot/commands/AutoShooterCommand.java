@@ -8,7 +8,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterSubsystem;
-
+import frc.robot.subsystems.BeltSubsystem;
 public class AutoShooterCommand extends CommandBase {
     public boolean isFinished = false;
     public double maxYValue = -10.0;
@@ -17,12 +17,13 @@ public class AutoShooterCommand extends CommandBase {
     public double minMotorSpeed = 300;
     public double maxMotorPower = 1.0;
     public double minMotorPower = .25; //find the motor speed for when the robot is closest the target
-    private final ShooterSubsystem shooterSubsystem;
-    
-
-    public AutoShooterCommand(ShooterSubsystem subsystem) {
+    private final ShooterSubsystem SHOOTER_SUBSYSTEM;
+    private final BeltSubsystem BELT_SUBSYSTEM;
+    public AutoShooterCommand(ShooterSubsystem subsystem, BeltSubsystem subsystem2) {
         System.out.println("construct");
-        shooterSubsystem = subsystem;
+        SHOOTER_SUBSYSTEM = subsystem;
+        BELT_SUBSYSTEM = subsystem2;
+        addRequirements(subsystem2);
         addRequirements(subsystem);
     }
     
@@ -49,32 +50,37 @@ public class AutoShooterCommand extends CommandBase {
     }
     
     @Override
+    
     public void execute() {
-        int count = 0;
-        double y = getY();
-        if(y == Double.MIN_VALUE){
-            System.out.println("Can't detect limelight");
-            return;
-        }else{
-            //double linearScale = (maxMotorSpeed-minMotorSpeed)/(minYValue-maxYValue);
-            //double power = minMotorSpeed + (y-minYValue)*linearScale;
-            //call the shooter the power
-            //double power = maxMotorSpeed *((y-minYValue)/(maxYValue-minYValue));
+    int time = 0;
+    int count = 0;
+    double y = getY();
+    if(y == Double.MIN_VALUE){
+        System.out.println("Can't detect limelight");
+        return;
+    }else{
+        if(BELT_SUBSYSTEM.lineBroken){
             double speed = maxMotorSpeed * (y/maxYValue);
             double power = maxMotorPower * (y/maxYValue);
-            shooterSubsystem.SHOOTER.set(TalonFXControlMode.PercentOutput, power);
-            if((shooterSubsystem.SHOOTER.getSelectedSensorVelocity()>=speed - 10)&&(shooterSubsystem.SHOOTER.
+            SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, power);
+            if((SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity()>=speed - 10)&&(SHOOTER_SUBSYSTEM.SHOOTER.
             getSelectedSensorVelocity()<=speed+10)){
-                //set belt power for 5 seconds use belt command 
-                //count++
+                BELT_SUBSYSTEM.ballToShooter();
+                count++;
                
+            }if(count == 2){
+                isFinished = true;
             }
+    
+        }else{
+           BELT_SUBSYSTEM.balltoTopOfBelt();
         }
-        if(count == 2){
-            isFinished = true;
+    
         }
-
-        
+    time++;
+    if(time>=5){
+        isFinished = true;
+    }
     }
 
     @Override
@@ -86,7 +92,7 @@ public class AutoShooterCommand extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         System.out.println("end");
-        shooterSubsystem.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.0);
+        SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.0);
 
 
     }

@@ -9,7 +9,7 @@ import frc.robot.subsystems.DriveSubsystem;
 
 public class DistanceCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final DriveSubsystem driveSubsystem;
+  private final DriveSubsystem DRIVE_SUBSYSTEM;
 
   private boolean alignFinished = false;
   // This is for values on the cart
@@ -20,7 +20,7 @@ public class DistanceCommand extends CommandBase {
 
   /** @param subsystem */
   public DistanceCommand(DriveSubsystem subsystem) {
-    driveSubsystem = subsystem;
+    DRIVE_SUBSYSTEM = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -32,14 +32,14 @@ public class DistanceCommand extends CommandBase {
   }
 
   public void setRightPower(final double power) {
-    driveSubsystem.BACK_RIGHT_DRIVE.set(power);
-    driveSubsystem.FRONT_RIGHT_DRIVE.set(power);
+    DRIVE_SUBSYSTEM.BACK_RIGHT_DRIVE.set(power);
+    DRIVE_SUBSYSTEM.FRONT_RIGHT_DRIVE.set(power);
     // System.out.println("right speed: " + power);
   }
 
   public void setLeftPower(final double power) {
-    driveSubsystem.BACK_LEFT_DRIVE.set(-power);
-    driveSubsystem.FRONT_LEFT_DRIVE.set(-power);
+    DRIVE_SUBSYSTEM.BACK_LEFT_DRIVE.set(-power);
+    DRIVE_SUBSYSTEM.FRONT_LEFT_DRIVE.set(-power);
     // System.out.println("left speed: " + power);
   }
 

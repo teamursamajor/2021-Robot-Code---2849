@@ -5,13 +5,14 @@ import static frc.robot.Constants.*;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /** An example command that uses an example subsystem. */
 public class ShooterCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
-
+  private final BeltSubsystem BELT_SUBSYSTEM;
   boolean finished = false;
 
   /**
@@ -19,10 +20,12 @@ public class ShooterCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ShooterCommand(ShooterSubsystem subsystem) {
+  public ShooterCommand(ShooterSubsystem subsystem, BeltSubsystem subsystem2) {
     SHOOTER_SUBSYSTEM = subsystem;
+    BELT_SUBSYSTEM = subsystem2;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(SHOOTER_SUBSYSTEM);
+    addRequirements(BELT_SUBSYSTEM);
     setName("Shooter (Command)");
   }
 

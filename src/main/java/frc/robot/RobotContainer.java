@@ -12,11 +12,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignCommand;
+import frc.robot.commands.AutoShooterCommand;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.ShooterCommand;
+import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.ColorSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -47,7 +49,11 @@ public class RobotContainer {
 
   private final IntakeCommand INTAKE_COMMAND = new IntakeCommand(INTAKE_SUBSYSTEM, COLOR_SUBSYSTEM);
 
-  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM);
+  private final BeltSubsystem BELT_SUBSYSTEM = new BeltSubsystem();
+
+  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM);
+
+  private final AutoShooterCommand AUTO_SHOOTER_COMMAND = new AutoShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM);
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
