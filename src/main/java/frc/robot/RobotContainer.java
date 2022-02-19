@@ -51,9 +51,6 @@ public class RobotContainer {
 
     // Configure the button bindings
     DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
-    CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
-    INTAKE_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
-    SHOOTER_SUBSYSTEM.setDefaultCommand(SHOOTER_COMMAND);
     configureButtonBindings();
   }
 

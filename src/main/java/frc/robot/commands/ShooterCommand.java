@@ -32,12 +32,6 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void execute() {
     SHOOTER_SUBSYSTEM.SHOOTER.set(0.2);
-    try {
-      wait(500L);
-    } catch (InterruptedException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
     finished = true;
     log(SHOOTER_SUBSYSTEM, "Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.get(), INFO);
   }

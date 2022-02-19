@@ -38,6 +38,7 @@ public class DriveCommand extends CommandBase {
   }
 
   public void manualDrive() {
+    System.out.println("driving");
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOX_CONTROLLER.getRawAxis(1);
     rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
@@ -45,9 +46,12 @@ public class DriveCommand extends CommandBase {
     log(DRIVE_SUBSYSTEM, "Right Stick: " + rightStickX, INFO);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
-
+    log(DRIVE_SUBSYSTEM, "Initial Left Speed: " + leftSpeed, INFO);
+    log(DRIVE_SUBSYSTEM, "Initial Right Speed: " + rightSpeed, INFO);
     double max = Math.max(leftSpeed, rightSpeed); // the greater of the two values
     double min = Math.min(leftSpeed, rightSpeed); // the lesser of the two values
+    log(DRIVE_SUBSYSTEM, "max" + max, INFO);
+    log(DRIVE_SUBSYSTEM, "min" + min, INFO);
 
     if (max > 1) {
       leftSpeed /= max;
@@ -56,10 +60,16 @@ public class DriveCommand extends CommandBase {
       leftSpeed /= -min;
       rightSpeed /= -min;
     }
+    log(DRIVE_SUBSYSTEM, "Left Speed after max/min" + leftSpeed, INFO);
+    log(DRIVE_SUBSYSTEM, "Right speed after max/min: " + rightSpeed, INFO);
+
+
+
+    
 
     DRIVE_SUBSYSTEM.setLeftPower(leftSpeed);
     DRIVE_SUBSYSTEM.setRightPower(rightSpeed);
-    finished = true;
+    // finished = true;
   }
 
   public void autoDrive() {
@@ -82,14 +92,14 @@ public class DriveCommand extends CommandBase {
   public void initialize() {
     System.out.println("intialzied");
     // Set the autonomous distance here
-    driveDistance = 200.0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (driveDistance != 0) autoDrive();
-    else manualDrive();
+    //if (driveDistance != 0) autoDrive();
+    //else manualDrive();
+    manualDrive();
   }
 
   // Called once the command ends or is interrupted.

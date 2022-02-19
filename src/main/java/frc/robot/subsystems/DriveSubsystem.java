@@ -7,8 +7,12 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.*;
 
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -17,10 +21,10 @@ public class DriveSubsystem extends SubsystemBase {
   public final Spark BACK_RIGHT_DRIVE = new Spark(BACK_RIGHT_DRIVE_PORT);
   public final Spark BACK_LEFT_DRIVE = new Spark(BACK_LEFT_DRIVE_PORT);
   // R.I.P. Sparks :(
-  public TalonFX FRONT_RIGHT_DRIVE1 = new TalonFX(FRONT_RIGHT_DRIVE_PORT);
-  public TalonFX FRONT_LEFT_DRIVE1 = new TalonFX(FRONT_LEFT_DRIVE_PORT);
-  public TalonFX BACK_RIGHT_DRIVE1 = new TalonFX(BACK_RIGHT_DRIVE_PORT);
-  public TalonFX BACK_LEFT_DRIVE1 = new TalonFX(BACK_LEFT_DRIVE_PORT);
+  public VictorSPX FRONT_RIGHT_DRIVE1 = new VictorSPX(FRONT_RIGHT_DRIVE_PORT);
+  public VictorSPX FRONT_LEFT_DRIVE1 = new VictorSPX(FRONT_LEFT_DRIVE_PORT);
+  public VictorSPX BACK_RIGHT_DRIVE1 = new VictorSPX(BACK_RIGHT_DRIVE_PORT);
+  public VictorSPX BACK_LEFT_DRIVE1 = new VictorSPX(BACK_LEFT_DRIVE_PORT);
 
   /** Creates a new ExampleSubsystem. */
   public DriveSubsystem() {
@@ -38,14 +42,15 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void setLeftPower(final double power) {
-    BACK_LEFT_DRIVE1.set(TalonFXControlMode.PercentOutput, -power);
-    FRONT_LEFT_DRIVE1.set(TalonFXControlMode.PercentOutput, -power);
-    log(this, "left speed: " + power, INFO);
+    BACK_LEFT_DRIVE1.set(VictorSPXControlMode.PercentOutput, -power);
+    FRONT_LEFT_DRIVE1.set(VictorSPXControlMode.PercentOutput, -power);
+    
+    log(this, "final left speed: " + power, INFO);
   }
 
   public void setRightPower(final double power) {
-    BACK_RIGHT_DRIVE1.set(TalonFXControlMode.PercentOutput, power);
-    FRONT_RIGHT_DRIVE1.set(TalonFXControlMode.PercentOutput, power);
-    log(this, "right speed: " + power, INFO);
+    BACK_RIGHT_DRIVE1.set(VictorSPXControlMode.PercentOutput, power);
+    FRONT_RIGHT_DRIVE1.set(VictorSPXControlMode.PercentOutput, power);
+    log(this, "final right speed: " + power, INFO);
   }
 }
