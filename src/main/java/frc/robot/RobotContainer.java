@@ -34,28 +34,18 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
 
+  private final BeltSubsystem BELT_SUBSYSTEM = new BeltSubsystem();
+
   private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
   private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
-  private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
-
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
-
-  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM);
 
   private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
 
-  private final IntakeCommand INTAKE_COMMAND = new IntakeCommand(INTAKE_SUBSYSTEM);
 
-
-  private final BeltSubsystem BELT_SUBSYSTEM = new BeltSubsystem();
-
-  private final ShooterCommand SHOOTER_COMMAND =
-      new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM);
-
-  private final AutoShooterCommand AUTO_SHOOTER_COMMAND =
-      new AutoShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM);
+  
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -74,7 +64,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     JoystickButton shootButton =
         new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
-    shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
+    shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM));
     // JoystickButton driveButton = new JoystickButton(XBOX_CONTROLLER, 0); // Creates a new
     // JoystickButton object for
     // button 1 on exampleStick
