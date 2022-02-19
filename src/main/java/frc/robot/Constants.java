@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.XboxController;
 
@@ -21,6 +22,8 @@ public final class Constants {
   public static final int BACK_RIGHT_DRIVE_PORT = 5;
   public static final int FRONT_LEFT_DRIVE_PORT = 2;
   public static final int FRONT_RIGHT_DRIVE_PORT = 3;
+
+  public static final String TEAM_COLOR = DriverStation.getAlliance().name();
 
   public static final int SHOOTER_PORT = 2; // TODO: real port num
   public static final int CLIMB_PORT = 3; // TODO: real port num
