@@ -37,7 +37,7 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void execute() {
     System.out.println("Execute");
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.2);
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.5);
     // try {
     //  wait(500L);
     // } catch (InterruptedException e) {
