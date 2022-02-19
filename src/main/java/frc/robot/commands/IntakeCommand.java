@@ -30,9 +30,11 @@ public class IntakeCommand extends CommandBase {
     log(INTAKE_SUBSYSTEM, "Executing", INFO);
     while (INTAKE_SUBSYSTEM
         .checkColor(new ColorRGB(INTAKE_SUBSYSTEM.COLOR_SENSOR.getColor()))
-        .equals(TEAM_COLOR)) {}
-    INTAKE_SUBSYSTEM.INTAKE.set(10);
-    new WaitCommand(3.0);
+        .equals("neither")) {}
+    if (INTAKE_SUBSYSTEM.checkColor(new ColorRGB(INTAKE_SUBSYSTEM.COLOR_SENSOR.getColor())).equals(TEAM_COLOR)) {
+      INTAKE_SUBSYSTEM.INTAKE.set(10);
+      new WaitCommand(3.0);
+    }
     running = false;
   }
 
