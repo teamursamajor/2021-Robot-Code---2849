@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+// import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -22,6 +23,10 @@ public class ClimbSubsystem extends SubsystemBase {
 
   public void moterMove(double speed) {
     climbOne.set(TalonFXControlMode.PercentOutput, speed);
-    climbOne.set(TalonFXControlMode.PercentOutput, speed);
+    climbTwo.set(TalonFXControlMode.PercentOutput, speed);
+
+    climbOne.getActiveTrajectoryVelocity();
+    climbOne.getMotorOutputVoltage();
+    climbOne.getSelectedSensorVelocity();
   }
 }

@@ -60,8 +60,8 @@ public class AlignCommand extends CommandBase {
     } else {
       x = tx.getDouble(Double.MIN_VALUE);
     }
-    System.out.println(isThereLimelight);
-    System.out.println(x);
+    // System.out.println(isThereLimelight);
+    // System.out.println(x);
     SmartDashboard.putNumber("LimelightX", x);
     return x;
   }
@@ -84,7 +84,6 @@ public class AlignCommand extends CommandBase {
     double max = 1;
     double min = -1;
     // detect target
-    System.out.println(getX());
     double x = getX();
     System.out.println(x);
     // if center, end
