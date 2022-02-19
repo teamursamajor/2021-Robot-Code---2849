@@ -1,11 +1,12 @@
 package frc.robot.commands;
 
+import static frc.robot.Constants.*;
+
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimbSubsystem;
-import static frc.robot.Constants.*;
 
 /**
  * Going to add a comment when sensors are recieved to allow for the driver to know if: 1.) an arm
@@ -51,6 +52,7 @@ public class ClimbCommand extends CommandBase {
   public void execute() {
     log(CLIMB_SUBSYSTEM, "Execute", INFO);
   }
+
   @Override
   public void end(boolean interrupted) {
     System.out.println("Done");
@@ -61,5 +63,3 @@ public class ClimbCommand extends CommandBase {
     return false;
   }
 }
-  
-    
