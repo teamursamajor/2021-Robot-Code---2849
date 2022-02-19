@@ -105,13 +105,13 @@ public class DistanceCommand extends CommandBase {
       alignFinished = true;
 
     } else if (y > minShooting) {
-      setLeftPower(.25);
-      setRightPower(.25);
+      DRIVE_SUBSYSTEM.setLeftPower(.25);
+      DRIVE_SUBSYSTEM.setRightPower(.25);
       System.out.println("To close");
     } else if (y < maxShooting) {
 
-      setLeftPower(-.25);
-      setRightPower(-.25);
+      DRIVE_SUBSYSTEM.setLeftPower(-.25);
+      DRIVE_SUBSYSTEM.setRightPower(-.25);
       System.out.println("to far");
     }
   }
@@ -125,7 +125,7 @@ public class DistanceCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     System.out.println("End");
-    setLeftPower(0);
-    setRightPower(0);
+    DRIVE_SUBSYSTEM.setLeftPower(0);
+    DRIVE_SUBSYSTEM.setRightPower(0);
   }
 }

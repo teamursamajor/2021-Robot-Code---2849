@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import static frc.robot.Constants.*;
+
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.*;
@@ -36,10 +38,11 @@ public class ClimbCommand extends CommandBase {
     touchRight = false;
     touchLeft = false;
     isExtended = false;
-    System.out.println("intialzied");
+    log(CLIMB_SUBSYSTEM, "intialzied", INFO);
   }
 
   public void execute() {
+<<<<<<< HEAD:src/main/java/frc/robot/commands/ClimbCommand.Java
     System.out.println("Execute");
     num++;
     count = num;
@@ -60,6 +63,13 @@ public class ClimbCommand extends CommandBase {
 
     }
   }
+=======
+    log(CLIMB_SUBSYSTEM, "Execute", INFO);
+  }
+
+    
+  
+>>>>>>> dev:src/main/java/frc/robot/commands/ClimbCommand.java
 
   @Override
   public void end(boolean interrupted) {

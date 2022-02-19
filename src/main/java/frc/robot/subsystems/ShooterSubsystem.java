@@ -10,21 +10,18 @@ public class ShooterSubsystem extends SubsystemBase {
   public final TalonFX SHOOTER = new TalonFX(SHOOTER_PORT);
 
   public ShooterSubsystem() {
+    SHOOTER.configFactoryDefault();
     setName("Shooter");
   }
 
   // @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+  public void periodic() {}
 
   // @Override
   public void simulationPeriodic() {
     // This method w
 
   }
-  // public void shootPower(double power) {
-  // SHOOTER.set(TalonFXControlMode.PercentOutput, power);
-  // }
 
+  public void resetEncoder() {}
 }

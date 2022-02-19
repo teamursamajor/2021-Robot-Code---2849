@@ -22,6 +22,10 @@ public class ClimbSubsystem extends SubsystemBase {
 
   public void moterMove(double speed) {
     climbOne.set(TalonFXControlMode.PercentOutput, speed);
-    climbOne.set(TalonFXControlMode.PercentOutput, speed);
+    climbTwo.set(TalonFXControlMode.PercentOutput, speed);
+
+    climbOne.getActiveTrajectoryVelocity();
+    climbOne.getMotorOutputVoltage();
+    climbOne.getSelectedSensorVelocity();
   }
 }
