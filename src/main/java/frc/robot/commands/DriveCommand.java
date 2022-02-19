@@ -22,7 +22,7 @@ public class DriveCommand extends CommandBase {
     DRIVE_SUBSYSTEM = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
-
+    
     setName("Drive (Command)");
   }
 
