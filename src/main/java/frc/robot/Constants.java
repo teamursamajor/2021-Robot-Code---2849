@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.XboxController;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -26,6 +27,8 @@ public final class Constants {
     WARN,
     CRIT,
   }
+
+  private static ArrayList<String> logs = new ArrayList<String>();
 
   public static final int BACK_LEFT_DRIVE_PORT = 4;
   public static final int BACK_RIGHT_DRIVE_PORT = 5;
@@ -48,12 +51,17 @@ public final class Constants {
   public static final Level CRIT = Level.CRIT;
 
   public static void log(Object source, String message, Level lvl) {
-    System.out.println(
-        String.format(
-            "[%s] (%s) @ %s -> %s",
-            LOG_FMT.format(new Date(System.currentTimeMillis())),
-            lvl,
-            source.getClass().getName(),
-            message));
+    String msg = String.format(
+      "[%s] (%s) @ %s -> %s",
+      LOG_FMT.format(new Date(System.currentTimeMillis())),
+      lvl,
+      source.getClass().getName(),
+      message);
+    System.out.println(msg);
+    logs.add(msg);
+  }
+
+  public static final String[] getLogs() {
+    return logs.toArray(new String[0]);
   }
 }

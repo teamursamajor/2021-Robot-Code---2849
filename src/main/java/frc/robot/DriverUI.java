@@ -28,7 +28,7 @@ public final class DriverUI {
     }
 
     private void consoleTabInit() {
-        CONSOLE_TAB.addStringArray("Log", valueSupplier);
+        CONSOLE_TAB.addStringArray("Log", () -> getLogs());
     }
 
     private void controlsTabInit() {
