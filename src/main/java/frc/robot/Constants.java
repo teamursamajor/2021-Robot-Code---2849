@@ -28,6 +28,8 @@ public final class Constants {
     CRIT,
   }
 
+  private final DriverUI DUI = new DriverUI();
+
   private static ArrayList<String> logs = new ArrayList<String>();
 
   public static final int BACK_LEFT_DRIVE_PORT = 4;
@@ -37,8 +39,8 @@ public final class Constants {
 
   public static final String TEAM_COLOR = DriverStation.getAlliance().name();
 
-  public static final int SHOOTER_PORT = 2; // TODO: real port num
-  public static final int CLIMB_PORT = 3; // TODO: real port num
+  public static final int SHOOTER_PORT = 6; // TODO: real port num
+  public static final int CLIMB_PORT = 7; // TODO: real port num
   public static final int INTAKE_PORT = 8; // TODO: real port num
   public static final int BELT_PORT = 2849; // TODO: real port num
 

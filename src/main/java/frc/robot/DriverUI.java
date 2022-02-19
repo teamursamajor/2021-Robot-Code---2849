@@ -14,7 +14,7 @@ public final class DriverUI {
     private final ShuffleboardTab HOME_TAB = Shuffleboard.getTab("Home");
 
     public DriverUI() {
-        
+        tabInit();
     }
 
     private void tabInit() {
