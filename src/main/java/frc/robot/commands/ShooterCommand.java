@@ -3,7 +3,6 @@ package frc.robot.commands;
 import static frc.robot.Constants.*;
 
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -12,6 +11,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class ShooterCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
+
   private final BeltSubsystem BELT_SUBSYSTEM;
   boolean finished = false;
 
@@ -36,15 +36,20 @@ public class ShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.5);
-    try {
-      wait(500L);
-    } catch (InterruptedException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    finished = true;
-    LOGGER.log(SHOOTER_SUBSYSTEM, "Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity(), INFO);
+    System.out.println("Execute");
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.2);
+    // try {
+    //  wait(500L);
+    // } catch (InterruptedException e) {
+    // TODO Auto-generated catch block
+    // e.printStackTrace();
+    // }
+    // finished = true;
+    LOGGER.log(
+        SHOOTER_SUBSYSTEM,
+        "Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity(),
+        INFO);
+    System.out.print("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
   }
 
   // Called once the command ends or is interrupted.

@@ -51,10 +51,12 @@ public class RobotContainer {
 
   private final BeltSubsystem BELT_SUBSYSTEM = new BeltSubsystem();
 
-  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM);
+  private final ShooterCommand SHOOTER_COMMAND =
+      new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM);
 
-  private final AutoShooterCommand AUTO_SHOOTER_COMMAND = new AutoShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM);
-  
+  private final AutoShooterCommand AUTO_SHOOTER_COMMAND =
+      new AutoShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
