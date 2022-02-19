@@ -5,6 +5,15 @@ import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimbSubsystem;
+import static frc.robot.Constants.*;
+
+/**
+ * Going to add a comment when sensors are recieved to allow for the driver to know if: 1.) an arm
+ * is on the robot (left arm and right arm) 2.) both arms are on the robot 3.) the robot is ready to
+ * move
+ *
+ * <p>Will say on Driver Station "Ready to go."
+ */
 
 /**
  * Going to add a comment when sensors are recieved to allow for the driver to know if: 1.) an arm
@@ -23,11 +32,11 @@ public class ClimbCommand extends CommandBase {
   boolean touchRight;
   boolean touchLeft;
   private boolean isExtended;
-  private final ClimbSubsystem climbSubsystem;
+  private final ClimbSubsystem CLIMB_SUBSYSTEM;
 
   public ClimbCommand(ClimbSubsystem subsystem) {
     System.out.println("construct");
-    climbSubsystem = subsystem;
+    CLIMB_SUBSYSTEM = subsystem;
     addRequirements(subsystem);
   }
 
@@ -36,30 +45,12 @@ public class ClimbCommand extends CommandBase {
     touchRight = false;
     touchLeft = false;
     isExtended = false;
-    System.out.println("intialzied");
+    log(CLIMB_SUBSYSTEM, "intialzied", INFO);
   }
 
   public void execute() {
-    System.out.println("Execute");
-    num++;
-    count = num;
-    if (isExtended == false) {
-      climbSubsystem.moterMove(.25);
-    } else if ((isExtended == true) && (touchRight == true) && (touchLeft == true)) {
-      climbSubsystem.moterMove(-.25);
-    }
-    if (count >= 5) {
-      // get sensor number
-      // if sensor number == falconMaxSensor && isExtended == false
-      // than set isExtended = true
-      // and println to tell the driver isExtended is true
-      // else if sensor number == falconMinSensor &&
-      // touchRight == true && touchLeft == true
-      //
-
-    }
+    log(CLIMB_SUBSYSTEM, "Execute", INFO);
   }
-
   @Override
   public void end(boolean interrupted) {
     System.out.println("Done");
@@ -70,3 +61,5 @@ public class ClimbCommand extends CommandBase {
     return false;
   }
 }
+  
+    
