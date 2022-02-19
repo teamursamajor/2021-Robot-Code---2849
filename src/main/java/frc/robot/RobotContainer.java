@@ -46,16 +46,12 @@ public class RobotContainer {
 
   private final IntakeCommand INTAKE_COMMAND = new IntakeCommand(INTAKE_SUBSYSTEM);
 
-  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
     // Configure the button bindings
     DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
-    CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
-    INTAKE_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
-    SHOOTER_SUBSYSTEM.setDefaultCommand(SHOOTER_COMMAND);
     configureButtonBindings();
   }
 
