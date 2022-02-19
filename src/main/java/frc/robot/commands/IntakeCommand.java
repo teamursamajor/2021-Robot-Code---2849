@@ -11,7 +11,6 @@ public class IntakeCommand extends CommandBase {
 
   private final IntakeSubsystem INTAKE_SUBSYSTEM;
   private final String TEAM_COLOR = "red";
-  private boolean running = false;
 
   public IntakeCommand(IntakeSubsystem intake) {
     INTAKE_SUBSYSTEM = intake;
@@ -22,15 +21,12 @@ public class IntakeCommand extends CommandBase {
   @Override
   public void initialize() {
     log(INTAKE_SUBSYSTEM, "intialzied", INFO);
-    running = true;
   }
 
   @Override
   public void execute() {
     if (INTAKE_SUBSYSTEM.checkColor(new ColorRGB(INTAKE_SUBSYSTEM.COLOR_SENSOR.getColor())).equals(TEAM_COLOR)) {
       INTAKE_SUBSYSTEM.INTAKE.set(10);
-      new WaitCommand(3.0);
-      running = false;
     }
   }
 
@@ -42,6 +38,6 @@ public class IntakeCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return running;
+    return false;
   }
 }
