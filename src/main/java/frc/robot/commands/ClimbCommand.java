@@ -42,7 +42,6 @@ public class ClimbCommand extends CommandBase {
   }
 
   public void execute() {
-<<<<<<< HEAD:src/main/java/frc/robot/commands/ClimbCommand.Java
     System.out.println("Execute");
     num++;
     count = num;
@@ -63,13 +62,6 @@ public class ClimbCommand extends CommandBase {
 
     }
   }
-=======
-    log(CLIMB_SUBSYSTEM, "Execute", INFO);
-  }
-
-    
-  
->>>>>>> dev:src/main/java/frc/robot/commands/ClimbCommand.java
 
   @Override
   public void end(boolean interrupted) {
