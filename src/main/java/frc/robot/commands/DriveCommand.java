@@ -56,9 +56,9 @@ public class DriveCommand extends CommandBase {
       leftSpeed /= -min;
       rightSpeed /= -min;
     }
-
-    DRIVE_SUBSYSTEM.setLeftPower(leftSpeed);
-    DRIVE_SUBSYSTEM.setRightPower(rightSpeed);
+    
+    DRIVE_SUBSYSTEM.setPower(leftSpeed, rightSpeed);
+    
   }
 
   public void autoDrive() {
@@ -80,8 +80,7 @@ public class DriveCommand extends CommandBase {
   @Override
   public void initialize() {
     System.out.println("intialzied");
-    // Set the autonomous distance here
-    driveDistance = 200.0;
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -94,8 +93,7 @@ public class DriveCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    DRIVE_SUBSYSTEM.setLeftPower(0);
-    DRIVE_SUBSYSTEM.setRightPower(0);
+    DRIVE_SUBSYSTEM.setPower(0, 0);
   }
 
   // Returns true when the command should end.
