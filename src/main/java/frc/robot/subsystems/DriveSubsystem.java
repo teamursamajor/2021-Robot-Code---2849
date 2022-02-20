@@ -71,6 +71,23 @@ public class DriveSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
   
+  public void setPower(double leftSpeed, double rightSpeed){
+    switch(motorType){
+      case SPARKS:
+        DRIVE_SUBSYSTEM.setLeftPowerSparks(leftSpeed);
+        DRIVE_SUBSYSTEM.setRightPowerSparks(rightSpeed);
+        break;
+      case FALCONS:
+        DRIVE_SUBSYSTEM.setLeftPowerFalcons(leftSpeed);
+        DRIVE_SUBSYSTEM.setRightPowerFalcons(rightSpeed);
+        break;
+      case VICTORS:
+        DRIVE_SUBSYSTEM.setLeftPowerVictors(leftSpeed);
+        DRIVE_SUBSYSTEM.setRightPowerVictors(rightSpeed);
+        break;
+    }
+  }
+  
   public void setLeftPowerSparks(final double power) {
     sparkFrontLeftDrive.set(-power);
     sparkBackLeftDrive.set(-power);
