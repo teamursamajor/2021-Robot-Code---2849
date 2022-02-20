@@ -74,16 +74,16 @@ public class DriveSubsystem extends SubsystemBase {
   public void setPower(double leftSpeed, double rightSpeed){
     switch(motorType){
       case SPARKS:
-        DRIVE_SUBSYSTEM.setLeftPowerSparks(leftSpeed);
-        DRIVE_SUBSYSTEM.setRightPowerSparks(rightSpeed);
+        setLeftPowerSparks(leftSpeed);
+        setRightPowerSparks(rightSpeed);
         break;
       case FALCONS:
-        DRIVE_SUBSYSTEM.setLeftPowerFalcons(leftSpeed);
-        DRIVE_SUBSYSTEM.setRightPowerFalcons(rightSpeed);
+        setLeftPowerFalcons(leftSpeed);
+        setRightPowerFalcons(rightSpeed);
         break;
       case VICTORS:
-        DRIVE_SUBSYSTEM.setLeftPowerVictors(leftSpeed);
-        DRIVE_SUBSYSTEM.setRightPowerVictors(rightSpeed);
+        setLeftPowerVictors(leftSpeed);
+        setRightPowerVictors(rightSpeed);
         break;
     }
   }
