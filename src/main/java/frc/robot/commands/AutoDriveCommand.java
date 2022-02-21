@@ -9,54 +9,42 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
 /** An example command that uses an example subsystem. */
-public class DriveCommand extends CommandBase {
+public class AutoDriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem DRIVE_SUBSYSTEM;
 
+  private Double driveDistance;
   private boolean finished = false;
 
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  public DriveCommand(DriveSubsystem subsystem) {
-    DRIVE_SUBSYSTEM = subsystem;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
 
-    setName("Drive (Command)");
+  public DriveCommand(DriveSubsystem subsystem, Double driveDistance) {
+    DRIVE_SUBSYSTEM = subsystem;
+    addRequirements(subsystem);
+    this.driveDistance = driveDistance;
+    setName("Auto Drive (Command)");
   }
+
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double leftSpeed, rightSpeed, leftStickY, rightStickX;
-    leftStickY = XBOX_CONTROLLER.getRawAxis(1);
-    rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
-    log(DRIVE_SUBSYSTEM, "Left Stick: " + leftStickY, INFO);
-    log(DRIVE_SUBSYSTEM, "Right Stick: " + rightStickX, INFO);
-    leftSpeed = leftStickY + rightStickX;
-    rightSpeed = leftStickY - rightStickX;
+    finished = true;
 
-    double max = Math.max(leftSpeed, rightSpeed); // the greater of the two values
-    double min = Math.min(leftSpeed, rightSpeed); // the lesser of the two values
-
-    if (max > 1) {
-      leftSpeed /= max;
-      rightSpeed /= max;
-    } else if (min < -1) {
-      leftSpeed /= -min;
-      rightSpeed /= -min;
-    }
-    
-    DRIVE_SUBSYSTEM.setPower(leftSpeed, rightSpeed);
+    // REMEMBER TO SET DISTANCE IN "initialize()"
+    // double temporarySpeedVariable = 1.0;
+    // double temporarySubtractValue = 1.0 / driveDistance;
+    // while (temporarySpeedVariable != 0) {
+    //   DRIVE_SUBSYSTEM.setLeftPower(temporarySpeedVariable);
+    //   DRIVE_SUBSYSTEM.setRightPower(temporarySpeedVariable);
+    //   temporarySpeedVariable = temporarySpeedVariable - temporarySubtractValue;
+    //   driveDistance--;
+    // }
   }
 
   // Called once the command ends or is interrupted.
