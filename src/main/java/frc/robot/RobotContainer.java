@@ -16,6 +16,7 @@ import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -50,7 +51,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     // Configure the button bindings
-    DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
+    //DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
     configureButtonBindings();
   }
 
@@ -90,6 +91,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return new AutoCommand1(DRIVE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
+
   }
 }

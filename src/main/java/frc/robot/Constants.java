@@ -28,10 +28,10 @@ public final class Constants {
   }
 
   // Spark Ports
-  public static final int SPARK_BACK_LEFT_DRIVE_PORT = 4;
-  public static final int SPARK_BACK_RIGHT_DRIVE_PORT = 5;
-  public static final int SPARK_FRONT_LEFT_DRIVE_PORT = 2;
-  public static final int SPARK_FRONT_RIGHT_DRIVE_PORT = 3;
+  public static final int SPARK_BACK_LEFT_DRIVE_PORT = 2;
+  public static final int SPARK_BACK_RIGHT_DRIVE_PORT = 3;
+  public static final int SPARK_FRONT_LEFT_DRIVE_PORT = 4;
+  public static final int SPARK_FRONT_RIGHT_DRIVE_PORT = 5;
 
   // Falcon Ports
   public static final int FALCON_BACK_LEFT_DRIVE_PORT = 4;
@@ -63,6 +63,7 @@ public final class Constants {
   public static final double PI = 3.14159265358979323846264338327950288419716939937510;
   public static final double RADIUS = 3.0;
   public static final double CIRCUMFERENCE = 2 * PI * RADIUS * 4096; // About 18.8 inches
+  public static final double FOOT_IN_TICKS = 2614; //Ticks in a foot
 
   public static void log(Object source, String message, Level lvl) {
     System.out.println(
