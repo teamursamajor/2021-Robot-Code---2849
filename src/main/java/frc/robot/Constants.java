@@ -27,10 +27,23 @@ public final class Constants {
     CRIT,
   }
 
-  public static final int BACK_LEFT_DRIVE_PORT = 0;
-  public static final int BACK_RIGHT_DRIVE_PORT = 1;
-  public static final int FRONT_LEFT_DRIVE_PORT = 3;
-  public static final int FRONT_RIGHT_DRIVE_PORT = 2;
+  // Spark Ports
+  public static final int SPARK_BACK_LEFT_DRIVE_PORT = 4;
+  public static final int SPARK_BACK_RIGHT_DRIVE_PORT = 5;
+  public static final int SPARK_FRONT_LEFT_DRIVE_PORT = 2;
+  public static final int SPARK_FRONT_RIGHT_DRIVE_PORT = 3;
+
+  // Falcon Ports
+  public static final int FALCON_BACK_LEFT_DRIVE_PORT = 4;
+  public static final int FALCON_BACK_RIGHT_DRIVE_PORT = 5;
+  public static final int FALCON_FRONT_LEFT_DRIVE_PORT = 2;
+  public static final int FALCON_FRONT_RIGHT_DRIVE_PORT = 3;
+
+  // Victor Ports
+  public static final int VICTOR_BACK_LEFT_DRIVE_PORT = 4;
+  public static final int VICTOR_BACK_RIGHT_DRIVE_PORT = 5;
+  public static final int VICTOR_FRONT_LEFT_DRIVE_PORT = 2;
+  public static final int VICTOR_FRONT_RIGHT_DRIVE_PORT = 3;
 
   public static final String TEAM_COLOR = DriverStation.getAlliance().name();
 

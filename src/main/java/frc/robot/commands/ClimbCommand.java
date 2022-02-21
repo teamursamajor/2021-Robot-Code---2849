@@ -45,9 +45,6 @@ public class ClimbCommand extends CommandBase {
     log(CLIMB_SUBSYSTEM, "Execute", INFO);
   }
 
-    
-  
-
   @Override
   public void end(boolean interrupted) {
     System.out.println("Done");
