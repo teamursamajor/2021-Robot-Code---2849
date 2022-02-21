@@ -69,7 +69,10 @@ public class DriveCommand extends CommandBase {
 
     DRIVE_SUBSYSTEM.setLeftPower(leftSpeed);
     DRIVE_SUBSYSTEM.setRightPower(rightSpeed);
+<<<<<<< HEAD
     // finished = true;
+=======
+>>>>>>> acb2f0e0baf439ab96bd79ed902985d5a5048f0c
   }
 
   public void autoDrive() {
