@@ -13,7 +13,7 @@ public class BeltSubsystem extends SubsystemBase {
   public Spark beltSpark = new Spark(BELT_PORT);
 
   public void periodic() {
-    lineBroken = lineSensor.get();
+    //lineBroken = lineSensor.get();
   }
 
   public void simulationPeriodic() {}

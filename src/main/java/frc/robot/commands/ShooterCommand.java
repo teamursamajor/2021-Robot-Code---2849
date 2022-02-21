@@ -33,9 +33,11 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void initialize() {
     SHOOTER_SUBSYSTEM.SHOOTER.configFactoryDefault();
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 1);
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -0.5);
-
+    SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 0.01);
+    SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0);
+    SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
+    SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -14000);
   }
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -48,7 +50,7 @@ public class ShooterCommand extends CommandBase {
     // e.printStackTrace();
     // }
     // finished = true;
-   
+
     System.out.print("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
   }
 

@@ -31,18 +31,6 @@ public class DistanceCommand extends CommandBase {
     alignFinished = false;
   }
 
-  public void setRightPower(final double power) {
-    DRIVE_SUBSYSTEM.BACK_RIGHT_DRIVE.set(power);
-    DRIVE_SUBSYSTEM.FRONT_RIGHT_DRIVE.set(power);
-    // System.out.println("right speed: " + power);
-  }
-
-  public void setLeftPower(final double power) {
-    DRIVE_SUBSYSTEM.BACK_LEFT_DRIVE.set(-power);
-    DRIVE_SUBSYSTEM.FRONT_LEFT_DRIVE.set(-power);
-    // System.out.println("left speed: " + power);
-  }
-
   public double getY() {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry ty = table.getEntry("ty");

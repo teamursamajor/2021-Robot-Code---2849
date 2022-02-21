@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignCommand;
-import frc.robot.commands.AutoShooterCommand;
-import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
@@ -44,9 +42,6 @@ public class RobotContainer {
 
   private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
 
-
-  
-
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
@@ -65,13 +60,14 @@ public class RobotContainer {
     JoystickButton shootButton =
         new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
     shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM));
+
     // JoystickButton driveButton = new JoystickButton(XBOX_CONTROLLER, 0); // Creates a new
     // JoystickButton object for
     // button 1 on exampleStick
     // Binds an ExampleCommand to be scheduled when the trigger of the example
     // joystick is pressed
-    new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kLeftTrigger.value)
-        .whileHeld(new IntakeCommand(INTAKE_SUBSYSTEM));
+    //new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kLeftTrigger.value)
+      //  .whileHeld(new IntakeCommand(INTAKE_SUBSYSTEM));
     // new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kY.value).whenPressed(new
     // AutoAlignCommand(DRIVE_SUBSYSTEM));
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
