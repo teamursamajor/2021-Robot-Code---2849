@@ -27,7 +27,6 @@ public class AutoDriveCommand extends CommandBase {
     DRIVE_SUBSYSTEM.setPower(.45,.45);
     
   }
-  
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -44,7 +43,6 @@ public class AutoDriveCommand extends CommandBase {
     //   DRIVE_SUBSYSTEM.setPower(temporarySpeedVariable, temporarySpeedVariable);
     //   
     // }
-
 
   }
 
