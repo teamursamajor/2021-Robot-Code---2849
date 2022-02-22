@@ -16,6 +16,7 @@ import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -50,10 +51,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     // Configure the button bindings
-    DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
-    CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
-    INTAKE_SUBSYSTEM.setDefaultCommand(INTAKE_COMMAND);
-    SHOOTER_SUBSYSTEM.setDefaultCommand(SHOOTER_COMMAND);
+    //DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
     configureButtonBindings();
   }
 
@@ -72,7 +70,8 @@ public class RobotContainer {
     // button 1 on exampleStick
     // Binds an ExampleCommand to be scheduled when the trigger of the example
     // joystick is pressed
-    new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kLeftTrigger.value).whileHeld(new IntakeCommand(INTAKE_SUBSYSTEM));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kLeftTrigger.value)
+        .whileHeld(new IntakeCommand(INTAKE_SUBSYSTEM));
     // new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kY.value).whenPressed(new
     // AutoAlignCommand(DRIVE_SUBSYSTEM));
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
@@ -92,6 +91,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return new AutoCommand1(DRIVE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
+
   }
 }

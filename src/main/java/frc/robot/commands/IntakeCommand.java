@@ -3,7 +3,6 @@ package frc.robot.commands;
 import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.ColorRGB;
 import frc.robot.subsystems.IntakeSubsystem;
 
@@ -25,7 +24,9 @@ public class IntakeCommand extends CommandBase {
 
   @Override
   public void execute() {
-    if (INTAKE_SUBSYSTEM.checkColor(new ColorRGB(INTAKE_SUBSYSTEM.COLOR_SENSOR.getColor())).equals(TEAM_COLOR)) {
+    if (INTAKE_SUBSYSTEM
+        .checkColor(new ColorRGB(INTAKE_SUBSYSTEM.COLOR_SENSOR.getColor()))
+        .equals(TEAM_COLOR)) {
       INTAKE_SUBSYSTEM.INTAKE.set(10);
     }
   }
