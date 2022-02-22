@@ -16,8 +16,7 @@ public class AutoShooterCommand extends CommandBase {
   public double maxMotorSpeed = 400; // find out what the rpm is when the motor speed is at 1
   public double minMotorSpeed = 300;
   public double maxMotorPower = 1.0;
-  public double minMotorPower =
-      .25; // find the motor speed for when the robot is closest the target
+
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
   private final BeltSubsystem BELT_SUBSYSTEM;
 
@@ -61,10 +60,9 @@ public class AutoShooterCommand extends CommandBase {
     } else {
       if (BELT_SUBSYSTEM.lineBroken) {
         double speed = maxMotorSpeed * (y / maxYValue);
-        double power = maxMotorPower * (y / maxYValue);
-        SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, power);
-        if ((SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() >= speed - 10)
-            && (SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() <= speed + 10)) {
+        SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, speed);
+        if ((SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() >= speed - 150)
+            && (SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() <= speed + 150)) {
           BELT_SUBSYSTEM.ballToShooter();
           count++;
         }

@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignCommand;
 import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
@@ -66,8 +65,8 @@ public class RobotContainer {
     // button 1 on exampleStick
     // Binds an ExampleCommand to be scheduled when the trigger of the example
     // joystick is pressed
-    //new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kLeftTrigger.value)
-      //  .whileHeld(new IntakeCommand(INTAKE_SUBSYSTEM));
+    // new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kLeftTrigger.value)
+    //  .whileHeld(new IntakeCommand(INTAKE_SUBSYSTEM));
     // new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kY.value).whenPressed(new
     // AutoAlignCommand(DRIVE_SUBSYSTEM));
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
@@ -87,6 +86,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM);
   }
 }

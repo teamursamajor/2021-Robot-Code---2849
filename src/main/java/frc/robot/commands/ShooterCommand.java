@@ -3,6 +3,9 @@ package frc.robot.commands;
 import static frc.robot.Constants.*;
 
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -29,6 +32,21 @@ public class ShooterCommand extends CommandBase {
     setName("Shooter (Command)");
   }
 
+  public double getY() {
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    NetworkTableEntry ty = table.getEntry("ty");
+    NetworkTableEntry tv = table.getEntry("tv");
+    double y;
+    double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
+    if (canDetectLimelight == 0) {
+      y = Double.MIN_VALUE;
+    } else {
+      y = ty.getDouble(Double.MIN_VALUE);
+    }
+    // SmartDashboard.putNumber("LimelightX", y);
+    return y;
+  }
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -37,7 +55,7 @@ public class ShooterCommand extends CommandBase {
     SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -14000);
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -15000);
   }
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -52,6 +70,7 @@ public class ShooterCommand extends CommandBase {
     // finished = true;
 
     System.out.print("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
+    System.out.println(getY());
   }
 
   // Called once the command ends or is interrupted.
