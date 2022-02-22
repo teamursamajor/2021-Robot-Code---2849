@@ -16,6 +16,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class AutoCommand1 extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem DRIVE_SUBSYSTEM;
+
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
 
   public AutoCommand1(DriveSubsystem driveSubsystem, ShooterSubsystem shooterSubsystem) {
@@ -28,24 +29,23 @@ public class AutoCommand1 extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-        new AutoDriveCommand(DRIVE_SUBSYSTEM).withTimeout(2).andThen(new AlignCommand(DRIVE_SUBSYSTEM)).andThen(new DistanceCommand(DRIVE_SUBSYSTEM)).schedule();
-        //new AlignCommand(DRIVE_SUBSYSTEM).schedule();
-        //new DistanceCommand(DRIVE_SUBSYSTEM).schedule();
+    new AutoDriveCommand(DRIVE_SUBSYSTEM)
+        .withTimeout(2)
+        .andThen(new AlignCommand(DRIVE_SUBSYSTEM))
+        .andThen(new DistanceCommand(DRIVE_SUBSYSTEM))
+        .schedule();
+    // new AlignCommand(DRIVE_SUBSYSTEM).schedule();
+    // new DistanceCommand(DRIVE_SUBSYSTEM).schedule();
 
   }
-
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-   
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-   
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
@@ -53,4 +53,3 @@ public class AutoCommand1 extends CommandBase {
     return true;
   }
 }
-

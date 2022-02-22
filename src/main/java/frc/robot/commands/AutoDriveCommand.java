@@ -24,9 +24,8 @@ public class AutoDriveCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    DRIVE_SUBSYSTEM.setPower(.45,.45);
+    DRIVE_SUBSYSTEM.setPower(.45, .45);
   }
-  
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -41,7 +40,6 @@ public class AutoDriveCommand extends CommandBase {
     //   temporarySpeedVariable = temporarySpeedVariable - temporarySubtractValue;
     //   driveDistance--;
     // }
-
 
   }
 

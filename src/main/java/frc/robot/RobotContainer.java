@@ -51,7 +51,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     // Configure the button bindings
-    //DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
+    DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
     configureButtonBindings();
   }
 
@@ -92,6 +92,5 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return new AutoCommand1(DRIVE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
-
   }
 }
