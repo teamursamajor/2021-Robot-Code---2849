@@ -25,21 +25,24 @@ public class AutoDriveCommand extends CommandBase {
   @Override
   public void initialize() {
     DRIVE_SUBSYSTEM.setPower(.45,.45);
+    
   }
   
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    // SET [Distance] TO AMOUNT OF TICKS
 
-    // REMEMBER TO CHANGE TO TICKS
     // double temporarySpeedVariable = 1.0;
-    // double temporarySubtractValue = 1.0 / driveDistance;
-    // while (temporarySpeedVariable != 0) {
-    //   DRIVE_SUBSYSTEM.setLeftPower(temporarySpeedVariable);
-    //   DRIVE_SUBSYSTEM.setRightPower(temporarySpeedVariable);
-    //   temporarySpeedVariable = temporarySpeedVariable - temporarySubtractValue;
-    //   driveDistance--;
+    // double currentDistance = 0
+    // double driveDistance
+    
+    // while ([Distance] > 1) {
+    //   currentDistance
+    //   driveDistance
+    //   DRIVE_SUBSYSTEM.setPower(temporarySpeedVariable, temporarySpeedVariable);
+    //   
     // }
 
 
