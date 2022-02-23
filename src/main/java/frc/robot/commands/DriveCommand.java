@@ -41,16 +41,16 @@ public class DriveCommand extends CommandBase {
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOX_CONTROLLER.getRawAxis(1);
     rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
-    log(DRIVE_SUBSYSTEM, "Left Stick: " + leftStickY, INFO);
-    log(DRIVE_SUBSYSTEM, "Right Stick: " + rightStickX, INFO);
+    //log(DRIVE_SUBSYSTEM, "Left Stick: " + leftStickY, INFO);
+    //log(DRIVE_SUBSYSTEM, "Right Stick: " + rightStickX, INFO);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
-    log(DRIVE_SUBSYSTEM, "Initial Left Speed: " + leftSpeed, INFO);
-    log(DRIVE_SUBSYSTEM, "Initial Right Speed: " + rightSpeed, INFO);
+    //log(DRIVE_SUBSYSTEM, "Initial Left Speed: " + leftSpeed, INFO);
+    //log(DRIVE_SUBSYSTEM, "Initial Right Speed: " + rightSpeed, INFO);
     double max = Math.max(leftSpeed, rightSpeed); // the greater of the two values
     double min = Math.min(leftSpeed, rightSpeed); // the lesser of the two values
-    log(DRIVE_SUBSYSTEM, "max" + max, INFO);
-    log(DRIVE_SUBSYSTEM, "min" + min, INFO);
+    //log(DRIVE_SUBSYSTEM, "max" + max, INFO);
+    //log(DRIVE_SUBSYSTEM, "min" + min, INFO);
 
     if (max > 1) {
       leftSpeed /= max;
