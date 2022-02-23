@@ -32,16 +32,16 @@ public class AutoDriveCommand extends CommandBase {
   @Override
   public void execute() {
     // SET [Distance] TO AMOUNT OF TICKS
+    // double temporarySpeedVariable = 1;
+    // double distanceTravelledTotal = 0;
+    // double distanceTravelledOnce = [Distance];
+    // double originalDistance = [Distance];
 
-    // double temporarySpeedVariable = 1.0;
-    // double currentDistance = 0
-    // double driveDistance
-    
-    // while ([Distance] > 1) {
-    //   currentDistance
-    //   driveDistance
+    // while (distanceTravelledTotal < OriginalDistance) {
     //   DRIVE_SUBSYSTEM.setPower(temporarySpeedVariable, temporarySpeedVariable);
-    //   
+    //   distanceTravelledOnce = [GET THE TICKS FROM THE FALCON];
+    //   distanceTravelledTotal = distanceTravelledTotal + (distanceTravelledOnce / originalDistance);
+    //   temporarySpeedVariable = 1 - distanceTravelledTotal;
     // }
 
   }
