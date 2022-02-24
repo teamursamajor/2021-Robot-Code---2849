@@ -63,8 +63,10 @@ public final class Constants {
   public static final double PI = 3.14159265358979323846264338327950288419716939937510;
   public static final double RADIUS = 3.0;
   public static final double CIRCUMFERENCE = 2 * PI * RADIUS; // About 18.8 inches
+
   public static final double FOOT_IN_TICKS = (4096 / CIRCUMFERENCE) * 12; // Ticks in a foot, about 2608 ticks
   public double finalDistance = FOOT_IN_TICKS; // Multiply by amount of feet to get the distance for the Auto-Drive
+
 
   public static void log(Object source, String message, Level lvl) {
     System.out.println(
