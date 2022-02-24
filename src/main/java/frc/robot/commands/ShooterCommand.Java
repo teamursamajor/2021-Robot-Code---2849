@@ -30,9 +30,9 @@ public class ShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Spark port = SHOOTER_SUBSYSTEM.launcher;
-    port.set(0.4);
-    wait(500L);
+   // Spark port = SHOOTER_SUBSYSTEM.launcher;
+   // port.set(0.4);
+   // wait(500L);
     finished = true;
   }
 
