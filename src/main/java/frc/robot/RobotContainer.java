@@ -4,25 +4,27 @@
 
 package frc.robot;
 
+import static frc.robot.Constants.*;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.subsystems.ClimbSubsystem;
-import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.DriveCommand;
-import frc.robot.commands.ShooterCommand;
-import frc.robot.commands.ClimbCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.AlignCommand;
+import frc.robot.commands.DistanceCommand;
+import frc.robot.commands.DriveCommand;
+import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.autoCommands.AutoCommand1;
+import frc.robot.subsystems.BeltSubsystem;
+import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
-import static frc.robot.Constants.*;
 /**
- * This class is where the bulk of the robot should be declared. Since
- * Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in
- * the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of
- * the robot (including
+ * This class is where the bulk of the robot should be declared. Since Command-based is a
+ * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
+ * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
@@ -30,51 +32,72 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
 
+  private final BeltSubsystem BELT_SUBSYSTEM = new BeltSubsystem();
+
   private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
   private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
-  private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
-  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM);
 
-  /**
-   * The container for the robot. Contains subsystems, OI devices, and commands.
-   */
+  private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
+
+
+  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+
     // Configure the button bindings
     DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
+<<<<<<< HEAD
+=======
     CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
+>>>>>>> origin/climb
     configureButtonBindings();
   }
 
   /**
-   * Use this method to define your button->command mappings. Buttons can be
-   * created by
+   * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing
-   * it to a {@link
+   * edu.wpi.first.wpilibj.Joystick} or {@link XBOX_CONTROLLER}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton shootButton = new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
-    shootButton.whileHeld(SHOOTER_COMMAND);
-    //JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new JoystickButton object for
-                                                                        // button 1 on exampleStick
+<<<<<<< HEAD
+    
+    JoystickButton shootButton =
+        new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
+    shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM));
+
+    // JoystickButton driveButton = new JoystickButton(XBOX_CONTROLLER, 0); // Creates a new
+=======
+
+    // JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new
+    // JoystickButton object for
+    // button 1 on exampleStick
+    // JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new
+>>>>>>> origin/climb
+    // JoystickButton object for
+    // button 1 on exampleStick
     // Binds an ExampleCommand to be scheduled when the trigger of the example
     // joystick is pressed
-
-    /*
-    new JoystickButton(xboxController, XboxController.Axis.kLeftX.value)
-    .and(new JoystickButton(xboxController, XboxController.Axis.kLeftY.value)).and(new JoystickButton(xboxController,XboxController.Axis.kRightX.value)).
-    and(new JoystickButton(xboxController, XboxController.Axis.kRightY.value)).whenActive(new DriveCommand(driveSubsystem));
-    */
-    //driveButton.whileHeld(new DriveCommand(driveSubsystem));
+    // new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kLeftTrigger.value)
+    //  .whileHeld(new IntakeCommand(INTAKE_SUBSYSTEM));
+    // new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kY.value).whenPressed(new
+    // AutoAlignCommand(DRIVE_SUBSYSTEM));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
+        .whenPressed(
+            (new AlignCommand(DRIVE_SUBSYSTEM))
+                .withTimeout(5)
+                .andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
+    // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
+    // .whenPressed((new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
+    // driveButton.whileHeld(new DriveCommand(driveSubsystem));
+    
   }
 
-  /**
+  /***
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
@@ -82,5 +105,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return null;
+    //return new AutoCommand1(DRIVE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
   }
 }

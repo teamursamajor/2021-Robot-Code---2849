@@ -4,18 +4,14 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import com.revrobotics.ColorSensorV3;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.I2C;
-//import edu.wpli.first.wpilibj2.
+// import edu.wpli.first.wpilibj2.
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -24,14 +20,9 @@ import edu.wpi.first.wpilibj.I2C;
  * project.
  */
 public class Robot extends TimedRobot {
-  private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-
-    private final I2C.Port i2cPort = I2C.Port.kOnboard;
-    private final ColorSensorV3 colorSensor = new ColorSensorV3(i2cPort);
-    //private final ColorMatch colorMatcher = new ColorMatch();
-    
+  // private final ColorMatch colorMatcher = new ColorMatch();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -42,7 +33,6 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    
   }
 
   /**
@@ -54,33 +44,29 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    Color detectedColor = colorSensor.getColor();
-    System.out.println("Red: " + detectedColor.red);
-    System.out.println("Green: " + detectedColor.green);
-    System.out.println("Blue: " +  detectedColor.blue);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {}
 
-  @Override
-  public void disabledPeriodic() {}
-
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
+    /*
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    */
   }
 
   /** This function is called periodically during autonomous. */
@@ -89,6 +75,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    /*
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -96,6 +83,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    */
   }
 
   /** This function is called periodically during operator control. */
@@ -117,13 +105,14 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
     SmartDashboard.putNumber("LimelightSkew", skew);
-    //min shooting range, 5 ft, max 30 ft
+    // min shooting range, 5 ft, max 30 ft
 
   }
 
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
+    System.out.println("BAD");
     CommandScheduler.getInstance().cancelAll();
   }
 
