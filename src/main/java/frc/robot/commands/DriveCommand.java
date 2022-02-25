@@ -5,6 +5,7 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.*;
 
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -12,9 +13,7 @@ import frc.robot.subsystems.DriveSubsystem;
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem DRIVE_SUBSYSTEM;
-
   private boolean finished = false;
-
   /**
    * Creates a new ExampleCommand.
    *
@@ -41,8 +40,8 @@ public class DriveCommand extends CommandBase {
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOX_CONTROLLER.getRawAxis(1);
     rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
-    //log(DRIVE_SUBSYSTEM, "Left Stick: " + leftStickY, INFO);
-    //log(DRIVE_SUBSYSTEM, "Right Stick: " + rightStickX, INFO);
+    // log(DRIVE_SUBSYSTEM.getName(), "Left Stick: " + leftStickY);
+    // log(DRIVE_SUBSYSTEM.getName(), "Right Stick: " + rightStickX);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
     //log(DRIVE_SUBSYSTEM, "Initial Left Speed: " + leftSpeed, INFO);
@@ -60,9 +59,21 @@ public class DriveCommand extends CommandBase {
       rightSpeed /= -min;
     }
 
-    log(DRIVE_SUBSYSTEM, "Left Speed after max/min" + leftSpeed, INFO);
-    log(DRIVE_SUBSYSTEM, "Right speed after max/min: " + rightSpeed, INFO);
-    DRIVE_SUBSYSTEM.setPower(leftSpeed, rightSpeed);
+    setLeftPower(leftSpeed);
+    setRightPower(rightSpeed);
+    // System.out.println("it works 2");
+  }
+
+  public void setLeftPower(final double power) {
+    DRIVE_SUBSYSTEM.sparkBackLeftDrive.set(-power);
+    DRIVE_SUBSYSTEM.sparkFrontLeftDrive.set(-power);
+    // log(DRIVE_SUBSYSTEM.getName(), "left speed: " + power);
+  }
+
+  public void setRightPower(final double power) {
+    DRIVE_SUBSYSTEM.sparkFrontRightDrive.set(power);
+    DRIVE_SUBSYSTEM.sparkFrontLeftDrive.set(power);
+    // log(DRIVE_SUBSYSTEM.getName(), "right speed: " + power);
   }
 
   // Called once the command ends or is interrupted.

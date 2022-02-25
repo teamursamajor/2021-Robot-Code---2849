@@ -50,6 +50,10 @@ public class RobotContainer {
 
     // Configure the button bindings
     DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
+<<<<<<< HEAD
+=======
+    CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
+>>>>>>> origin/climb
     configureButtonBindings();
   }
 
@@ -60,12 +64,20 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+<<<<<<< HEAD
     
     JoystickButton shootButton =
         new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
     shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM));
 
     // JoystickButton driveButton = new JoystickButton(XBOX_CONTROLLER, 0); // Creates a new
+=======
+
+    // JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new
+    // JoystickButton object for
+    // button 1 on exampleStick
+    // JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new
+>>>>>>> origin/climb
     // JoystickButton object for
     // button 1 on exampleStick
     // Binds an ExampleCommand to be scheduled when the trigger of the example
