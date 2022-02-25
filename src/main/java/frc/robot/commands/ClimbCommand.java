@@ -59,10 +59,9 @@ public class ClimbCommand extends CommandBase {
       // touchRight == true && touchLeft == true
       // set isFinished == true
       //
-
     }
   }
-
+  
   @Override
   public void end(boolean interrupted) {
     System.out.println("Done");

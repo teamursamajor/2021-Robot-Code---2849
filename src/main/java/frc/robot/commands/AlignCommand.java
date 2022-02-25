@@ -98,12 +98,10 @@ public class AlignCommand extends CommandBase {
       System.out.println("We are alined");
       alignFinished = true;
     } else if (x > max) {
-      DRIVE_SUBSYSTEM.setLeftPower(0);
-      DRIVE_SUBSYSTEM.setRightPower(.25);
+      DRIVE_SUBSYSTEM.setPower(0, .25);
       System.out.println("4");
     } else if (x < min) {
-      DRIVE_SUBSYSTEM.setRightPower(0);
-      DRIVE_SUBSYSTEM.setLeftPower(.25);
+      DRIVE_SUBSYSTEM.setPower(.25, 0);
       System.out.println("5");
     }
     // end
@@ -118,7 +116,6 @@ public class AlignCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     System.out.println("end");
-    DRIVE_SUBSYSTEM.setLeftPower(0);
-    DRIVE_SUBSYSTEM.setRightPower(0);
+    DRIVE_SUBSYSTEM.setPower(0, 0);
   }
 }

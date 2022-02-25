@@ -13,7 +13,6 @@ public class DriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem DRIVE_SUBSYSTEM;
 
-  private Double driveDistance;
   private boolean finished = false;
 
   /**
@@ -29,25 +28,29 @@ public class DriveCommand extends CommandBase {
     setName("Drive (Command)");
   }
 
-  public DriveCommand(DriveSubsystem subsystem, Double driveDistance) {
-    DRIVE_SUBSYSTEM = subsystem;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
-    this.driveDistance = driveDistance;
-    setName("Drive (Command)");
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+    System.out.println("intialzied");
+    // Set the autonomous distance here
   }
 
-  public void manualDrive() {
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
     double leftSpeed, rightSpeed, leftStickY, rightStickX;
     leftStickY = XBOX_CONTROLLER.getRawAxis(1);
     rightStickX = -XBOX_CONTROLLER.getRawAxis(4);
-    log(DRIVE_SUBSYSTEM, "Left Stick: " + leftStickY, INFO);
-    log(DRIVE_SUBSYSTEM, "Right Stick: " + rightStickX, INFO);
+    //log(DRIVE_SUBSYSTEM, "Left Stick: " + leftStickY, INFO);
+    //log(DRIVE_SUBSYSTEM, "Right Stick: " + rightStickX, INFO);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
-
+    //log(DRIVE_SUBSYSTEM, "Initial Left Speed: " + leftSpeed, INFO);
+    //log(DRIVE_SUBSYSTEM, "Initial Right Speed: " + rightSpeed, INFO);
     double max = Math.max(leftSpeed, rightSpeed); // the greater of the two values
     double min = Math.min(leftSpeed, rightSpeed); // the lesser of the two values
+    //log(DRIVE_SUBSYSTEM, "max" + max, INFO);
+    //log(DRIVE_SUBSYSTEM, "min" + min, INFO);
 
     if (max > 1) {
       leftSpeed /= max;
@@ -57,45 +60,15 @@ public class DriveCommand extends CommandBase {
       rightSpeed /= -min;
     }
 
-    DRIVE_SUBSYSTEM.setLeftPower(leftSpeed);
-    DRIVE_SUBSYSTEM.setRightPower(rightSpeed);
-  }
-
-  public void autoDrive() {
-    finished = true;
-
-    // REMEMBER TO SET DISTANCE IN "initialize()"
-    // double temporarySpeedVariable = 1.0;
-    // double temporarySubtractValue = 1.0 / driveDistance;
-    // while (temporarySpeedVariable != 0) {
-    //   DRIVE_SUBSYSTEM.setLeftPower(temporarySpeedVariable);
-    //   DRIVE_SUBSYSTEM.setRightPower(temporarySpeedVariable);
-    //   temporarySpeedVariable = temporarySpeedVariable - temporarySubtractValue;
-    //   driveDistance--;
-    // }
-
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    System.out.println("intialzied");
-    // Set the autonomous distance here
-    driveDistance = 200.0;
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    if (driveDistance != 0) autoDrive();
-    else manualDrive();
+    log(DRIVE_SUBSYSTEM, "Left Speed after max/min" + leftSpeed, INFO);
+    log(DRIVE_SUBSYSTEM, "Right speed after max/min: " + rightSpeed, INFO);
+    DRIVE_SUBSYSTEM.setPower(leftSpeed, rightSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    DRIVE_SUBSYSTEM.setLeftPower(0);
-    DRIVE_SUBSYSTEM.setRightPower(0);
+    DRIVE_SUBSYSTEM.setPower(0, 0);
   }
 
   // Returns true when the command should end.

@@ -14,6 +14,7 @@ import frc.robot.commands.AlignCommand;
 import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -37,9 +38,12 @@ public class RobotContainer {
 
   private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
+
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
+
   private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -56,6 +60,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    
     JoystickButton shootButton =
         new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
     shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM));
@@ -77,6 +82,7 @@ public class RobotContainer {
     // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
     // .whenPressed((new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
     // driveButton.whileHeld(new DriveCommand(driveSubsystem));
+    
   }
 
   /***
@@ -86,6 +92,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM);
+    return null;
+    //return new AutoCommand1(DRIVE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
   }
 }
