@@ -47,7 +47,7 @@ public final class Constants {
   public static final int FALCON_CLIMB1_PORT = 0;
   public static final int FALCON_CLIMB2_PORT = 1;
 
-  public static final int SHOOTER_PORT = 5; // TODO: real port num
+  public static final int SHOOTER_PORT = 2; // TODO: real port num
 
 
   // Victor Ports

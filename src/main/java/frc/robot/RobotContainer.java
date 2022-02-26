@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignCommand;
 import frc.robot.commands.AutoShooterCommand;
+import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
@@ -44,6 +46,8 @@ public class RobotContainer {
 
   private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
 
+  private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -63,7 +67,7 @@ public class RobotContainer {
     
     JoystickButton shootButton =
         new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
-    shootButton.whileHeld(new AutoShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM));
+    shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
 
     // JoystickButton driveButton = new JoystickButton(XBOX_CONTROLLER, 0); // Creates a new
     // JoystickButton object for
