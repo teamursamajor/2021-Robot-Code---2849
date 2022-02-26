@@ -100,7 +100,7 @@ public class Robot extends TimedRobot {
     double area = ta.getDouble(0.0);
     double skew = ts.getDouble(0.0);
 
-    System.out.println(x + " " + y + " " + area);
+    //System.out.println(x + " " + y + " " + area);
     SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);

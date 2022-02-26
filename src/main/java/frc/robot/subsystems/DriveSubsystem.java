@@ -75,6 +75,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void setPower(double leftSpeed, double rightSpeed) {
    
+    System.out.println("Driving");
     switch (motorType) {
       case SPARKS:
         setLeftPowerSparks(leftSpeed);
@@ -101,6 +102,8 @@ public class DriveSubsystem extends SubsystemBase {
     sparkFrontRightDrive.set(power);
     sparkBackRightDrive.set(power);
     log(this, "right speed: " + power, INFO);
+    System.out.println("backRight Power " + sparkBackRightDrive.get());
+    System.out.println("frontRight Power " + sparkFrontRightDrive.get());
   }
 
   public void setLeftPowerFalcons(final double power) {

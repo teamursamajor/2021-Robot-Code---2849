@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignCommand;
+import frc.robot.commands.AutoShooterCommand;
 import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
@@ -50,10 +50,6 @@ public class RobotContainer {
 
     // Configure the button bindings
     DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
-<<<<<<< HEAD
-=======
-    CLIMB_SUBSYSTEM.setDefaultCommand(CLIMB_COMMAND);
->>>>>>> origin/climb
     configureButtonBindings();
   }
 
@@ -64,20 +60,12 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-<<<<<<< HEAD
     
     JoystickButton shootButton =
         new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
-    shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM));
+    shootButton.whileHeld(new AutoShooterCommand(SHOOTER_SUBSYSTEM, BELT_SUBSYSTEM));
 
     // JoystickButton driveButton = new JoystickButton(XBOX_CONTROLLER, 0); // Creates a new
-=======
-
-    // JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new
-    // JoystickButton object for
-    // button 1 on exampleStick
-    // JoystickButton driveButton = new JoystickButton(xboxController, 0); // Creates a new
->>>>>>> origin/climb
     // JoystickButton object for
     // button 1 on exampleStick
     // Binds an ExampleCommand to be scheduled when the trigger of the example
@@ -104,7 +92,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
-    //return new AutoCommand1(DRIVE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
+    
+    return new AutoCommand1(DRIVE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
   }
 }

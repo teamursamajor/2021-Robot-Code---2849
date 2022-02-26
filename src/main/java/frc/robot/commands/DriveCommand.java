@@ -59,23 +59,11 @@ public class DriveCommand extends CommandBase {
       rightSpeed /= -min;
     }
 
-    setLeftPower(leftSpeed);
-    setRightPower(rightSpeed);
+    DRIVE_SUBSYSTEM.setPower(leftSpeed, rightSpeed);
     // System.out.println("it works 2");
   }
 
-  public void setLeftPower(final double power) {
-    DRIVE_SUBSYSTEM.sparkBackLeftDrive.set(-power);
-    DRIVE_SUBSYSTEM.sparkFrontLeftDrive.set(-power);
-    // log(DRIVE_SUBSYSTEM.getName(), "left speed: " + power);
-  }
-
-  public void setRightPower(final double power) {
-    DRIVE_SUBSYSTEM.sparkFrontRightDrive.set(power);
-    DRIVE_SUBSYSTEM.sparkFrontLeftDrive.set(power);
-    // log(DRIVE_SUBSYSTEM.getName(), "right speed: " + power);
-  }
-
+  
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
