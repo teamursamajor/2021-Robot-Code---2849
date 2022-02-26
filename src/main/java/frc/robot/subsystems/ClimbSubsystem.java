@@ -16,7 +16,13 @@ public class ClimbSubsystem extends SubsystemBase {
   public TalonFX climbOne = new TalonFX(FALCON_CLIMB1_PORT);
   public TalonFX climbTwo = new TalonFX(FALCON_CLIMB2_PORT);
   // reset talon encoder
-  public ClimbSubsystem() {}
+  public ClimbSubsystem() {
+    climbOne.configFactoryDefault();
+    climbOne.setNeutralMode(NeutralMode.Brake);
+    climbTwo.configFactoryDefault();
+    climbTwo.setNeutralMode(NeutralMode.Brake);
+   
+  }
 
   // @Override
   public void periodic() {}

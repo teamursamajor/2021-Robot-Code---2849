@@ -10,8 +10,8 @@ import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class ShooterCommand extends CommandBase {
-  public boolean isFinished = false;
-  public double maxYValue = -10.0;
+  public boolean isShooterFinished = false;
+  public double maxYValue = -10.0; //
   public double minYValue = 10.0;
   public double maxMotorSpeed = 400; // find out what the rpm is when the motor speed is at 1
   public double minMotorSpeed = 300;
@@ -38,9 +38,11 @@ public class ShooterCommand extends CommandBase {
 
   @Override
   public void initialize() {
+    isShooterFinished = false;
+    System.out.println("nitlazed");
     SHOOTER_SUBSYSTEM.SHOOTER.configFactoryDefault();
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 0.01);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0);
+    SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 3);
+    SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0.1);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -15000);
@@ -50,6 +52,7 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void execute() {
     System.out.println("Execute");
+    isShooterFinished = false;
     // try {
     //  wait(500L);
     // } catch (InterruptedException e) {
@@ -58,13 +61,13 @@ public class ShooterCommand extends CommandBase {
     // }
     // finished = true;
 
-    System.out.print("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
-    System.out.println(getY());
+    System.out.println("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
+    System.out.println("y = " + getY());
   }
 
   @Override
   public boolean isFinished() {
-    return isFinished();
+    return isShooterFinished;
   }
 
   @Override
