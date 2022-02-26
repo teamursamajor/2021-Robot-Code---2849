@@ -13,6 +13,7 @@ import frc.robot.subsystems.DriveSubsystem;
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem DRIVE_SUBSYSTEM;
+
   private boolean finished = false;
   /**
    * Creates a new ExampleCommand.
@@ -44,12 +45,12 @@ public class DriveCommand extends CommandBase {
     // log(DRIVE_SUBSYSTEM.getName(), "Right Stick: " + rightStickX);
     leftSpeed = leftStickY + rightStickX;
     rightSpeed = leftStickY - rightStickX;
-    //log(DRIVE_SUBSYSTEM, "Initial Left Speed: " + leftSpeed, INFO);
-    //log(DRIVE_SUBSYSTEM, "Initial Right Speed: " + rightSpeed, INFO);
+    // log(DRIVE_SUBSYSTEM, "Initial Left Speed: " + leftSpeed, INFO);
+    // log(DRIVE_SUBSYSTEM, "Initial Right Speed: " + rightSpeed, INFO);
     double max = Math.max(leftSpeed, rightSpeed); // the greater of the two values
     double min = Math.min(leftSpeed, rightSpeed); // the lesser of the two values
-    //log(DRIVE_SUBSYSTEM, "max" + max, INFO);
-    //log(DRIVE_SUBSYSTEM, "min" + min, INFO);
+    // log(DRIVE_SUBSYSTEM, "max" + max, INFO);
+    // log(DRIVE_SUBSYSTEM, "min" + min, INFO);
 
     if (max > 1) {
       leftSpeed /= max;
@@ -59,21 +60,8 @@ public class DriveCommand extends CommandBase {
       rightSpeed /= -min;
     }
 
-    setLeftPower(leftSpeed);
-    setRightPower(rightSpeed);
+    DRIVE_SUBSYSTEM.setPower(leftSpeed, rightSpeed);
     // System.out.println("it works 2");
-  }
-
-  public void setLeftPower(final double power) {
-    DRIVE_SUBSYSTEM.sparkBackLeftDrive.set(-power);
-    DRIVE_SUBSYSTEM.sparkFrontLeftDrive.set(-power);
-    // log(DRIVE_SUBSYSTEM.getName(), "left speed: " + power);
-  }
-
-  public void setRightPower(final double power) {
-    DRIVE_SUBSYSTEM.sparkFrontRightDrive.set(power);
-    DRIVE_SUBSYSTEM.sparkFrontLeftDrive.set(power);
-    // log(DRIVE_SUBSYSTEM.getName(), "right speed: " + power);
   }
 
   // Called once the command ends or is interrupted.

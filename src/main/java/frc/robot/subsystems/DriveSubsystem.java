@@ -22,7 +22,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   // change this to set which motors are used
-  public MotorType motorType = MotorType.SPARKS;
+  public MotorType motorType = MotorType.VICTORS;
 
   public Spark sparkFrontRightDrive;
   public Spark sparkFrontLeftDrive;
@@ -74,7 +74,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void setPower(double leftSpeed, double rightSpeed) {
-   
+
     switch (motorType) {
       case SPARKS:
         setLeftPowerSparks(leftSpeed);

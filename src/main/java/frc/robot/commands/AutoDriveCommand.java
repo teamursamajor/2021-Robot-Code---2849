@@ -24,8 +24,7 @@ public class AutoDriveCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    DRIVE_SUBSYSTEM.setPower(.45,.45);
-    
+    DRIVE_SUBSYSTEM.setPower(.45, .45);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -40,7 +39,8 @@ public class AutoDriveCommand extends CommandBase {
     // while (distanceTravelledTotal < OriginalDistance) {
     //   DRIVE_SUBSYSTEM.setPower(temporarySpeedVariable, temporarySpeedVariable);
     //   distanceTravelledOnce = [GET THE TICKS FROM THE FALCON];
-    //   distanceTravelledTotal = distanceTravelledTotal + (distanceTravelledOnce / originalDistance);
+    //   distanceTravelledTotal = distanceTravelledTotal + (distanceTravelledOnce /
+    // originalDistance);
     //   temporarySpeedVariable = 1 - distanceTravelledTotal;
     // }
 

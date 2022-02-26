@@ -61,7 +61,7 @@ public class ClimbCommand extends CommandBase {
       //
     }
   }
-  
+
   @Override
   public void end(boolean interrupted) {
     System.out.println("Done");
