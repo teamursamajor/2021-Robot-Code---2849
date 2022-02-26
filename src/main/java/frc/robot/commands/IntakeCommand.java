@@ -3,7 +3,6 @@ package frc.robot.commands;
 import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.ColorRGB;
 import frc.robot.subsystems.IntakeSubsystem;
 
 public class IntakeCommand extends CommandBase {

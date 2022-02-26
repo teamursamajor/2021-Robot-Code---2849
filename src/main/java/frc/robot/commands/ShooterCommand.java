@@ -6,7 +6,6 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class ShooterCommand extends CommandBase {
@@ -30,8 +29,8 @@ public class ShooterCommand extends CommandBase {
     NetworkTableEntry ty = table.getEntry("ty");
     NetworkTableEntry tv = table.getEntry("tv");
     double y;
-    //double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
-    y = ty.getDouble(Double.MIN_VALUE); 
+    // double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
+    y = ty.getDouble(Double.MIN_VALUE);
     SmartDashboard.putNumber("LimelightX", y);
     return y;
   }
@@ -44,7 +43,7 @@ public class ShooterCommand extends CommandBase {
     SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -15000);
-    //SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -1);
+    // SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -1);
   }
   // Called every time the scheduler runs while the command is scheduled.
   @Override

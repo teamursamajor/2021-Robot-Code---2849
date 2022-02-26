@@ -39,9 +39,9 @@ public class AutoShooterCommand extends CommandBase {
   public double getY() {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry ty = table.getEntry("ty");
-    //NetworkTableEntry tv = table.getEntry("tv");
+    // NetworkTableEntry tv = table.getEntry("tv");
     double y;
-    //double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
+    // double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
     y = ty.getDouble(Double.MIN_VALUE);
     SmartDashboard.putNumber("LimelightX", y);
     return y;
@@ -55,7 +55,7 @@ public class AutoShooterCommand extends CommandBase {
     double y = getY();
     if (y == Double.MIN_VALUE) {
       count++;
-      if(count == limeLightMissing){
+      if (count == limeLightMissing) {
         System.out.println("Can't detect limelight");
         isFinished = true;
       }
