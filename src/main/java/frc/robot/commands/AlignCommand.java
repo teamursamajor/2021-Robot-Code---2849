@@ -11,9 +11,11 @@ public class AlignCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem DRIVE_SUBSYSTEM;
 
-  private boolean alignFinished = false;
+  private boolean alignFinished;
   public double maxShooting;
   public double minShooting;
+  public int count;
+  public int limeLightMissing = 5;
 
   /** @param subsystem */
   public AlignCommand(DriveSubsystem subsystem) {
@@ -26,6 +28,7 @@ public class AlignCommand extends CommandBase {
   public void initialize() {
     System.out.println("initialized");
     alignFinished = false;
+    count = 0;
   }
 
   public void detectTarget() {
@@ -51,17 +54,9 @@ public class AlignCommand extends CommandBase {
   public double getX() {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry tv = table.getEntry("tv");
     double x;
 
-    double isThereLimelight = tv.getDouble(0.0);
-    if (isThereLimelight == 0) {
-      x = Double.MIN_VALUE;
-    } else {
-      x = tx.getDouble(Double.MIN_VALUE);
-    }
-    // System.out.println(isThereLimelight);
-    // System.out.println(x);
+    x = tx.getDouble(Double.MIN_VALUE);
     SmartDashboard.putNumber("LimelightX", x);
     return x;
   }
@@ -90,11 +85,14 @@ public class AlignCommand extends CommandBase {
 
     System.out.println("x is " + x);
     if (x == Double.MIN_VALUE) {
-      System.out.println("Couldn't detect limelight");
-      return;
+      count++;
+      if(count == limeLightMissing){
+        System.out.println("Couldn't detect limelight");
+        alignFinished = true;
+      }else{
+        return;
+      }
     } else if (x <= max && x >= min) {
-      // setLeftPower(0);
-      // setRightPower(0);
       System.out.println("We are alined");
       alignFinished = true;
     } else if (x > max) {
