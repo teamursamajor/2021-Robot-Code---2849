@@ -30,8 +30,8 @@ public final class Constants {
   // Spark Ports
   public static final int SPARK_BACK_LEFT_DRIVE_PORT = 2;
   public static final int SPARK_BACK_RIGHT_DRIVE_PORT = 3;
-  public static final int SPARK_FRONT_LEFT_DRIVE_PORT = 4;
-  public static final int SPARK_FRONT_RIGHT_DRIVE_PORT = 5;
+  public static final int SPARK_FRONT_LEFT_DRIVE_PORT = 1;
+  public static final int SPARK_FRONT_RIGHT_DRIVE_PORT = 0;
 
   // Falcon Ports
   public static final int FALCON_BACK_LEFT_DRIVE_PORT = 4;
@@ -49,7 +49,7 @@ public final class Constants {
 
   public static final int SHOOTER_PORT = 5; // TODO: real port num
   public static final int CLIMB_PORT = 3; // TODO: real port num
-  public static final int INTAKE_PORT = 8; // TODO: real port num
+  public static final int INTAKE_PORT = 9; // TODO: real port num
   public static final int BELT_PORT = 6; // TODO: real port num
   public static final int LINE_BREAK = 11; // TODO: real port num
 

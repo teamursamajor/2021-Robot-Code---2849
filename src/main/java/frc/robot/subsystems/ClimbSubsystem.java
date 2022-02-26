@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClimbSubsystem extends SubsystemBase {
   // private final ClimbSubsystem m_ClimbSubsystem;
-  public Spark climber = new Spark(3);
+  public Spark climber = new Spark(8);
   public TalonFX climbOne = new TalonFX(3);
   public TalonFX climbTwo = new TalonFX(0);
   // reset talon encoder
