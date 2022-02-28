@@ -15,7 +15,6 @@ public class ShooterCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
 
-  private final BeltSubsystem BELT_SUBSYSTEM;
   boolean finished = false;
 
   /**
@@ -23,12 +22,10 @@ public class ShooterCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ShooterCommand(ShooterSubsystem subsystem, BeltSubsystem subsystem2) {
+  public ShooterCommand(ShooterSubsystem subsystem) {
     SHOOTER_SUBSYSTEM = subsystem;
-    BELT_SUBSYSTEM = subsystem2;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(SHOOTER_SUBSYSTEM);
-    addRequirements(BELT_SUBSYSTEM);
     setName("Shooter (Command)");
   }
 
