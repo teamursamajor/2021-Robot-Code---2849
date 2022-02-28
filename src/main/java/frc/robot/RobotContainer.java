@@ -11,12 +11,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignCommand;
-import frc.robot.commands.AutoShooterCommand;
-import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ShooterCommand;
-import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -40,14 +37,11 @@ public class RobotContainer {
 
   private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
-
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
-
 
   private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
 
-  private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
-
+  private final ShooterCommand SHOOTER_COMMAND = new ShooterCommand(SHOOTER_SUBSYSTEM);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -64,7 +58,6 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    
     JoystickButton shootButton =
         new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
     shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
@@ -86,7 +79,6 @@ public class RobotContainer {
     // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
     // .whenPressed((new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
     // driveButton.whileHeld(new DriveCommand(driveSubsystem));
-    
   }
 
   /***
@@ -96,7 +88,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    
-    return new AutoCommand1(DRIVE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
+    return new ShooterCommand(SHOOTER_SUBSYSTEM);
   }
 }

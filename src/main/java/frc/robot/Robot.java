@@ -10,7 +10,6 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 // import edu.wpli.first.wpilibj2.
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
@@ -100,7 +99,7 @@ public class Robot extends TimedRobot {
     double area = ta.getDouble(0.0);
     double skew = ts.getDouble(0.0);
 
-    //System.out.println(x + " " + y + " " + area);
+    // System.out.println(x + " " + y + " " + area);
     SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);

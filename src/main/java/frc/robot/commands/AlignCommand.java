@@ -86,10 +86,10 @@ public class AlignCommand extends CommandBase {
     System.out.println("x is " + x);
     if (x == Double.MIN_VALUE) {
       count++;
-      if(count == limeLightMissing){
+      if (count == limeLightMissing) {
         System.out.println("Couldn't detect limelight");
         alignFinished = true;
-      }else{
+      } else {
         return;
       }
     } else if (x <= max && x >= min) {
