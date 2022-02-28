@@ -17,6 +17,8 @@ public class DistanceCommand extends CommandBase {
   // public double minShooting = -8;
   public double minShooting = 3.9;
   public double maxShooting = -5.8;
+  public int count;
+  public int limeLightMissing = 5;
 
   /** @param subsystem */
   public DistanceCommand(DriveSubsystem subsystem) {
@@ -28,20 +30,15 @@ public class DistanceCommand extends CommandBase {
   @Override
   public void initialize() {
     System.out.println("initialized");
+    count = 0;
     alignFinished = false;
   }
 
   public double getY() {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry tv = table.getEntry("tv");
     double y;
-    double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
-    if (canDetectLimelight == 0) {
-      y = Double.MIN_VALUE;
-    } else {
-      y = ty.getDouble(Double.MIN_VALUE);
-    }
+    y = ty.getDouble(Double.MIN_VALUE);
     SmartDashboard.putNumber("LimelightX", y);
     return y;
   }
@@ -62,7 +59,7 @@ public class DistanceCommand extends CommandBase {
     double y = getY();
     double heightOfRobo = 33.5;
     // 9
-
+    
     if (y == Double.MIN_VALUE) {
       System.out.println("Couldn't detect");
       return y;
@@ -85,21 +82,22 @@ public class DistanceCommand extends CommandBase {
     System.out.println("y is: +" + y);
 
     if (y == Double.MIN_VALUE) {
-      System.out.println("Couldn't detect limelight");
-      return;
+      count++;
+      if(count == limeLightMissing){
+        System.out.println("Couldn't detect limelight");
+        alignFinished = true;
+      }
     } else if (y <= minShooting && y >= maxShooting) {
       System.out.println("y = " + y);
       // call shooter
       alignFinished = true;
 
     } else if (y > minShooting) {
-      DRIVE_SUBSYSTEM.setLeftPower(.25);
-      DRIVE_SUBSYSTEM.setRightPower(.25);
+      DRIVE_SUBSYSTEM.setPower(.25, .25);
       System.out.println("To close");
     } else if (y < maxShooting) {
 
-      DRIVE_SUBSYSTEM.setLeftPower(-.25);
-      DRIVE_SUBSYSTEM.setRightPower(-.25);
+      DRIVE_SUBSYSTEM.setPower(-.25, -.25);
       System.out.println("to far");
     }
   }
@@ -113,7 +111,6 @@ public class DistanceCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     System.out.println("End");
-    DRIVE_SUBSYSTEM.setLeftPower(0);
-    DRIVE_SUBSYSTEM.setRightPower(0);
+    DRIVE_SUBSYSTEM.setPower(0, 0);
   }
 }

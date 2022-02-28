@@ -16,6 +16,8 @@ public class AutoShooterCommand extends CommandBase {
   public double maxMotorSpeed = 400; // find out what the rpm is when the motor speed is at 1
   public double minMotorSpeed = 300;
   public double maxMotorPower = 1.0;
+  public int count;
+  public int limeLightMissing = 5;
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
   private final BeltSubsystem BELT_SUBSYSTEM;
@@ -31,19 +33,16 @@ public class AutoShooterCommand extends CommandBase {
   @Override
   public void initialize() {
     System.out.println("initialized");
+    count = 0;
   }
 
   public double getY() {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry tv = table.getEntry("tv");
+    //NetworkTableEntry tv = table.getEntry("tv");
     double y;
-    double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
-    if (canDetectLimelight == 0) {
-      y = Double.MIN_VALUE;
-    } else {
-      y = ty.getDouble(Double.MIN_VALUE);
-    }
+    //double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
+    y = ty.getDouble(Double.MIN_VALUE);
     SmartDashboard.putNumber("LimelightX", y);
     return y;
   }
@@ -55,8 +54,11 @@ public class AutoShooterCommand extends CommandBase {
     int count = 0;
     double y = getY();
     if (y == Double.MIN_VALUE) {
-      System.out.println("Can't detect limelight");
-      return;
+      count++;
+      if(count == limeLightMissing){
+        System.out.println("Can't detect limelight");
+        isFinished = true;
+      }
     } else {
       if (BELT_SUBSYSTEM.lineBroken) {
         double speed = maxMotorSpeed * (y / maxYValue);
