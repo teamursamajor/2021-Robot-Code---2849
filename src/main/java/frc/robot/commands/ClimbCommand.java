@@ -27,7 +27,7 @@ public class ClimbCommand extends CommandBase {
   private boolean isExtended;
   private final ClimbSubsystem CLIMB_SUBSYSTEM;
 
-  public ClimbCommand(ClimbSubsystem subsystem) {
+  public ClimbCommand(ClimbSubsystem subsystem, double position) {
     System.out.println("construct");
     CLIMB_SUBSYSTEM = subsystem;
     addRequirements(subsystem);
@@ -61,7 +61,7 @@ public class ClimbCommand extends CommandBase {
       //
     }
   }
-  
+
   @Override
   public void end(boolean interrupted) {
     System.out.println("Done");

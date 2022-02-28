@@ -15,13 +15,14 @@ public class ClimbSubsystem extends SubsystemBase {
   public Spark climber = new Spark(SPARK_CLIMB_PORT);
   public TalonFX climbOne = new TalonFX(FALCON_CLIMB1_PORT);
   public TalonFX climbTwo = new TalonFX(FALCON_CLIMB2_PORT);
+  
+
   // reset talon encoder
   public ClimbSubsystem() {
     climbOne.configFactoryDefault();
     climbOne.setNeutralMode(NeutralMode.Brake);
     climbTwo.configFactoryDefault();
     climbTwo.setNeutralMode(NeutralMode.Brake);
-   
   }
 
   // @Override
