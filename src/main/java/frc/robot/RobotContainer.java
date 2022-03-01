@@ -57,28 +57,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton shootButton =
-        new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
-    shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value)
+        .whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
 
-    // JoystickButton driveButton = new JoystickButton(XBOX_CONTROLLER, 0); // Creates a new
-    // JoystickButton object for
-    // button 1 on exampleStick
-    // Binds an ExampleCommand to be scheduled when the trigger of the example
-    // joystick is pressed
-    // new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kLeftTrigger.value)
-    //  .whileHeld(new IntakeCommand(INTAKE_SUBSYSTEM));
-    // new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kY.value).whenPressed(new
-    // AutoAlignCommand(DRIVE_SUBSYSTEM));
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
         .whenPressed(
             (new AlignCommand(DRIVE_SUBSYSTEM))
                 .withTimeout(5)
                 .andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
-    // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
-    // .whenPressed((new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
-    // driveButton.whileHeld(new DriveCommand(driveSubsystem));
-
   }
 
   /***

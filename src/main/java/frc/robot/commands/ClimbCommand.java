@@ -17,49 +17,51 @@ import frc.robot.subsystems.ClimbSubsystem;
  */
 public class ClimbCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private static int num = 0;
+  private int extendedTickCount = 4096; // Fix
 
-  private int count;
-  private int falconMaxSensor = 7;
-  private int falconMinSensor = 0;
-  boolean touchRight;
-  boolean touchLeft;
-  private boolean isExtended;
+  private int retractedTickCount = 0;
+  private double falconSpeed = 0.5;
+  private boolean raisingArm;
+  private boolean isFinished = false;
   private final ClimbSubsystem CLIMB_SUBSYSTEM;
 
-  public ClimbCommand(ClimbSubsystem subsystem) {
+  public ClimbCommand(ClimbSubsystem subsystem, boolean raisingArm) {
     System.out.println("construct");
     CLIMB_SUBSYSTEM = subsystem;
+    this.raisingArm = raisingArm;
     addRequirements(subsystem);
+  }
+
+  public void raiseArm() {
+    if (CLIMB_SUBSYSTEM.avgCurrentEncoderTicks >= extendedTickCount) {
+      CLIMB_SUBSYSTEM.setFalconPower(0);
+      isFinished = true;
+    }
+  }
+
+  public void lowerArm() {
+    if (CLIMB_SUBSYSTEM.avgCurrentEncoderTicks <= retractedTickCount) {
+      CLIMB_SUBSYSTEM.setFalconPower(0);
+      isFinished = true;
+    }
   }
 
   @Override
   public void initialize() {
-    touchRight = false;
-    touchLeft = false;
-    isExtended = false;
     log(CLIMB_SUBSYSTEM, "intialzied", INFO);
+    if (raisingArm) {
+      if (CLIMB_SUBSYSTEM.avgCurrentEncoderTicks >= extendedTickCount) isFinished = true;
+      else CLIMB_SUBSYSTEM.setFalconPower(falconSpeed);
+    } else {
+      if (CLIMB_SUBSYSTEM.avgCurrentEncoderTicks <= retractedTickCount) isFinished = true;
+      else CLIMB_SUBSYSTEM.setFalconPower(-falconSpeed);
+    }
   }
 
   public void execute() {
-    System.out.println("Execute");
-    num++;
-    count = num;
-    if (isExtended == false) {
-      CLIMB_SUBSYSTEM.moterMove(.25);
-    } else if ((isExtended == true) && (touchRight == true) && (touchLeft == true)) {
-      CLIMB_SUBSYSTEM.moterMove(-.25);
-    }
-    if (count >= 5) {
-      // get sensor number
-      // if sensor number == falconMaxSensor && isExtended == false
-      // than set isExtended = true
-      // and println to tell the driver isExtended is true
-      // else if sensor number == falconMinSensor &&
-      // touchRight == true && touchLeft == true
-      // set isFinished == true
-      //
-    }
+
+    if (raisingArm) raiseArm();
+    else lowerArm();
   }
 
   @Override
@@ -69,6 +71,7 @@ public class ClimbCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return false;
+    CLIMB_SUBSYSTEM.setFalconPower(0);
+    return isFinished;
   }
 }
