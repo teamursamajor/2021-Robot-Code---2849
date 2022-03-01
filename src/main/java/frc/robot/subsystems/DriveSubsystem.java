@@ -93,15 +93,15 @@ public class DriveSubsystem extends SubsystemBase {
   public void setLeftPowerSparks(final double power) {
     sparkFrontLeftDrive.set(-power);
     sparkBackLeftDrive.set(-power);
-    log(this, "left speed: " + power, INFO);
+    //log(this, "left speed: " + power, INFO);
   }
 
   public void setRightPowerSparks(final double power) {
     sparkFrontRightDrive.set(power);
     sparkBackRightDrive.set(power);
-    log(this, "right speed: " + power, INFO);
-    System.out.println("backRight Power " + sparkBackRightDrive.get());
-    System.out.println("frontRight Power " + sparkFrontRightDrive.get());
+    //log(this, "right speed: " + power, INFO);
+    //System.out.println("backRight Power " + sparkBackRightDrive.get());
+    //System.out.println("frontRight Power " + sparkFrontRightDrive.get());
   }
 
   public void setLeftPowerFalcons(final double power) {
