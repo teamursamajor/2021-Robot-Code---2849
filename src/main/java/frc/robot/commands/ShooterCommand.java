@@ -44,7 +44,7 @@ public class ShooterCommand extends CommandBase {
     SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0.1);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -7000);
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -15000);
     // SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -1);
   }
   // Called every time the scheduler runs while the command is scheduled.
