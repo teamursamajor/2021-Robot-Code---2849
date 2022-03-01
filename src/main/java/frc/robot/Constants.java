@@ -37,7 +37,6 @@ public final class Constants {
   public static final int INTAKE_PORT = 8; // TODO: real port num
   public static final int BELT_PORT = 6; // TODO: real port num
 
-
   // Falcon Ports
   public static final int FALCON_BACK_LEFT_DRIVE_PORT = 4;
   public static final int FALCON_BACK_RIGHT_DRIVE_PORT = 5;
@@ -48,7 +47,6 @@ public final class Constants {
   public static final int FALCON_CLIMB2_PORT = 1;
 
   public static final int SHOOTER_PORT = 2; // TODO: real port num
-
 
   // Victor Ports
   public static final int VICTOR_BACK_LEFT_DRIVE_PORT = 4;
@@ -72,9 +70,10 @@ public final class Constants {
   public static final double RADIUS = 3.0;
   public static final double CIRCUMFERENCE = 2 * PI * RADIUS; // About 18.8 inches
 
-  public static final double FOOT_IN_TICKS = (4096 / CIRCUMFERENCE) * 12; // Ticks in a foot, about 2608 ticks
-  public double finalDistance = FOOT_IN_TICKS; // Multiply by amount of feet to get the distance for the Auto-Drive
-
+  public static final double FOOT_IN_TICKS =
+      (4096 / CIRCUMFERENCE) * 12; // Ticks in a foot, about 2608 ticks
+  public double finalDistance =
+      FOOT_IN_TICKS; // Multiply by amount of feet to get the distance for the Auto-Drive
 
   public static void log(Object source, String message, Level lvl) {
     System.out.println(

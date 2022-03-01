@@ -11,16 +11,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignCommand;
-import frc.robot.commands.AutoShooterCommand;
-import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
-import frc.robot.subsystems.BeltSubsystem;
-import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
@@ -34,20 +29,17 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
 
-  private final BeltSubsystem BELT_SUBSYSTEM = new BeltSubsystem();
+  // private final BeltSubsystem BELT_SUBSYSTEM = new BeltSubsystem();
 
   private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
-  private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
-
+  // private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
+  // private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
 
-  private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
-
-  private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
-
+  // private final ClimbCommand CLIMB_COMMAND = new ClimbCommand(CLIMB_SUBSYSTEM);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -64,7 +56,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    
+
     JoystickButton shootButton =
         new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value);
     shootButton.whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
@@ -78,15 +70,19 @@ public class RobotContainer {
     //  .whileHeld(new IntakeCommand(INTAKE_SUBSYSTEM));
     // new JoystickButton(XBOX_CONTROLLER, XBOX_CONTROLLER.Button.kY.value).whenPressed(new
     // AutoAlignCommand(DRIVE_SUBSYSTEM));
+
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
         .whenPressed(
             (new AlignCommand(DRIVE_SUBSYSTEM))
                 .withTimeout(5)
                 .andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
+
+    // JoystickButton(XBOX_CONTROLLER, XboxController.Button.kY.value).whenPressed((
+    // new IntakeCommand(INTAKE_SUBSYSTEM)));
     // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
     // .whenPressed((new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(5));
     // driveButton.whileHeld(new DriveCommand(driveSubsystem));
-    
+
   }
 
   /***
@@ -96,7 +92,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    
+
     return new AutoCommand1(DRIVE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
   }
 }

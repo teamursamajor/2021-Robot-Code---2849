@@ -59,7 +59,7 @@ public class DistanceCommand extends CommandBase {
     double y = getY();
     double heightOfRobo = 33.5;
     // 9
-    
+
     if (y == Double.MIN_VALUE) {
       System.out.println("Couldn't detect");
       return y;
@@ -83,7 +83,7 @@ public class DistanceCommand extends CommandBase {
 
     if (y == Double.MIN_VALUE) {
       count++;
-      if(count == limeLightMissing){
+      if (count == limeLightMissing) {
         System.out.println("Couldn't detect limelight");
         alignFinished = true;
       }

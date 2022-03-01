@@ -21,7 +21,6 @@ public class ClimbSubsystem extends SubsystemBase {
     climbOne.setNeutralMode(NeutralMode.Brake);
     climbTwo.configFactoryDefault();
     climbTwo.setNeutralMode(NeutralMode.Brake);
-   
   }
 
   // @Override

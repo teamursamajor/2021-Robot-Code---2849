@@ -6,7 +6,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.BeltSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class AutoShooterCommand extends CommandBase {
@@ -19,13 +19,17 @@ public class AutoShooterCommand extends CommandBase {
   public int count;
   public int limeLightMissing = 5;
 
-  private final ShooterSubsystem SHOOTER_SUBSYSTEM;
-  private final BeltSubsystem BELT_SUBSYSTEM;
+  public boolean isThereBallToShoot;
+  public int time;
 
-  public AutoShooterCommand(ShooterSubsystem subsystem, BeltSubsystem subsystem2) {
+  private final ShooterSubsystem SHOOTER_SUBSYSTEM;
+
+  private final IntakeSubsystem INTAKE_SUBSYSTEM;
+
+  public AutoShooterCommand(ShooterSubsystem subsystem, IntakeSubsystem subsystem2) {
     System.out.println("construct");
     SHOOTER_SUBSYSTEM = subsystem;
-    BELT_SUBSYSTEM = subsystem2;
+    INTAKE_SUBSYSTEM = subsystem2;
     addRequirements(subsystem2);
     addRequirements(subsystem);
   }
@@ -34,14 +38,22 @@ public class AutoShooterCommand extends CommandBase {
   public void initialize() {
     System.out.println("initialized");
     count = 0;
+    time = 0;
+    if (INTAKE_SUBSYSTEM.topLineBroken) {
+      isThereBallToShoot = true;
+    } else {
+      System.out.println("No ball at top");
+      isThereBallToShoot = false;
+      isFinished = true;
+    }
   }
 
   public double getY() {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry ty = table.getEntry("ty");
-    //NetworkTableEntry tv = table.getEntry("tv");
+    // NetworkTableEntry tv = table.getEntry("tv");
     double y;
-    //double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
+    // double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
     y = ty.getDouble(Double.MIN_VALUE);
     SmartDashboard.putNumber("LimelightX", y);
     return y;
@@ -50,35 +62,28 @@ public class AutoShooterCommand extends CommandBase {
   @Override
   public void execute() {
     System.out.println("The velocity: " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
-    int time = 0;
-    int count = 0;
     double y = getY();
     if (y == Double.MIN_VALUE) {
       count++;
-      if(count == limeLightMissing){
+      if (count == limeLightMissing) {
         System.out.println("Can't detect limelight");
         isFinished = true;
       }
     } else {
-      if (BELT_SUBSYSTEM.lineBroken) {
+      if (isThereBallToShoot) {
         double speed = maxMotorSpeed * (y / maxYValue);
         SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, speed);
         if ((SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() >= speed - 150)
             && (SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() <= speed + 150)) {
-          BELT_SUBSYSTEM.ballToShooter();
-          count++;
+          INTAKE_SUBSYSTEM.beltSpark.set(.25);
+          time++;
         }
-        if (count == 2) {
-          isFinished = true;
-        }
-
-      } else {
-        BELT_SUBSYSTEM.balltoTopOfBelt();
       }
-    }
-    time++;
-    if (time >= 5) {
-      isFinished = true;
+      if (time == 10) {
+        INTAKE_SUBSYSTEM.beltSpark.set(0.0);
+        INTAKE_SUBSYSTEM.ballCount--;
+        isFinished = true;
+      }
     }
   }
 

@@ -11,6 +11,12 @@ public class IntakeCommand extends CommandBase {
   private final IntakeSubsystem INTAKE_SUBSYSTEM;
   private final String TEAM_COLOR = "red";
 
+  public boolean isFinished;
+
+  public int time;
+
+  public boolean readyToIntake;
+
   public IntakeCommand(IntakeSubsystem intake) {
     INTAKE_SUBSYSTEM = intake;
     addRequirements(intake);
@@ -20,14 +26,39 @@ public class IntakeCommand extends CommandBase {
   @Override
   public void initialize() {
     log(INTAKE_SUBSYSTEM, "intialzied", INFO);
+    isFinished = false;
+    time = 0;
+    readyToIntake = false;
   }
 
   @Override
   public void execute() {
-    if (INTAKE_SUBSYSTEM
-        .checkColor(new ColorRGB(INTAKE_SUBSYSTEM.COLOR_SENSOR.getColor()))
-        .equals(TEAM_COLOR)) {
-      INTAKE_SUBSYSTEM.INTAKE.set(10);
+    if (readyToIntake == false) {
+      if (INTAKE_SUBSYSTEM.ballCount == 2) {
+        System.out.println("There already are 2 balls");
+        isFinished = true;
+      } else if (INTAKE_SUBSYSTEM.ballCount == 1) {
+        if (INTAKE_SUBSYSTEM.topLineBroken == false) {
+          INTAKE_SUBSYSTEM.beltSpark.set(.25);
+        }
+        INTAKE_SUBSYSTEM.beltSpark.set(0.0);
+        readyToIntake = true;
+      } else if (INTAKE_SUBSYSTEM.ballCount == 0) {
+        readyToIntake = true;
+      }
+    }
+
+    if (readyToIntake == true) {
+      if (INTAKE_SUBSYSTEM
+          .checkColor(new ColorRGB(INTAKE_SUBSYSTEM.COLOR_SENSOR.getColor()))
+          .equals(TEAM_COLOR)) {
+        INTAKE_SUBSYSTEM.INTAKE.set(1.0);
+        INTAKE_SUBSYSTEM.ballCount++;
+      }
+      if (INTAKE_SUBSYSTEM.bottomLineBroken == true) {
+        INTAKE_SUBSYSTEM.beltSpark.set(0.0);
+        isFinished = true;
+      }
     }
   }
 
@@ -39,6 +70,6 @@ public class IntakeCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return isFinished;
   }
 }
