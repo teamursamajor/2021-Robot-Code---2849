@@ -75,7 +75,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void setPower(double leftSpeed, double rightSpeed) {
 
-    System.out.println("Driving");
+    //System.out.println("Driving");
     switch (motorType) {
       case SPARKS:
         setLeftPowerSparks(leftSpeed);

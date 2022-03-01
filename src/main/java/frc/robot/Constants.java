@@ -28,10 +28,10 @@ public final class Constants {
   }
 
   // Spark Ports
-  public static final int SPARK_BACK_LEFT_DRIVE_PORT = 2;
-  public static final int SPARK_BACK_RIGHT_DRIVE_PORT = 5;
-  public static final int SPARK_FRONT_LEFT_DRIVE_PORT = 4;
-  public static final int SPARK_FRONT_RIGHT_DRIVE_PORT = 1;
+  public static final int SPARK_BACK_LEFT_DRIVE_PORT = 1;
+  public static final int SPARK_BACK_RIGHT_DRIVE_PORT = 3;
+  public static final int SPARK_FRONT_LEFT_DRIVE_PORT = 0;
+  public static final int SPARK_FRONT_RIGHT_DRIVE_PORT = 2;
 
   public static final int SPARK_CLIMB_PORT = 7; // TODO: real port num
   public static final int INTAKE_PORT = 8; // TODO: real port num
@@ -56,7 +56,8 @@ public final class Constants {
 
   public static final String TEAM_COLOR = DriverStation.getAlliance().name();
 
-  public static final int LINE_BREAK = 11; // TODO: real port num
+  public static final int TOP_LINE_BREAK = 11; // TODO: real port num
+  public static final int BOTTOM_LINE_BREAK = 13;
 
   public static final I2C.Port I2C_PORT = I2C.Port.kMXP;
 

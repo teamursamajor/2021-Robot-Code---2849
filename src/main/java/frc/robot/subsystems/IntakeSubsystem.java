@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.ColorRGB;
 
 public class IntakeSubsystem extends SubsystemBase {
-  public DigitalInput topLineSensor = new DigitalInput(LINE_BREAK);
-  public DigitalInput bottomLineSensor = new DigitalInput(LINE_BREAK);
+  public DigitalInput topLineSensor = new DigitalInput(TOP_LINE_BREAK);
+  public DigitalInput bottomLineSensor = new DigitalInput(BOTTOM_LINE_BREAK);
   public boolean topLineBroken;
   public boolean bottomLineBroken;
   public Spark beltSpark = new Spark(BELT_PORT);
