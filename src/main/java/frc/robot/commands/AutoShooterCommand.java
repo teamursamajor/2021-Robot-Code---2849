@@ -21,6 +21,8 @@ public class AutoShooterCommand extends CommandBase {
 
   public boolean isThereBallToShoot;
   public int time;
+  public int highBallTime = 5;
+  public int lowBallTime = 10;
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
 
@@ -39,13 +41,7 @@ public class AutoShooterCommand extends CommandBase {
     System.out.println("initialized");
     count = 0;
     time = 0;
-    if (INTAKE_SUBSYSTEM.topLineBroken) {
-      isThereBallToShoot = true;
-    } else {
-      System.out.println("No ball at top");
-      isThereBallToShoot = false;
-      isFinished = true;
-    }
+
   }
 
   public double getY() {
@@ -61,35 +57,51 @@ public class AutoShooterCommand extends CommandBase {
 
   @Override
   public void execute() {
-    System.out.println("The velocity: " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
-    double y = getY();
-    if (y == Double.MIN_VALUE) {
-      count++;
-      if (count == limeLightMissing) {
-        System.out.println("Can't detect limelight");
-        isFinished = true;
-      }
+
+    if (INTAKE_SUBSYSTEM.ballCount != 0) {
+      isThereBallToShoot = true;
     } else {
-      if (isThereBallToShoot) {
+      System.out.println("No ballz");
+      isThereBallToShoot = false;
+      isFinished = true;
+    }
+
+    if(isThereBallToShoot){
+      //System.out.println("The velocity: " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
+      double y = getY();
+      if (y == Double.MIN_VALUE) {
+        count++;
+        if (count == limeLightMissing) {
+          System.out.println("Can't detect limelight");
+          isFinished = true;
+        }
+      }
+      else {
         double speed = maxMotorSpeed * (y / maxYValue);
         SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, speed);
-        if ((SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() >= speed - 150)
-            && (SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() <= speed + 150)) {
+        if ((SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() >= speed - 200)
+            && (SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() <= speed + 200)) {
           INTAKE_SUBSYSTEM.beltSpark.set(.25);
           time++;
         }
-      }
-      if (time == 10) {
+      if (INTAKE_SUBSYSTEM.ballCount == 2 && time == highBallTime) {
+        time = 0;
         INTAKE_SUBSYSTEM.beltSpark.set(0.0);
         INTAKE_SUBSYSTEM.ballCount--;
-        isFinished = true;
+      }
+      else if(INTAKE_SUBSYSTEM.ballCount == 1 && time == lowBallTime){
+        time = 0;
+        INTAKE_SUBSYSTEM.beltSpark.set(0.0);
+        INTAKE_SUBSYSTEM.ballCount--;
       }
     }
+    }
+    
   }
 
   @Override
   public boolean isFinished() {
-    return isFinished();
+    return isFinished;
   }
 
   @Override
