@@ -15,7 +15,6 @@ import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
-import frc.robot.subsystems.BeltSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -32,7 +31,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
 
-  private final BeltSubsystem BELT_SUBSYSTEM = new BeltSubsystem();
+  // private final BeltSubsystem BELT_SUBSYSTEM = new BeltSubsystem();
 
   private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
