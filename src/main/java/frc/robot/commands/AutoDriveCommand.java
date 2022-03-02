@@ -30,6 +30,8 @@ public class AutoDriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    // Pseudocode below for Falcon Drive System (if using falcons to drive)
     // SET [Distance] TO AMOUNT OF TICKS
     // double temporarySpeedVariable = 1;
     // double distanceTravelledTotal = 0;
