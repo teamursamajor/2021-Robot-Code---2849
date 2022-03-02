@@ -59,7 +59,8 @@ public final class Constants {
 
   public static final String TEAM_COLOR = DriverStation.getAlliance().name();
 
-  public static final int LINE_BREAK = 11; // TODO: real port num
+  public static final int TOP_LINE_BREAK = 11; // TODO: real port num
+  public static final int BOTTOM_LINE_BREAK = 13;
 
   public static final I2C.Port I2C_PORT = I2C.Port.kMXP;
 

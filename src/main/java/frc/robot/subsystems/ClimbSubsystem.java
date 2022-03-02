@@ -34,7 +34,6 @@ public class ClimbSubsystem extends SubsystemBase {
     climbActuator.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     climbOne.setNeutralMode(NeutralMode.Brake);
     climbTwo.setNeutralMode(NeutralMode.Brake);
-   
   }
 
   // @Override

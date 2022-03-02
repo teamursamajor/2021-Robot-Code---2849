@@ -38,13 +38,13 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void initialize() {
     isShooterFinished = false;
-    System.out.println("nitlazed");
+    System.out.println("initlazed");
     SHOOTER_SUBSYSTEM.SHOOTER.configFactoryDefault();
     SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 3);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0.1);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -15000);
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -11000);
     // SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -1);
   }
   // Called every time the scheduler runs while the command is scheduled.
@@ -61,7 +61,7 @@ public class ShooterCommand extends CommandBase {
     // finished = true;
 
     System.out.println("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
-    System.out.println("y = " + getY());
+    //System.out.println("y = " + getY());
   }
 
   @Override
