@@ -2,7 +2,10 @@ package frc.robot.subsystems;
 
 import static frc.robot.Constants.*;
 
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.ColorSensorV3;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -13,7 +16,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public DigitalInput bottomLineSensor = new DigitalInput(BOTTOM_LINE_BREAK);
   public boolean topLineBroken;
   public boolean bottomLineBroken;
-  public Spark beltSpark = new Spark(BELT_PORT);
+  public CANSparkMax beltSpark = new CANSparkMax(BELT_PORT, MotorType.kBrushless);
   public int ballCount = 0;
 
   public final Spark INTAKE = new Spark(INTAKE_PORT);
