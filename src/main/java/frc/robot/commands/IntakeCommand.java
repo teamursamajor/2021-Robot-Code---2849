@@ -34,8 +34,7 @@ public class IntakeCommand extends CommandBase {
       if (INTAKE_SUBSYSTEM.ballCount == 2) {
         System.out.println("There already are 2 balls");
         isFinished = true;
-      } 
-      else{
+      } else {
         readyToIntake = true;
       }
     }
@@ -46,16 +45,14 @@ public class IntakeCommand extends CommandBase {
           .equals(TEAM_COLOR)) {
         INTAKE_SUBSYSTEM.INTAKE.set(1.0);
       }
-      if(INTAKE_SUBSYSTEM.topLineBroken == true && INTAKE_SUBSYSTEM.ballCount == 0){
-          INTAKE_SUBSYSTEM.ballCount++;
-          isFinished = true;
-      }
-      else if (INTAKE_SUBSYSTEM.bottomLineBroken == true && INTAKE_SUBSYSTEM.ballCount == 1) {
-          INTAKE_SUBSYSTEM.ballCount++;
-          isFinished = true;
+      if (INTAKE_SUBSYSTEM.topLineBroken == true && INTAKE_SUBSYSTEM.ballCount == 0) {
+        INTAKE_SUBSYSTEM.ballCount++;
+        isFinished = true;
+      } else if (INTAKE_SUBSYSTEM.bottomLineBroken == true && INTAKE_SUBSYSTEM.ballCount == 1) {
+        INTAKE_SUBSYSTEM.ballCount++;
+        isFinished = true;
       }
     }
-    
   }
 
   @Override

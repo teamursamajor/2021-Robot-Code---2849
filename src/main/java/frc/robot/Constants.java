@@ -34,10 +34,9 @@ public final class Constants {
   public static final int SPARK_FRONT_RIGHT_DRIVE_PORT = 0;
 
   public static final int SPARK_CLIMB_PORT = 7; // TODO: real port num
-  public static final int INTAKE_PORT = 8; // TODO: real port num
-  public static final int BELT_PORT = 6; // TODO: real port num
+  public static final int BELT_PORT = 4; // TODO: real port num
 
-  // Falcon Ports
+  // Falcon/Can Ports
   public static final int FALCON_BACK_LEFT_DRIVE_PORT = 4;
   public static final int FALCON_BACK_RIGHT_DRIVE_PORT = 5;
   public static final int FALCON_FRONT_LEFT_DRIVE_PORT = 2;
@@ -47,6 +46,7 @@ public final class Constants {
   public static final int FALCON_CLIMB2_PORT = 1;
 
   public static final int SHOOTER_PORT = 2; // TODO: real port num
+  public static final int INTAKE_PORT = 8; // TODO: real port num
 
   // Victor Ports
   public static final int VICTOR_BACK_LEFT_DRIVE_PORT = 4;

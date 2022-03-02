@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.autoCommands;
 
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import edu.wpi.first.networktables.NetworkTable;
@@ -41,7 +41,6 @@ public class AutoShooterCommand extends CommandBase {
     System.out.println("initialized");
     count = 0;
     time = 0;
-
   }
 
   public double getY() {
@@ -66,8 +65,9 @@ public class AutoShooterCommand extends CommandBase {
       isFinished = true;
     }
 
-    if(isThereBallToShoot){
-      //System.out.println("The velocity: " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
+    if (isThereBallToShoot) {
+      // System.out.println("The velocity: " +
+      // SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
       double y = getY();
       if (y == Double.MIN_VALUE) {
         count++;
@@ -75,8 +75,7 @@ public class AutoShooterCommand extends CommandBase {
           System.out.println("Can't detect limelight");
           isFinished = true;
         }
-      }
-      else {
+      } else {
         double speed = maxMotorSpeed * (y / maxYValue);
         SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, speed);
         if ((SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() >= speed - 200)
@@ -84,19 +83,17 @@ public class AutoShooterCommand extends CommandBase {
           INTAKE_SUBSYSTEM.beltSpark.set(.25);
           time++;
         }
-      if (INTAKE_SUBSYSTEM.ballCount == 2 && time == highBallTime) {
-        time = 0;
-        INTAKE_SUBSYSTEM.beltSpark.set(0.0);
-        INTAKE_SUBSYSTEM.ballCount--;
-      }
-      else if(INTAKE_SUBSYSTEM.ballCount == 1 && time == lowBallTime){
-        time = 0;
-        INTAKE_SUBSYSTEM.beltSpark.set(0.0);
-        INTAKE_SUBSYSTEM.ballCount--;
+        if (INTAKE_SUBSYSTEM.ballCount == 2 && time == highBallTime) {
+          time = 0;
+          INTAKE_SUBSYSTEM.beltSpark.set(0.0);
+          INTAKE_SUBSYSTEM.ballCount--;
+        } else if (INTAKE_SUBSYSTEM.ballCount == 1 && time == lowBallTime) {
+          time = 0;
+          INTAKE_SUBSYSTEM.beltSpark.set(0.0);
+          INTAKE_SUBSYSTEM.ballCount--;
+        }
       }
     }
-    }
-    
   }
 
   @Override

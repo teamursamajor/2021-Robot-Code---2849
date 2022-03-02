@@ -10,11 +10,14 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.AlignCommand;
 import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.autoCommands.AlignCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
+import frc.robot.commands.autoCommands.AutoShooterCommand;
+import frc.robot.commands.manualCommands.ManualBeltCommand;
+import frc.robot.commands.manualCommands.ShooterCommand;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -64,6 +67,14 @@ public class RobotContainer {
             (new AlignCommand(DRIVE_SUBSYSTEM))
                 .withTimeout(5)
                 .andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
+
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kY.value)
+        .whenPressed(new ManualBeltCommand(INTAKE_SUBSYSTEM));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
+        .whenPressed(new AutoShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM));
+
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
+        .whenPressed(new IntakeCommand(INTAKE_SUBSYSTEM));
   }
 
   /***

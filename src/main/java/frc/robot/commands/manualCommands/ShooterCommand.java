@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.manualCommands;
 
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import edu.wpi.first.networktables.NetworkTable;
@@ -61,7 +61,7 @@ public class ShooterCommand extends CommandBase {
     // finished = true;
 
     System.out.println("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
-    //System.out.println("y = " + getY());
+    // System.out.println("y = " + getY());
   }
 
   @Override

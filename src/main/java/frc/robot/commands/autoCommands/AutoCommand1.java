@@ -6,7 +6,6 @@ package frc.robot.commands.autoCommands;
 import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commands.AlignCommand;
 import frc.robot.commands.AutoDriveCommand;
 import frc.robot.commands.DistanceCommand;
 import frc.robot.subsystems.DriveSubsystem;
