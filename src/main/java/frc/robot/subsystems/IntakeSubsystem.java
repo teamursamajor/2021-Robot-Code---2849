@@ -3,11 +3,11 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.*;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.ColorSensorV3;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.ColorRGB;
 
@@ -17,7 +17,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public boolean topLineBroken;
   public boolean bottomLineBroken;
   public CANSparkMax beltSpark = new CANSparkMax(BELT_PORT, MotorType.kBrushless);
-  public int ballCount = 0;
+  public int ballCount = 1;
 
   public final Spark INTAKE = new Spark(INTAKE_PORT);
 
@@ -37,6 +37,7 @@ public class IntakeSubsystem extends SubsystemBase {
     // log(this, checkColor(c), INFO);
     topLineBroken = topLineSensor.get();
     bottomLineBroken = bottomLineSensor.get();
+    SmartDashboard.putNumber("Ball Count: ", ballCount);
   }
 
   @Override

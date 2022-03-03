@@ -4,7 +4,6 @@ import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterSubsystem;
 
@@ -31,7 +30,7 @@ public class ShooterCommand extends CommandBase {
     double y;
     // double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
     y = ty.getDouble(Double.MIN_VALUE);
-    SmartDashboard.putNumber("LimelightX", y);
+    // SmartDashboard.putNumber("LimelightX", y);
     return y;
   }
 

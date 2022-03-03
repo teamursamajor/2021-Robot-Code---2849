@@ -41,6 +41,7 @@ public class AutoShooterCommand extends CommandBase {
     System.out.println("initialized");
     count = 0;
     time = 0;
+    SmartDashboard.putBoolean("Currently AutoShooting: ", true);
   }
 
   public double getY() {
@@ -50,7 +51,7 @@ public class AutoShooterCommand extends CommandBase {
     double y;
     // double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
     y = ty.getDouble(Double.MIN_VALUE);
-    SmartDashboard.putNumber("LimelightX", y);
+    // SmartDashboard.putNumber("LimelightX", y);
     return y;
   }
 
@@ -103,7 +104,7 @@ public class AutoShooterCommand extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    System.out.println("end");
+    SmartDashboard.putBoolean("Currently AutoShooting: ", true);
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.0);
   }
 }

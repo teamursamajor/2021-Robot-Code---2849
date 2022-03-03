@@ -57,7 +57,7 @@ public final class Constants {
   // PWM Ports
   public static final int CLIMB_ACTUATOR_PORT = 9;
 
-  public static final String TEAM_COLOR = DriverStation.getAlliance().name();
+  public static final String TEAM_COLOR = DriverStation.getAlliance().name().toLowerCase().trim();
 
   public static final int TOP_LINE_BREAK = 11; // TODO: real port num
   public static final int BOTTOM_LINE_BREAK = 13;

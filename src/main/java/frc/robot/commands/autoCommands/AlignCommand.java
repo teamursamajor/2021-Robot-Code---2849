@@ -3,7 +3,6 @@ package frc.robot.commands.autoCommands;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -44,10 +43,10 @@ public class AlignCommand extends CommandBase {
     double skew = ts.getDouble(0.0);
 
     System.out.println(x + " " + y + " " + area);
-    SmartDashboard.putNumber("LimelightX", x);
-    SmartDashboard.putNumber("LimelightY", y);
-    SmartDashboard.putNumber("LimelightArea", area);
-    SmartDashboard.putNumber("LimelightSkew", skew);
+    // SmartDashboard.putNumber("LimelightX", x);
+    // SmartDashboard.putNumber("LimelightY", y);
+    // SmartDashboard.putNumber("LimelightArea", area);
+    // SmartDashboard.putNumber("LimelightSkew", skew);
     // min shooting range, 5 ft, max 30 ft
   }
 
@@ -57,7 +56,7 @@ public class AlignCommand extends CommandBase {
     double x;
 
     x = tx.getDouble(Double.MIN_VALUE);
-    SmartDashboard.putNumber("LimelightX", x);
+    // SmartDashboard.putNumber("LimelightX", x);
     return x;
   }
 
@@ -66,7 +65,7 @@ public class AlignCommand extends CommandBase {
     NetworkTableEntry ts = table.getEntry("ts");
 
     double Angle = ts.getDouble(0.0);
-    SmartDashboard.putNumber("LimelightX", Angle);
+    // SmartDashboard.putNumber("LimelightX", Angle);
 
     return Angle;
   }

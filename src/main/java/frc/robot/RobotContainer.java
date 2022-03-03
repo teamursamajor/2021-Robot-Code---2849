@@ -8,6 +8,8 @@ import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DistanceCommand;
@@ -15,6 +17,8 @@ import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.autoCommands.AlignCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
+import frc.robot.commands.autoCommands.AutoCommand2;
+import frc.robot.commands.autoCommands.AutoCommand3;
 import frc.robot.commands.autoCommands.AutoShooterCommand;
 import frc.robot.commands.manualCommands.ManualBeltCommand;
 import frc.robot.commands.manualCommands.ShooterCommand;
@@ -44,11 +48,26 @@ public class RobotContainer {
 
   private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
 
+  // Auto Commands
+  private final Command m_driveShootAuto =
+      new AutoCommand1(DRIVE_SUBSYSTEM, INTAKE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
+  private final Command m_driveAuto = new AutoCommand2(DRIVE_SUBSYSTEM);
+  private final Command m_nothingAuto = new AutoCommand3();
+
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    // set up the autoCommand
+    m_chooser.setDefaultOption("Drive and Shoot Auto", m_driveShootAuto);
+    m_chooser.addOption("Drive Auto", m_driveAuto);
+    m_chooser.addOption("Nothing Auto", m_nothingAuto);
+    SmartDashboard.putData(m_chooser);
+
+    // set the drive default command
+    DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
 
     // Configure the button bindings
-    DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
     configureButtonBindings();
   }
 
@@ -83,8 +102,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-
-    return new AutoCommand1(DRIVE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
+    return m_chooser.getSelected();
   }
 }

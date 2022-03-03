@@ -2,8 +2,6 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.*;
 
-import com.revrobotics.CANSparkMax;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.ColorRGB;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -11,7 +9,6 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class IntakeCommand extends CommandBase {
 
   private final IntakeSubsystem INTAKE_SUBSYSTEM;
-  private final String TEAM_COLOR = "red";
   private boolean readyToIntake = false;
   private boolean isFinished = false;
 

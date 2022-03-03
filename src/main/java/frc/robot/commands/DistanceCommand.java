@@ -3,7 +3,6 @@ package frc.robot.commands;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -39,7 +38,7 @@ public class DistanceCommand extends CommandBase {
     NetworkTableEntry ty = table.getEntry("ty");
     double y;
     y = ty.getDouble(Double.MIN_VALUE);
-    SmartDashboard.putNumber("LimelightX", y);
+    // SmartDashboard.putNumber("LimelightX", y);
     return y;
   }
 
@@ -48,7 +47,7 @@ public class DistanceCommand extends CommandBase {
     NetworkTableEntry ts = table.getEntry("ts");
 
     double Angle = ts.getDouble(0.0);
-    SmartDashboard.putNumber("LimelightX", Angle);
+    // SmartDashboard.putNumber("LimelightX", Angle);
 
     return Angle;
   }
