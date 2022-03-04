@@ -9,26 +9,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.AutoDriveCommand;
 import frc.robot.commands.DistanceCommand;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
 
 /** An example command that uses an example subsystem. */
-public class AutoCommand1 extends CommandBase {
+public class AutoCommand2 extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem DRIVE_SUBSYSTEM;
 
-  private final IntakeSubsystem INTAKE_SUBSYSTEM;
-  private final ShooterSubsystem SHOOTER_SUBSYSTEM;
-
-  public AutoCommand1(
-      DriveSubsystem driveSubsystem,
-      IntakeSubsystem intakeSubsystem,
-      ShooterSubsystem shooterSubsystem) {
+  public AutoCommand2(DriveSubsystem driveSubsystem) {
     DRIVE_SUBSYSTEM = driveSubsystem;
-    INTAKE_SUBSYSTEM = intakeSubsystem;
-    SHOOTER_SUBSYSTEM = shooterSubsystem;
-
-    addRequirements(driveSubsystem, intakeSubsystem, shooterSubsystem);
+    addRequirements(driveSubsystem);
     setName("Auto Drive (Command)");
   }
 
@@ -39,7 +28,6 @@ public class AutoCommand1 extends CommandBase {
         .withTimeout(2)
         .andThen(new AlignCommand(DRIVE_SUBSYSTEM))
         .andThen(new DistanceCommand(DRIVE_SUBSYSTEM))
-        .andThen(new AutoShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM))
         .schedule();
   }
 

@@ -25,7 +25,9 @@ public class ClimbSubsystem extends SubsystemBase {
   public TalonFX climbTwo = new TalonFX(FALCON_CLIMB2_PORT);
 
   public Servo climbActuator = new Servo(CLIMB_ACTUATOR_PORT);
-  public double climbActuatorPos;
+
+  public double desiredOpenActuatorPos = .50;
+  public double desiredClosedActuatorPos = .18;
 
   // reset talon encoder
   public ClimbSubsystem() {
@@ -34,12 +36,14 @@ public class ClimbSubsystem extends SubsystemBase {
     climbActuator.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     climbOne.setNeutralMode(NeutralMode.Brake);
     climbTwo.setNeutralMode(NeutralMode.Brake);
+    // setActuatorPosition(true);
   }
 
   // @Override
   public void periodic() {
     avgCurrentEncoderTicks =
         (climbOne.getSelectedSensorPosition() + climbTwo.getSelectedSensorPosition()) / 2.0;
+    // System.out.println("Average Encoder Ticks: " + avgCurrentEncoderTicks);
   }
 
   // @Override

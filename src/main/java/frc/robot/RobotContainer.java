@@ -8,13 +8,19 @@ import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.AlignCommand;
-import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
+import frc.robot.commands.autoCommands.AutoCommand2;
+import frc.robot.commands.autoCommands.AutoCommand3;
+import frc.robot.commands.manualCommands.ActuatorCommand;
+import frc.robot.commands.manualCommands.ManualBeltCommand;
+import frc.robot.commands.manualCommands.ManualClimbCommand;
+import frc.robot.commands.manualCommands.ManualIntakeCommand;
+import frc.robot.commands.manualCommands.ShooterCommand;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -35,17 +41,32 @@ public class RobotContainer {
 
   private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
-  private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
+  public final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
   private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
 
+  // Auto Commands
+  private final Command m_driveShootAuto =
+      new AutoCommand1(DRIVE_SUBSYSTEM, INTAKE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
+  private final Command m_driveAuto = new AutoCommand2(DRIVE_SUBSYSTEM);
+  private final Command m_nothingAuto = new AutoCommand3();
+
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    // set up the autoCommand
+    m_chooser.setDefaultOption("Drive and Shoot Auto", m_driveShootAuto);
+    m_chooser.addOption("Drive Auto", m_driveAuto);
+    m_chooser.addOption("Nothing Auto", m_nothingAuto);
+    SmartDashboard.putData(m_chooser);
+
+    // set the drive default command
+    DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
 
     // Configure the button bindings
-    DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
     configureButtonBindings();
   }
 
@@ -56,14 +77,36 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value)
+
+    //  new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
+    //     .whenPressed(new AutoShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM));
+
+    //  new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kY.value)
+    //     .whenPressed(
+    //       (new AlignCommand(DRIVE_SUBSYSTEM))
+    //     .withTimeout(5)
+    //     .andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
+
+    // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
+    //    .whenPressed(new IntakeCommand(INTAKE_SUBSYSTEM));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kLeftTrigger.value)
+        .whileHeld(new ManualIntakeCommand(INTAKE_SUBSYSTEM));
+
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kRightTrigger.value)
         .whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
 
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value)
+        .whileHeld(new ManualBeltCommand(INTAKE_SUBSYSTEM));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kRightBumper.value)
+        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, true));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kLeftBumper.value)
+        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, false));
+
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
+        .whileHeld(new ActuatorCommand(CLIMB_SUBSYSTEM, true));
+
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
-        .whenPressed(
-            (new AlignCommand(DRIVE_SUBSYSTEM))
-                .withTimeout(5)
-                .andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
+        .whileHeld(new ActuatorCommand(CLIMB_SUBSYSTEM, false));
   }
 
   /***
@@ -72,8 +115,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-
-    return new AutoCommand1(DRIVE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
+    return m_chooser.getSelected();
   }
 }
