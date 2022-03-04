@@ -29,10 +29,14 @@ public class ClimbSubsystem extends SubsystemBase {
   public double desiredOpenActuatorPos = .50;
   public double desiredClosedActuatorPos = .18;
 
+  private double climbOneInitialTicks, climbTwoInitialTicks;
+
   // reset talon encoder
   public ClimbSubsystem() {
     climbOne.configFactoryDefault();
     climbTwo.configFactoryDefault();
+    climbOneInitialTicks = climbOne.getSelectedSensorPosition();
+    climbTwoInitialTicks = climbTwo.getSelectedSensorPosition();
     climbActuator.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     climbOne.setNeutralMode(NeutralMode.Brake);
     climbTwo.setNeutralMode(NeutralMode.Brake);
@@ -42,8 +46,9 @@ public class ClimbSubsystem extends SubsystemBase {
   // @Override
   public void periodic() {
     avgCurrentEncoderTicks =
-        (climbOne.getSelectedSensorPosition() + climbTwo.getSelectedSensorPosition()) / 2.0;
-    // System.out.println("Average Encoder Ticks: " + avgCurrentEncoderTicks);
+        (climbOne.getSelectedSensorPosition() - climbOneInitialTicks + climbTwo.getSelectedSensorPosition() - climbTwoInitialTicks) / 2.0;
+     System.out.println("Average Encoder Ticks New: " + avgCurrentEncoderTicks);
+    
   }
 
   // @Override

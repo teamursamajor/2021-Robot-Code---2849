@@ -55,7 +55,7 @@ public final class Constants {
   public static final int VICTOR_FRONT_RIGHT_DRIVE_PORT = 3;
 
   // PWM Ports
-  public static final int CLIMB_ACTUATOR_PORT = 7;
+  public static final int CLIMB_ACTUATOR_PORT = 5;
 
   public static final String TEAM_COLOR = DriverStation.getAlliance().name().toLowerCase().trim();
 

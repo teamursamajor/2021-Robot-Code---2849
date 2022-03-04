@@ -22,7 +22,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   // change this to set which motors are used
-  public MotorType motorType = MotorType.VICTORS;
+  public MotorType motorType = MotorType.SPARKS;
 
   public Spark sparkFrontRightDrive;
   public Spark sparkFrontLeftDrive;
@@ -107,24 +107,20 @@ public class DriveSubsystem extends SubsystemBase {
   public void setLeftPowerFalcons(final double power) {
     falconFrontLeftDrive.set(TalonFXControlMode.PercentOutput, -power);
     falconBackLeftDrive.set(TalonFXControlMode.PercentOutput, -power);
-    log(this, "left speed: " + power, INFO);
   }
 
   public void setRightPowerFalcons(final double power) {
     falconFrontRightDrive.set(TalonFXControlMode.PercentOutput, power);
     falconBackRightDrive.set(TalonFXControlMode.PercentOutput, power);
-    log(this, "right speed: " + power, INFO);
   }
 
   public void setLeftPowerVictors(final double power) {
     victorFrontLeftDrive.set(VictorSPXControlMode.PercentOutput, -power);
     victorBackLeftDrive.set(VictorSPXControlMode.PercentOutput, -power);
-    log(this, "left speed: " + power, INFO);
   }
 
   public void setRightPowerVictors(final double power) {
     victorFrontRightDrive.set(VictorSPXControlMode.PercentOutput, power);
     victorBackRightDrive.set(VictorSPXControlMode.PercentOutput, power);
-    log(this, "right speed: " + power, INFO);
   }
 }

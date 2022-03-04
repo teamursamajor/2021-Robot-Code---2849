@@ -24,6 +24,8 @@ public class ManualClimbCommand extends CommandBase {
   private boolean raisingArm;
   private boolean actuatorReady = false;
   private boolean isFinished = false;
+  private int actuatorTickCount = 0;
+  private int actuatorTickGood = 250;
   private final ClimbSubsystem CLIMB_SUBSYSTEM;
 
   public ManualClimbCommand(ClimbSubsystem subsystem, boolean raisingArm) {
@@ -35,26 +37,35 @@ public class ManualClimbCommand extends CommandBase {
   @Override
   public void initialize() {
     log(CLIMB_SUBSYSTEM, "intialzied", INFO);
-    // CLIMB_SUBSYSTEM.setActuatorPosition(true);
-    if (raisingArm) CLIMB_SUBSYSTEM.setFalconPower(falconSpeed);
-    else CLIMB_SUBSYSTEM.setFalconPower(-falconSpeed);
+
+    if (raisingArm) CLIMB_SUBSYSTEM.setFalconPower(-falconSpeed);
+      else CLIMB_SUBSYSTEM.setFalconPower(falconSpeed);
+    
   }
 
   public void execute() {
-    /*
-    if (CLIMB_SUBSYSTEM.climbActuator.getPosition() == CLIMB_SUBSYSTEM.desiredOpenActuatorPos) {
-      actuatorReady = true;
-    }
-    if (actuatorReady) {
 
+    /*
+    
+    if(actuatorTickCount != actuatorTickGood && raisingArm == true)
+      actuatorTickCount++;
+    else{
+      if (raisingArm) CLIMB_SUBSYSTEM.setFalconPower(-falconSpeed);
+      else CLIMB_SUBSYSTEM.setFalconPower(falconSpeed);
     }
     */
+    
   }
 
   @Override
   public void end(boolean interrupted) {
     CLIMB_SUBSYSTEM.setFalconPower(0);
-    // CLIMB_SUBSYSTEM.setActuatorPosition(false);
+    /*
+    if(raisingArm == false){
+      CLIMB_SUBSYSTEM.setActuatorPosition(false);
+      System.out.println("Closed Actuator");
+    }
+    */
   }
 
   @Override

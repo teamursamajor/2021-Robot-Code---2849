@@ -76,4 +76,8 @@ public class ShooterCommand extends CommandBase {
     // System.out.println("end");
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.0);
   }
+
+  public boolean isFinished(){
+    return false;
+  }
 }
