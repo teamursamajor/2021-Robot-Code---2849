@@ -10,6 +10,7 @@ public class ShooterCommand extends CommandBase {
   public double maxMotorSpeed = 400; // find out what the rpm is when the motor speed is at 1
   public double minMotorSpeed = 300;
   public double maxMotorPower = 1.0;
+  private final ShooterSubsystem SHOOTER_SUBSYSTEM;
 
   /**
    * Creates a new ShooterCommand.
