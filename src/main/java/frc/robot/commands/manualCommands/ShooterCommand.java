@@ -69,10 +69,7 @@ public class ShooterCommand extends CommandBase {
     // System.out.println("y = " + getY());
   }
 
-  @Override
-  public void end(boolean interrupted) {
-
-  }
+  
 
   @Override
   public void end(boolean interrupted) {
