@@ -12,15 +12,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.IntakeCommand;
-import frc.robot.commands.autoCommands.AlignCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.commands.autoCommands.AutoCommand2;
 import frc.robot.commands.autoCommands.AutoCommand3;
-import frc.robot.commands.autoCommands.AutoShooterCommand;
 import frc.robot.commands.manualCommands.ManualBeltCommand;
+import frc.robot.commands.manualCommands.ManualIntakeCommand;
 import frc.robot.commands.manualCommands.ShooterCommand;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -42,7 +39,7 @@ public class RobotContainer {
 
   private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
-  private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
+  public final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
@@ -78,22 +75,31 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value)
+
+    //  new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
+    //     .whenPressed(new AutoShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM));
+
+    //  new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kY.value)
+    //     .whenPressed(
+    //       (new AlignCommand(DRIVE_SUBSYSTEM))
+    //     .withTimeout(5)
+    //     .andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
+
+    // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
+    //    .whenPressed(new IntakeCommand(INTAKE_SUBSYSTEM));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kLeftTrigger.value)
+        .whileHeld(new ManualIntakeCommand(INTAKE_SUBSYSTEM));
+
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Axis.kRightTrigger.value)
         .whileHeld(new ShooterCommand(SHOOTER_SUBSYSTEM));
 
-    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
-        .whenPressed(
-            (new AlignCommand(DRIVE_SUBSYSTEM))
-                .withTimeout(5)
-                .andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value)
+        .whileHeld(new ManualBeltCommand(INTAKE_SUBSYSTEM));
+    // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kRightBumper.value)
+    // .whileHeld(new ClimbCommand(CLIMB_SUBSYSTEM, true));
+    // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kLeftBumper.value)
+    // .whileHeld(new ClimbCommand(CLIMB_SUBSYSTEM, false));
 
-    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kY.value)
-        .whenPressed(new ManualBeltCommand(INTAKE_SUBSYSTEM));
-    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
-        .whenPressed(new AutoShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM));
-
-    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
-        .whenPressed(new IntakeCommand(INTAKE_SUBSYSTEM));
   }
 
   /***

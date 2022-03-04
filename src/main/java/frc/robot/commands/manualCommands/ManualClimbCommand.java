@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.manualCommands;
 
 import static frc.robot.Constants.*;
 
@@ -15,7 +15,7 @@ import frc.robot.subsystems.ClimbSubsystem;
  *
  * <p>Will say on Driver Station "Ready to go."
  */
-public class ClimbCommand extends CommandBase {
+public class ManualClimbCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private int extendedTickCount = 4096; // Fix
 
@@ -26,7 +26,7 @@ public class ClimbCommand extends CommandBase {
   private boolean isFinished = false;
   private final ClimbSubsystem CLIMB_SUBSYSTEM;
 
-  public ClimbCommand(ClimbSubsystem subsystem, boolean raisingArm) {
+  public ManualClimbCommand(ClimbSubsystem subsystem, boolean raisingArm) {
     CLIMB_SUBSYSTEM = subsystem;
     this.raisingArm = raisingArm;
     addRequirements(subsystem);
@@ -39,19 +39,12 @@ public class ClimbCommand extends CommandBase {
   }
 
   public void execute() {
-
     if (CLIMB_SUBSYSTEM.climbActuator.getPosition() == CLIMB_SUBSYSTEM.desiredOpenActuatorPos) {
       actuatorReady = true;
     }
-
     if (actuatorReady) {
-      if (raisingArm) {
-        if (CLIMB_SUBSYSTEM.avgCurrentEncoderTicks >= extendedTickCount) isFinished = true;
-        else CLIMB_SUBSYSTEM.setFalconPower(falconSpeed);
-      } else {
-        if (CLIMB_SUBSYSTEM.avgCurrentEncoderTicks <= retractedTickCount) isFinished = true;
-        else CLIMB_SUBSYSTEM.setFalconPower(-falconSpeed);
-      }
+      if (raisingArm) CLIMB_SUBSYSTEM.setFalconPower(falconSpeed);
+      else CLIMB_SUBSYSTEM.setFalconPower(-falconSpeed);
     }
   }
 

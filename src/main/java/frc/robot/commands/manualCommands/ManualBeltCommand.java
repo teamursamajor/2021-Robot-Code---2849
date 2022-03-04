@@ -13,7 +13,7 @@ public class ManualBeltCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final IntakeSubsystem INTAKE_SUBSYSTEM;
 
-  private final double BELT_SPEED = 0.5;
+  private final double BELT_SPEED = -1.0;
 
   public ManualBeltCommand(IntakeSubsystem intakeSubsystem) {
     INTAKE_SUBSYSTEM = intakeSubsystem;

@@ -18,7 +18,7 @@ public class ShooterCommand extends CommandBase {
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
 
   public ShooterCommand(ShooterSubsystem subsystem) {
-    System.out.println("construct");
+    // System.out.println("construct");
     SHOOTER_SUBSYSTEM = subsystem;
     addRequirements(subsystem);
   }
@@ -37,7 +37,7 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void initialize() {
     isShooterFinished = false;
-    System.out.println("initlazed");
+    // System.out.println("initlazed");
     SHOOTER_SUBSYSTEM.SHOOTER.configFactoryDefault();
     SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 3);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0.1);
@@ -49,8 +49,7 @@ public class ShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Execute");
-    isShooterFinished = false;
+    // System.out.println("Execute");
     // try {
     //  wait(500L);
     // } catch (InterruptedException e) {
@@ -70,7 +69,7 @@ public class ShooterCommand extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    System.out.println("end");
+    // System.out.println("end");
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.0);
   }
 }

@@ -16,10 +16,10 @@ public class IntakeSubsystem extends SubsystemBase {
   public DigitalInput bottomLineSensor = new DigitalInput(BOTTOM_LINE_BREAK);
   public boolean topLineBroken;
   public boolean bottomLineBroken;
-  public CANSparkMax beltSpark = new CANSparkMax(BELT_PORT, MotorType.kBrushless);
+  public Spark beltSpark = new Spark(BELT_PORT);
   public int ballCount = 1;
 
-  public final Spark INTAKE = new Spark(INTAKE_PORT);
+  public final CANSparkMax INTAKE = new CANSparkMax(INTAKE_PORT, MotorType.kBrushless);
 
   public final ColorSensorV3 COLOR_SENSOR = new ColorSensorV3(I2C_PORT);
   public final ColorRGB RED_MIN = new ColorRGB(78, 92, 34);

@@ -25,7 +25,7 @@ public class AlignCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    System.out.println("initialized");
+    // System.out.println("initialized");
     alignFinished = false;
     count = 0;
   }
@@ -42,7 +42,7 @@ public class AlignCommand extends CommandBase {
     double area = ta.getDouble(0.0);
     double skew = ts.getDouble(0.0);
 
-    System.out.println(x + " " + y + " " + area);
+    // System.out.println(x + " " + y + " " + area);
     // SmartDashboard.putNumber("LimelightX", x);
     // SmartDashboard.putNumber("LimelightY", y);
     // SmartDashboard.putNumber("LimelightArea", area);
@@ -74,32 +74,32 @@ public class AlignCommand extends CommandBase {
   public void execute() {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
-    System.out.println("is executing");
+    // System.out.println("is executing");
     double max = 1;
     double min = -1;
     // detect target
     double x = getX();
-    System.out.println(x);
+    // System.out.println(x);
     // if center, end
 
-    System.out.println("x is " + x);
+    // System.out.println("x is " + x);
     if (x == Double.MIN_VALUE) {
       count++;
       if (count == limeLightMissing) {
-        System.out.println("Couldn't detect limelight");
+        // System.out.println("Couldn't detect limelight");
         alignFinished = true;
       } else {
         return;
       }
     } else if (x <= max && x >= min) {
-      System.out.println("We are alined");
+      // System.out.println("We are alined");
       alignFinished = true;
     } else if (x > max) {
       DRIVE_SUBSYSTEM.setPower(0, .25);
-      System.out.println("4");
+      // System.out.println("4");
     } else if (x < min) {
       DRIVE_SUBSYSTEM.setPower(.25, 0);
-      System.out.println("5");
+      // System.out.println("5");
     }
     // end
   }
@@ -112,7 +112,7 @@ public class AlignCommand extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    System.out.println("end");
+    // System.out.println("end");
     DRIVE_SUBSYSTEM.setPower(0, 0);
   }
 }

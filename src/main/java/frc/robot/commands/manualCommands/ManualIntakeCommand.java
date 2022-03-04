@@ -8,7 +8,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class ManualIntakeCommand extends CommandBase {
   private final IntakeSubsystem INTAKE_SUBSYSTEM;
 
-  public boolean isFinished;
+  public boolean isFinished = false;
 
   public ManualIntakeCommand(IntakeSubsystem intake) {
     INTAKE_SUBSYSTEM = intake;
@@ -23,7 +23,7 @@ public class ManualIntakeCommand extends CommandBase {
 
   @Override
   public void execute() {
-    INTAKE_SUBSYSTEM.INTAKE.set(1.0);
+    INTAKE_SUBSYSTEM.INTAKE.set(0.40);
   }
 
   @Override
