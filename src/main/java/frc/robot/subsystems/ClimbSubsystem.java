@@ -43,7 +43,7 @@ public class ClimbSubsystem extends SubsystemBase {
   public void periodic() {
     avgCurrentEncoderTicks =
         (climbOne.getSelectedSensorPosition() + climbTwo.getSelectedSensorPosition()) / 2.0;
-    System.out.println("Average Encoder Ticks: " + avgCurrentEncoderTicks);
+    // System.out.println("Average Encoder Ticks: " + avgCurrentEncoderTicks);
   }
 
   // @Override

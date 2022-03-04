@@ -16,7 +16,9 @@ import frc.robot.commands.DriveCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.commands.autoCommands.AutoCommand2;
 import frc.robot.commands.autoCommands.AutoCommand3;
+import frc.robot.commands.manualCommands.ActuatorCommand;
 import frc.robot.commands.manualCommands.ManualBeltCommand;
+import frc.robot.commands.manualCommands.ManualClimbCommand;
 import frc.robot.commands.manualCommands.ManualIntakeCommand;
 import frc.robot.commands.manualCommands.ShooterCommand;
 import frc.robot.subsystems.ClimbSubsystem;
@@ -95,11 +97,16 @@ public class RobotContainer {
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value)
         .whileHeld(new ManualBeltCommand(INTAKE_SUBSYSTEM));
-    // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kRightBumper.value)
-    // .whileHeld(new ClimbCommand(CLIMB_SUBSYSTEM, true));
-    // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kLeftBumper.value)
-    // .whileHeld(new ClimbCommand(CLIMB_SUBSYSTEM, false));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kRightBumper.value)
+        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, true));
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kLeftBumper.value)
+        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, false));
 
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
+        .whileHeld(new ActuatorCommand(CLIMB_SUBSYSTEM, true));
+
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
+        .whileHeld(new ActuatorCommand(CLIMB_SUBSYSTEM, false));
   }
 
   /***

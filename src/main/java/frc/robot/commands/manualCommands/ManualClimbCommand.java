@@ -20,7 +20,7 @@ public class ManualClimbCommand extends CommandBase {
   private int extendedTickCount = 4096; // Fix
 
   private int retractedTickCount = 0;
-  private double falconSpeed = 0.5;
+  private double falconSpeed = 0.2;
   private boolean raisingArm;
   private boolean actuatorReady = false;
   private boolean isFinished = false;
@@ -35,23 +35,26 @@ public class ManualClimbCommand extends CommandBase {
   @Override
   public void initialize() {
     log(CLIMB_SUBSYSTEM, "intialzied", INFO);
-    CLIMB_SUBSYSTEM.setActuatorPosition(true);
+    // CLIMB_SUBSYSTEM.setActuatorPosition(true);
+    if (raisingArm) CLIMB_SUBSYSTEM.setFalconPower(falconSpeed);
+    else CLIMB_SUBSYSTEM.setFalconPower(-falconSpeed);
   }
 
   public void execute() {
+    /*
     if (CLIMB_SUBSYSTEM.climbActuator.getPosition() == CLIMB_SUBSYSTEM.desiredOpenActuatorPos) {
       actuatorReady = true;
     }
     if (actuatorReady) {
-      if (raisingArm) CLIMB_SUBSYSTEM.setFalconPower(falconSpeed);
-      else CLIMB_SUBSYSTEM.setFalconPower(-falconSpeed);
+
     }
+    */
   }
 
   @Override
   public void end(boolean interrupted) {
     CLIMB_SUBSYSTEM.setFalconPower(0);
-    CLIMB_SUBSYSTEM.setActuatorPosition(false);
+    // CLIMB_SUBSYSTEM.setActuatorPosition(false);
   }
 
   @Override

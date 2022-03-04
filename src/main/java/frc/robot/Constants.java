@@ -33,7 +33,7 @@ public final class Constants {
   public static final int SPARK_FRONT_LEFT_DRIVE_PORT = 1;
   public static final int SPARK_FRONT_RIGHT_DRIVE_PORT = 0;
 
-  public static final int SPARK_CLIMB_PORT = 7; // TODO: real port num
+  public static final int SPARK_CLIMB_PORT = 10; // TODO: real port num
   public static final int BELT_PORT = 4; // TODO: real port num
 
   // Falcon/Can Ports
@@ -43,7 +43,7 @@ public final class Constants {
   public static final int FALCON_FRONT_RIGHT_DRIVE_PORT = 3;
 
   public static final int FALCON_CLIMB1_PORT = 0;
-  public static final int FALCON_CLIMB2_PORT = 1;
+  public static final int FALCON_CLIMB2_PORT = 3;
 
   public static final int SHOOTER_PORT = 2; // TODO: real port num
   public static final int INTAKE_PORT = 6; // TODO: real port num
@@ -55,7 +55,7 @@ public final class Constants {
   public static final int VICTOR_FRONT_RIGHT_DRIVE_PORT = 3;
 
   // PWM Ports
-  public static final int CLIMB_ACTUATOR_PORT = 9;
+  public static final int CLIMB_ACTUATOR_PORT = 7;
 
   public static final String TEAM_COLOR = DriverStation.getAlliance().name().toLowerCase().trim();
 
