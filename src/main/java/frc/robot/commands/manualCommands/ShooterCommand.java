@@ -49,7 +49,7 @@ public class ShooterCommand extends CommandBase {
     SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0.1);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
     SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -11000);
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -12000);
     // SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -1);
   }
 
