@@ -23,7 +23,7 @@ public class ManualIntakeCommand extends CommandBase {
 
   @Override
   public void execute() {
-    INTAKE_SUBSYSTEM.INTAKE.set(0.40);
+    INTAKE_SUBSYSTEM.INTAKE.set(0.60);
   }
 
   @Override

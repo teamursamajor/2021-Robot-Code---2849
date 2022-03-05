@@ -36,10 +36,10 @@ public class AutoCommand1 extends CommandBase {
   @Override
   public void initialize() {
     new AutoDriveCommand(DRIVE_SUBSYSTEM)
-        .withTimeout(2)
+        .withTimeout(1.75)
         .andThen(new AlignCommand(DRIVE_SUBSYSTEM))
         .andThen(new DistanceCommand(DRIVE_SUBSYSTEM))
-        .andThen(new AutoShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM))
+        .andThen(new AutoShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM)).withTimeout(7.0)
         .schedule();
   }
 

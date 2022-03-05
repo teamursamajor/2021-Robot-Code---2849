@@ -40,13 +40,13 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
+  public final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
 
   // private final BeltSubsystem BELT_SUBSYSTEM = new BeltSubsystem();
 
-  private final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
+  public final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
-  public final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
+  //public final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
@@ -69,7 +69,7 @@ public class RobotContainer {
     SmartDashboard.putData(m_chooser);
 
     // set the drive default command
-    DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
+    //DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
 
     // Configure the button bindings
     configureButtonBindings();

@@ -13,8 +13,8 @@ public class AutoShooterCommand extends CommandBase {
   public boolean isFinished = false;
   public double maxYValue = -10.0;
   public double minYValue = 10.0;
-  public double maxMotorSpeed = 400; // find out what the rpm is when the motor speed is at 1
-  public double minMotorSpeed = 300;
+  public double maxMotorSpeed = -16000; // find out what the rpm is when the motor speed is at 1
+  public double minMotorSpeed = -14000;
   public double maxMotorPower = 1.0;
   public int count;
   public int limeLightMissing = 5;
@@ -38,10 +38,15 @@ public class AutoShooterCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    System.out.println("initialized");
+    System.out.println("Shooter initialized");
     count = 0;
     time = 0;
     SmartDashboard.putBoolean("Currently AutoShooting: ", true);
+    SHOOTER_SUBSYSTEM.SHOOTER.configFactoryDefault();
+    SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 3);
+    SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0.1);
+    SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
+    SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
   }
 
   public double getY() {
@@ -57,14 +62,15 @@ public class AutoShooterCommand extends CommandBase {
 
   @Override
   public void execute() {
-
-    if (INTAKE_SUBSYSTEM.ballCount != 0) {
+    System.out.println("Shooter execute");
+   /**  if (INTAKE_SUBSYSTEM.ballCount != 0) {
       isThereBallToShoot = true;
     } else {
       System.out.println("No ballz");
       isThereBallToShoot = false;
       isFinished = true;
-    }
+    }*/
+    isThereBallToShoot = true;
 
     if (isThereBallToShoot) {
       // System.out.println("The velocity: " +
@@ -78,13 +84,18 @@ public class AutoShooterCommand extends CommandBase {
         }
       } else {
         double speed = maxMotorSpeed * (y / maxYValue);
-        SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, speed);
-        if ((SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() >= speed - 200)
-            && (SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() <= speed + 200)) {
-          INTAKE_SUBSYSTEM.beltSpark.set(.25);
-          time++;
+        System.out.println("Shooting ball");
+        time++;
+        SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -13000);
+        if(time > 100){
+          INTAKE_SUBSYSTEM.beltSpark.set(-1);
         }
-        if (INTAKE_SUBSYSTEM.ballCount == 2 && time == highBallTime) {
+        /**if ((SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() >= -12000)
+            && (SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() <= -14000)) {
+          INTAKE_SUBSYSTEM.beltSpark.set(-1);
+          time++;
+        }**/
+       /**  if (INTAKE_SUBSYSTEM.ballCount == 2 && time == highBallTime) {
           time = 0;
           INTAKE_SUBSYSTEM.beltSpark.set(0.0);
           INTAKE_SUBSYSTEM.ballCount--;
@@ -92,7 +103,7 @@ public class AutoShooterCommand extends CommandBase {
           time = 0;
           INTAKE_SUBSYSTEM.beltSpark.set(0.0);
           INTAKE_SUBSYSTEM.ballCount--;
-        }
+        } */
       }
     }
   }
@@ -106,5 +117,7 @@ public class AutoShooterCommand extends CommandBase {
   public void end(boolean interrupted) {
     SmartDashboard.putBoolean("Currently AutoShooting: ", true);
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.0);
+    INTAKE_SUBSYSTEM.beltSpark.set(0);
+    System.out.println("Shooter end");
   }
 }
