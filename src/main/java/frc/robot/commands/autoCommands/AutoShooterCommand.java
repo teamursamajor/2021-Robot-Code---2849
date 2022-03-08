@@ -42,11 +42,6 @@ public class AutoShooterCommand extends CommandBase {
     count = 0;
     time = 0;
     SmartDashboard.putBoolean("Currently AutoShooting: ", true);
-    SHOOTER_SUBSYSTEM.SHOOTER.configFactoryDefault();
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 3);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0.1);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
   }
 
   public double getY() {
@@ -86,7 +81,8 @@ public class AutoShooterCommand extends CommandBase {
         double speed = maxMotorSpeed * (y / maxYValue);
         System.out.println("Shooting ball");
         time++;
-        SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -13000);
+        SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -0.75);
+        System.out.println("Velocity: " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
         if(time > 100){
           INTAKE_SUBSYSTEM.beltSpark.set(-1);
         }

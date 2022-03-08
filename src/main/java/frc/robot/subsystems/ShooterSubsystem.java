@@ -10,9 +10,15 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public final TalonFX SHOOTER = new TalonFX(SHOOTER_PORT);
 
+  /*
+  */
   public ShooterSubsystem() {
     SHOOTER.configFactoryDefault();
     SHOOTER.setNeutralMode(NeutralMode.Coast);
+    SHOOTER.config_kP(0, 0.5);
+    SHOOTER.config_kD(0, 0.1);
+    SHOOTER.config_kF(0, 0.059);
+    SHOOTER.config_kI(0, 0);
     setName("Shooter");
   }
 
@@ -25,5 +31,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   }
 
-  public void resetEncoder() {}
+  public void resetEncoder() {
+    SHOOTER.configFactoryDefault();
+  }
 }

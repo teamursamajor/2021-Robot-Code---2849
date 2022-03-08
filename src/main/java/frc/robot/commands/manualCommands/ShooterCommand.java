@@ -40,16 +40,13 @@ public class ShooterCommand extends CommandBase {
     return y;
   }
 
+
   @Override
   public void initialize() {
     isShooterFinished = false;
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -8000);
     // System.out.println("initlazed");
-    SHOOTER_SUBSYSTEM.SHOOTER.configFactoryDefault();
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 3);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0.1);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -12000);
+    
     // SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -1);
   }
 
