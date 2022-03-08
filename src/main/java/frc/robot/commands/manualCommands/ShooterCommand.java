@@ -6,7 +6,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterSubsystem;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+//import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ShooterCommand extends CommandBase {
   public boolean isShooterFinished = false;
@@ -32,7 +32,7 @@ public class ShooterCommand extends CommandBase {
   public double getY() {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry tv = table.getEntry("tv");
+    //NetworkTableEntry tv = table.getEntry("tv");
     double y;
     // double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
     y = ty.getDouble(Double.MIN_VALUE);

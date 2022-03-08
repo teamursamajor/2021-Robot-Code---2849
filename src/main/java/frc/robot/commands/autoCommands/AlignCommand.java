@@ -31,16 +31,16 @@ public class AlignCommand extends CommandBase {
   }
 
   public void detectTarget() {
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry ta = table.getEntry("ta");
-    NetworkTableEntry ts = table.getEntry("ts");
+    //NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    //NetworkTableEntry tx = table.getEntry("tx");
+    //NetworkTableEntry ty = table.getEntry("ty");
+    //NetworkTableEntry ta = table.getEntry("ta");
+    //NetworkTableEntry ts = table.getEntry("ts");
 
-    double x = tx.getDouble(0.0);
-    double y = ty.getDouble(0.0);
-    double area = ta.getDouble(0.0);
-    double skew = ts.getDouble(0.0);
+    //double x = tx.getDouble(0.0);
+    //double y = ty.getDouble(0.0);
+    //double area = ta.getDouble(0.0);
+    //double skew = ts.getDouble(0.0);
 
     // System.out.println(x + " " + y + " " + area);
     // SmartDashboard.putNumber("LimelightX", x);
@@ -72,8 +72,8 @@ public class AlignCommand extends CommandBase {
 
   @Override
   public void execute() {
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableEntry tx = table.getEntry("tx");
+    //NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    //NetworkTableEntry tx = table.getEntry("tx");
     // System.out.println("is executing");
     double max = 1;
     double min = -1;

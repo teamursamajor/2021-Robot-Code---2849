@@ -3,7 +3,7 @@ package frc.robot.commands.autoCommands;
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-import static frc.robot.Constants.*;
+
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.AutoDriveCommand;
@@ -29,6 +29,7 @@ public class AutoCommand2 extends CommandBase {
         .andThen(new AlignCommand(DRIVE_SUBSYSTEM))
         .andThen(new DistanceCommand(DRIVE_SUBSYSTEM))
         .schedule();
+        System.out.println("Aligned");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
