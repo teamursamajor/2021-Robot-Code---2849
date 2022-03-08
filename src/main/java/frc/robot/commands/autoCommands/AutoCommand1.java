@@ -39,7 +39,8 @@ public class AutoCommand1 extends CommandBase {
         .withTimeout(1.75)
         .andThen(new AlignCommand(DRIVE_SUBSYSTEM))
         .andThen(new DistanceCommand(DRIVE_SUBSYSTEM))
-        .andThen(new AutoShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM)).withTimeout(7.0)
+        .andThen(new AutoShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM))
+        .withTimeout(7.0)
         .schedule();
   }
 

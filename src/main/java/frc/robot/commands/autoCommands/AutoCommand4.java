@@ -7,7 +7,6 @@ import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.AutoDriveCommand;
-import frc.robot.commands.DistanceCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -16,10 +15,14 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class AutoCommand4 extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem DRIVE_SUBSYSTEM;
+
   private final IntakeSubsystem INTAKE_SUBSYSTEM;
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
 
-  public AutoCommand4(DriveSubsystem driveSubsystem, IntakeSubsystem intakeSubsystem, ShooterSubsystem shooterSubsystem) {
+  public AutoCommand4(
+      DriveSubsystem driveSubsystem,
+      IntakeSubsystem intakeSubsystem,
+      ShooterSubsystem shooterSubsystem) {
     DRIVE_SUBSYSTEM = driveSubsystem;
     INTAKE_SUBSYSTEM = intakeSubsystem;
     SHOOTER_SUBSYSTEM = shooterSubsystem;
@@ -30,10 +33,8 @@ public class AutoCommand4 extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    new AutoDriveCommand(DRIVE_SUBSYSTEM)
-        .withTimeout(2)
-        .schedule();
-        INTAKE_SUBSYSTEM.beltSpark.set(1.0);
+    new AutoDriveCommand(DRIVE_SUBSYSTEM).withTimeout(2).schedule();
+    INTAKE_SUBSYSTEM.beltSpark.set(1.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -52,4 +53,3 @@ public class AutoCommand4 extends CommandBase {
     return true;
   }
 }
-
