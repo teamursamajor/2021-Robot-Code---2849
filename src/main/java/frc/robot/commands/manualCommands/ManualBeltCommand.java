@@ -13,18 +13,25 @@ public class ManualBeltCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final IntakeSubsystem INTAKE_SUBSYSTEM;
 
+  private boolean isBeltFoward;
+
   private final double BELT_SPEED = -1.0;
 
-  public ManualBeltCommand(IntakeSubsystem intakeSubsystem) {
+  public ManualBeltCommand(IntakeSubsystem intakeSubsystem, boolean isBeltFoward) {
     INTAKE_SUBSYSTEM = intakeSubsystem;
     addRequirements(intakeSubsystem);
+    this.isBeltFoward = isBeltFoward;
     setName("Auto Drive (Command)");
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    INTAKE_SUBSYSTEM.beltSpark.set(BELT_SPEED);
+    if (isBeltFoward == true) {
+      INTAKE_SUBSYSTEM.beltSpark.set(BELT_SPEED);
+    } else {
+      INTAKE_SUBSYSTEM.beltSpark.set(-BELT_SPEED);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.

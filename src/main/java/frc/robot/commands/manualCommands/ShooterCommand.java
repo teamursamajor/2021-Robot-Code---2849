@@ -6,7 +6,6 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterSubsystem;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ShooterCommand extends CommandBase {
   public boolean isShooterFinished = false;
@@ -22,7 +21,6 @@ public class ShooterCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-
   public ShooterCommand(ShooterSubsystem subsystem) {
     // System.out.println("construct");
     SHOOTER_SUBSYSTEM = subsystem;
@@ -69,15 +67,13 @@ public class ShooterCommand extends CommandBase {
     // System.out.println("y = " + getY());
   }
 
-  
-
   @Override
   public void end(boolean interrupted) {
     // System.out.println("end");
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.0);
   }
 
-  public boolean isFinished(){
+  public boolean isFinished() {
     return false;
   }
 }

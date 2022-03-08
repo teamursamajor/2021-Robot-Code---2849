@@ -39,14 +39,13 @@ public class ManualClimbCommand extends CommandBase {
     log(CLIMB_SUBSYSTEM, "intialzied", INFO);
 
     if (raisingArm) CLIMB_SUBSYSTEM.setFalconPower(-falconSpeed);
-      else CLIMB_SUBSYSTEM.setFalconPower(falconSpeed);
-    
+    else CLIMB_SUBSYSTEM.setFalconPower(falconSpeed);
   }
 
   public void execute() {
 
     /*
-    
+
     if(actuatorTickCount != actuatorTickGood && raisingArm == true)
       actuatorTickCount++;
     else{
@@ -54,7 +53,7 @@ public class ManualClimbCommand extends CommandBase {
       else CLIMB_SUBSYSTEM.setFalconPower(falconSpeed);
     }
     */
-    
+
   }
 
   @Override

@@ -4,7 +4,7 @@ import static frc.robot.Constants.*;
 
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
-//import com.ctre.phoenix.motorcontrol.can.*;
+// import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
@@ -46,9 +46,13 @@ public class ClimbSubsystem extends SubsystemBase {
   // @Override
   public void periodic() {
     avgCurrentEncoderTicks =
-        (climbOne.getSelectedSensorPosition() - climbOneInitialTicks + climbTwo.getSelectedSensorPosition() - climbTwoInitialTicks) / 2.0;
-     //System.out.println("Average Encoder Ticks New: " + avgCurrentEncoderTicks);
-    
+        (climbOne.getSelectedSensorPosition()
+                - climbOneInitialTicks
+                + climbTwo.getSelectedSensorPosition()
+                - climbTwoInitialTicks)
+            / 2.0;
+    // System.out.println("Average Encoder Ticks New: " + avgCurrentEncoderTicks);
+
   }
 
   // @Override
