@@ -6,8 +6,6 @@ package frc.robot;
 
 import static frc.robot.Constants.*;
 
-import java.util.function.BooleanSupplier;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -15,21 +13,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.commands.autoCommands.AutoCommand2;
 import frc.robot.commands.autoCommands.AutoCommand3;
-import frc.robot.commands.manualCommands.ActuatorCommand;
 import frc.robot.commands.manualCommands.ManualBeltCommand;
-import frc.robot.commands.manualCommands.ManualClimbCommand;
 import frc.robot.commands.manualCommands.ManualIntakeCommand;
 import frc.robot.commands.manualCommands.ShooterCommand;
-import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import java.util.function.BooleanSupplier;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -46,7 +40,7 @@ public class RobotContainer {
 
   public final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
-  //public final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
+  // public final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
@@ -69,7 +63,7 @@ public class RobotContainer {
     SmartDashboard.putData(m_chooser);
 
     // set the drive default command
-    //DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
+    // DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -93,21 +87,24 @@ public class RobotContainer {
     //     .andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value)
-        .whileHeld(new ManualBeltCommand(INTAKE_SUBSYSTEM));
+        .whenPressed(new ManualBeltCommand(INTAKE_SUBSYSTEM, true));
 
-    BooleanSupplier rightTrigger = ()->XBOX_CONTROLLER.getRightTriggerAxis() > 0.2;
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kY.value)
+        .whenPressed(new ManualBeltCommand(INTAKE_SUBSYSTEM, false));
+
+    BooleanSupplier rightTrigger = () -> XBOX_CONTROLLER.getRightTriggerAxis() > 0.2;
     new Trigger(rightTrigger).whileActiveContinuous(new ShooterCommand(SHOOTER_SUBSYSTEM));
 
-    BooleanSupplier leftTrigger = ()->XBOX_CONTROLLER.getLeftTriggerAxis() > 0.2;
+    BooleanSupplier leftTrigger = () -> XBOX_CONTROLLER.getLeftTriggerAxis() > 0.2;
     new Trigger(leftTrigger).whileActiveContinuous(new ManualIntakeCommand(INTAKE_SUBSYSTEM));
 
     /* Climb Commands
-    
+
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kRightBumper.value)
         .whenPressed(new ClimbCommand(CLIMB_SUBSYSTEM, true));
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kLeftBumper.value)
         .whenPressed(new ClimbCommand(CLIMB_SUBSYSTEM, false));
-    
+
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kY.value)
         .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, false));
 

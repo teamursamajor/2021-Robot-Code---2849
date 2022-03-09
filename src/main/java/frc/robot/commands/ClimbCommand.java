@@ -2,11 +2,12 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.*;
 
-//import com.ctre.phoenix.motorcontrol.*;
-//import com.ctre.phoenix.motorcontrol.can.*;
-//import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimbSubsystem;
+
+// import com.ctre.phoenix.motorcontrol.*;
+// import com.ctre.phoenix.motorcontrol.can.*;
+// import edu.wpi.first.wpilibj.*;
 
 /**
  * Going to add a comment when sensors are recieved to allow for the driver to know if: 1.) an arm
@@ -17,8 +18,8 @@ import frc.robot.subsystems.ClimbSubsystem;
  */
 public class ClimbCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-
   private int extendedTickCount = -110000;
+
   private int retractedTickCount = -50000;
   private double extendingFalconSpeed = 0.5;
   private double retractingFalconSpeed = 0.2;
@@ -39,18 +40,15 @@ public class ClimbCommand extends CommandBase {
   @Override
   public void initialize() {
     log(CLIMB_SUBSYSTEM, "intialzied", INFO);
-    
-    if(raisingArm)
-      CLIMB_SUBSYSTEM.setActuatorPosition(true);
-    
+
+    if (raisingArm) CLIMB_SUBSYSTEM.setActuatorPosition(true);
   }
 
-  public void execute(){
+  public void execute() {
 
-    if(actuatorReady == false){
-      if(actuatorTickCount != actuatorTickGood && raisingArm)
-        actuatorTickCount++;
-      else{
+    if (actuatorReady == false) {
+      if (actuatorTickCount != actuatorTickGood && raisingArm) actuatorTickCount++;
+      else {
         if (raisingArm) CLIMB_SUBSYSTEM.setFalconPower(-extendingFalconSpeed);
         else CLIMB_SUBSYSTEM.setFalconPower(retractingFalconSpeed);
         actuatorReady = true;
@@ -64,14 +62,12 @@ public class ClimbCommand extends CommandBase {
         if (CLIMB_SUBSYSTEM.avgCurrentEncoderTicks >= retractedTickCount) isFinished = true;
       }
     }
-    
   }
 
   @Override
   public void end(boolean interrupted) {
     CLIMB_SUBSYSTEM.setFalconPower(0);
-    if(raisingArm == false)
-      CLIMB_SUBSYSTEM.setActuatorPosition(false);
+    if (raisingArm == false) CLIMB_SUBSYSTEM.setActuatorPosition(false);
   }
 
   @Override

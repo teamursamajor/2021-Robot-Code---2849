@@ -17,7 +17,7 @@ public class AutoShooterCommand extends CommandBase {
   public double minMotorSpeed = -14000;
   public double maxMotorPower = 1.0;
   public int count;
-  public int limeLightMissing = 5;
+  public int limeLightMissing = 10;
 
   public boolean isThereBallToShoot;
   public int time;
@@ -42,11 +42,6 @@ public class AutoShooterCommand extends CommandBase {
     count = 0;
     time = 0;
     SmartDashboard.putBoolean("Currently AutoShooting: ", true);
-    SHOOTER_SUBSYSTEM.SHOOTER.configFactoryDefault();
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 3);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0.1);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
   }
 
   public double getY() {
@@ -63,14 +58,6 @@ public class AutoShooterCommand extends CommandBase {
   @Override
   public void execute() {
     System.out.println("Shooter execute");
-   /**  if (INTAKE_SUBSYSTEM.ballCount != 0) {
-      isThereBallToShoot = true;
-    } else {
-      System.out.println("No ballz");
-      isThereBallToShoot = false;
-      isFinished = true;
-    }*/
-    isThereBallToShoot = true;
 
     if (isThereBallToShoot) {
       // System.out.println("The velocity: " +
@@ -83,27 +70,28 @@ public class AutoShooterCommand extends CommandBase {
           isFinished = true;
         }
       } else {
-        double speed = maxMotorSpeed * (y / maxYValue);
+        // double speed = maxMotorSpeed * (y / maxYValue);
         System.out.println("Shooting ball");
         time++;
         SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -13000);
-        if(time > 100){
+        if (time > 100) {
           INTAKE_SUBSYSTEM.beltSpark.set(-1);
         }
-        /**if ((SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() >= -12000)
-            && (SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() <= -14000)) {
-          INTAKE_SUBSYSTEM.beltSpark.set(-1);
-          time++;
-        }**/
-       /**  if (INTAKE_SUBSYSTEM.ballCount == 2 && time == highBallTime) {
-          time = 0;
-          INTAKE_SUBSYSTEM.beltSpark.set(0.0);
+        if (time > 500) {
           INTAKE_SUBSYSTEM.ballCount--;
-        } else if (INTAKE_SUBSYSTEM.ballCount == 1 && time == lowBallTime) {
-          time = 0;
-          INTAKE_SUBSYSTEM.beltSpark.set(0.0);
-          INTAKE_SUBSYSTEM.ballCount--;
-        } */
+          isFinished = true;
+        }
+        /**
+         * if ((SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() >= -12000) &&
+         * (SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() <= -14000)) {
+         * INTAKE_SUBSYSTEM.beltSpark.set(-1); time++; }*
+         */
+        /**
+         * if (INTAKE_SUBSYSTEM.ballCount == 2 && time == highBallTime) { time = 0;
+         * INTAKE_SUBSYSTEM.beltSpark.set(0.0); INTAKE_SUBSYSTEM.ballCount--; } else if
+         * (INTAKE_SUBSYSTEM.ballCount == 1 && time == lowBallTime) { time = 0;
+         * INTAKE_SUBSYSTEM.beltSpark.set(0.0); INTAKE_SUBSYSTEM.ballCount--; }
+         */
       }
     }
   }

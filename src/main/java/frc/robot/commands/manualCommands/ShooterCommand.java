@@ -22,7 +22,6 @@ public class ShooterCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-
   public ShooterCommand(ShooterSubsystem subsystem) {
     // System.out.println("construct");
     SHOOTER_SUBSYSTEM = subsystem;
@@ -40,16 +39,13 @@ public class ShooterCommand extends CommandBase {
     return y;
   }
 
+
   @Override
   public void initialize() {
     isShooterFinished = false;
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -8000);
     // System.out.println("initlazed");
-    SHOOTER_SUBSYSTEM.SHOOTER.configFactoryDefault();
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kP(0, 3);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kD(0, 0.1);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kF(0, 0);
-    SHOOTER_SUBSYSTEM.SHOOTER.config_kI(0, 0.0001);
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -12000);
+    
     // SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -1);
   }
 
@@ -69,15 +65,13 @@ public class ShooterCommand extends CommandBase {
     // System.out.println("y = " + getY());
   }
 
-  
-
   @Override
   public void end(boolean interrupted) {
     // System.out.println("end");
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.0);
   }
 
-  public boolean isFinished(){
+  public boolean isFinished() {
     return false;
   }
 }
