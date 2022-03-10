@@ -17,9 +17,12 @@ import frc.robot.commands.DriveCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.commands.autoCommands.AutoCommand2;
 import frc.robot.commands.autoCommands.AutoCommand3;
+import frc.robot.commands.manualCommands.ActuatorCommand;
 import frc.robot.commands.manualCommands.ManualBeltCommand;
+import frc.robot.commands.manualCommands.ManualClimbCommand;
 import frc.robot.commands.manualCommands.ManualIntakeCommand;
 import frc.robot.commands.manualCommands.ShooterCommand;
+import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -40,7 +43,7 @@ public class RobotContainer {
 
   public final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
-  // public final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
+  public final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
@@ -98,22 +101,29 @@ public class RobotContainer {
     BooleanSupplier leftTrigger = () -> XBOX_CONTROLLER.getLeftTriggerAxis() > 0.2;
     new Trigger(leftTrigger).whileActiveContinuous(new ManualIntakeCommand(INTAKE_SUBSYSTEM));
 
-    /* Climb Commands
+    /* 
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kRightBumper.value)
         .whenPressed(new ClimbCommand(CLIMB_SUBSYSTEM, true));
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kLeftBumper.value)
         .whenPressed(new ClimbCommand(CLIMB_SUBSYSTEM, false));
+    */
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kRightBumper.value)
+        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, true));
 
-    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kY.value)
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kLeftBumper.value)
         .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, false));
+
+    
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
         .whileHeld(new ActuatorCommand(CLIMB_SUBSYSTEM, true));
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
         .whileHeld(new ActuatorCommand(CLIMB_SUBSYSTEM, false));
-    */
+
+    
+    
   }
 
   /***

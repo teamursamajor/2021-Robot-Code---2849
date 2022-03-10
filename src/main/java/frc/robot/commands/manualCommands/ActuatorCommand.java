@@ -30,6 +30,8 @@ public class ActuatorCommand extends CommandBase {
   @Override
   public void initialize() {
     log(CLIMB_SUBSYSTEM, "intialzied", INFO);
+    CLIMB_SUBSYSTEM.climbOne.setNeutralMode(NeutralMode.Brake);
+    CLIMB_SUBSYSTEM.climbTwo.setNeutralMode(NeutralMode.Brake);
     if (opening) CLIMB_SUBSYSTEM.setActuatorPosition(true);
     else CLIMB_SUBSYSTEM.setActuatorPosition(false);
   }

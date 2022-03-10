@@ -19,6 +19,9 @@ public class ClimbSubsystem extends SubsystemBase {
   boolean actuatorExtended = false;
   public double avgCurrentEncoderTicks = 0;
 
+  public double desiredSpeed = 12288;
+
+
   // private final ClimbSubsystem m_ClimbSubsystem;
   public Spark climber = new Spark(SPARK_CLIMB_PORT);
   public TalonFX climbOne = new TalonFX(FALCON_CLIMB1_PORT);
@@ -39,8 +42,9 @@ public class ClimbSubsystem extends SubsystemBase {
     climbTwoInitialTicks = climbTwo.getSelectedSensorPosition();
     climbActuator.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     climbOne.setNeutralMode(NeutralMode.Brake);
-    climbTwo.setNeutralMode(NeutralMode.Brake);
-    // setActuatorPosition(true);
+    climbTwo.setNeutralMode(NeutralMode.Coast);
+
+    climbOne.set(TalonFXControlMode.Velocity, -2000);
   }
 
   // @Override

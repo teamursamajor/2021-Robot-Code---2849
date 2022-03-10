@@ -19,7 +19,6 @@ import frc.robot.subsystems.ClimbSubsystem;
 public class ClimbCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private int extendedTickCount = -110000;
-
   private int retractedTickCount = -50000;
   private double extendingFalconSpeed = 0.5;
   private double retractingFalconSpeed = 0.2;
