@@ -15,6 +15,8 @@ public class AlignCommand extends CommandBase {
   public double minShooting;
   public int count;
   public int limeLightMissing = 5;
+  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+  NetworkTableEntry tv = table.getEntry("tv");
 
   /** @param subsystem */
   public AlignCommand(DriveSubsystem subsystem) {
@@ -35,7 +37,7 @@ public class AlignCommand extends CommandBase {
     //NetworkTableEntry tx = table.getEntry("tx");
     //NetworkTableEntry ty = table.getEntry("ty");
     //NetworkTableEntry ta = table.getEntry("ta");
-    //NetworkTableEntry ts = table.getEntry("ts");
+    
 
     //double x = tx.getDouble(0.0);
     //double y = ty.getDouble(0.0);
@@ -72,35 +74,40 @@ public class AlignCommand extends CommandBase {
 
   @Override
   public void execute() {
+    System.out.println("excuting align comamand");
     //NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     //NetworkTableEntry tx = table.getEntry("tx");
     // System.out.println("is executing");
     double max = 1;
     double min = -1;
     // detect target
-    double x = getX();
+    if(tv.getDouble(0) != 0){
+      double x = getX();
+      if (x == Double.MIN_VALUE) {
+        count++;
+        if (count == limeLightMissing) {
+          // System.out.println("Couldn't detect limelight");
+          alignFinished = true;
+        } else {
+          return;
+        }
+      } else if (x <= max && x >= min) {
+        // System.out.println("We are alined");
+        alignFinished = true;
+      } else if (x > max) {
+        DRIVE_SUBSYSTEM.setPower(0, .5);
+        // System.out.println("4");
+      } else if (x < min) {
+        DRIVE_SUBSYSTEM.setPower(.5, 0);
+        // System.out.println("5");
+      }
+    }
+    
     // System.out.println(x);
     // if center, end
 
     // System.out.println("x is " + x);
-    if (x == Double.MIN_VALUE) {
-      count++;
-      if (count == limeLightMissing) {
-        // System.out.println("Couldn't detect limelight");
-        alignFinished = true;
-      } else {
-        return;
-      }
-    } else if (x <= max && x >= min) {
-      // System.out.println("We are alined");
-      alignFinished = true;
-    } else if (x > max) {
-      DRIVE_SUBSYSTEM.setPower(0, .25);
-      // System.out.println("4");
-    } else if (x < min) {
-      DRIVE_SUBSYSTEM.setPower(.25, 0);
-      // System.out.println("5");
-    }
+    
     // end
   }
 

@@ -14,10 +14,12 @@ public class DistanceCommand extends CommandBase {
   // This is for values on the cart
   // public double maxShooting = -17;
   // public double minShooting = -8;
-  public double minShooting = 3.9;
-  public double maxShooting = -5.8;
+  public double minShooting = 22.7;
+  public double maxShooting = -1.55;
   public int count;
   public int limeLightMissing = 5;
+  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+  NetworkTableEntry tv = table.getEntry("tv");
 
   /** @param subsystem */
   public DistanceCommand(DriveSubsystem subsystem) {
@@ -75,7 +77,9 @@ public class DistanceCommand extends CommandBase {
 
   @Override
   public void execute() {
-    double y = getY();
+    System.out.println("in distance command");
+    if(tv.getDouble(0) != 0){
+      double y = getY();
     // System.out.println("is executing");
     // System.out.println("y is: +" + y);
 
@@ -91,13 +95,15 @@ public class DistanceCommand extends CommandBase {
       alignFinished = true;
 
     } else if (y > minShooting) {
-      DRIVE_SUBSYSTEM.setPower(.25, .25);
+      DRIVE_SUBSYSTEM.setPower(.75, .75);
       // System.out.println("To close");
     } else if (y < maxShooting) {
 
-      DRIVE_SUBSYSTEM.setPower(-.25, -.25);
+      DRIVE_SUBSYSTEM.setPower(-.75, -.75);
       // System.out.println("to far");
     }
+    }
+    
   }
 
   @Override

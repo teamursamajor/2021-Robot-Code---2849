@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterSubsystem;
 //import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -15,6 +16,7 @@ public class ShooterCommand extends CommandBase {
   public double maxMotorSpeed = 400; // find out what the rpm is when the motor speed is at 1
   public double minMotorSpeed = 300;
   public double maxMotorPower = 1.0;
+  public double shootingSpeed = -14000;
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
 
   /**
@@ -26,26 +28,37 @@ public class ShooterCommand extends CommandBase {
     // System.out.println("construct");
     SHOOTER_SUBSYSTEM = subsystem;
     addRequirements(subsystem);
+
   }
 
   public double getY() {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry ty = table.getEntry("ty");
-    //NetworkTableEntry tv = table.getEntry("tv");
+    NetworkTableEntry tv = table.getEntry("tv");
     double y;
-    // double canDetectLimelight = tv.getDouble(Double.MIN_VALUE);
-    y = ty.getDouble(Double.MIN_VALUE);
+    boolean canDetectLimelight = tv.getDouble(0) > 0;
+    System.out.println(canDetectLimelight + " " + tv.getDouble(0));
+    if(canDetectLimelight == true){
+      return ty.getDouble(Double.MIN_VALUE);
+    }else{
+      return 10.575;
+    }
+    
     // SmartDashboard.putNumber("LimelightX", y);
-    return y;
+    
+    
   }
 
 
   @Override
   public void initialize() {
     isShooterFinished = false;
-    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -8000);
     // System.out.println("initlazed");
+    //shootingSpeed = SmartDashboard.getNumber("Shooting Speed", -14000);
     
+    
+    
+
     // SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, -1);
   }
 
@@ -60,9 +73,11 @@ public class ShooterCommand extends CommandBase {
     // e.printStackTrace();
     // }
     // finished = true;
-
-    System.out.println("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
-    // System.out.println("y = " + getY());
+    shootingSpeed = -10000 + 206.19 * (getY() - 22.7);
+    shootingSpeed *= SmartDashboard.getNumber("Shooting Multiplier", 1.0);
+    System.out.println("Shooting multiplier: " + SmartDashboard.getNumber("Shooting Multiplier", 1.0));
+    SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, shootingSpeed);
+    System.out.println("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() + "Shooting speed at: " + shootingSpeed);
   }
 
   @Override

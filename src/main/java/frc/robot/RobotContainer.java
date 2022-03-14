@@ -13,7 +13,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.DistanceCommand;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.autoCommands.AlignCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.commands.autoCommands.AutoCommand2;
 import frc.robot.commands.autoCommands.AutoCommand3;
@@ -48,7 +51,6 @@ public class RobotContainer {
   private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
   private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
-
   // Auto Commands
   private final Command m_driveShootAuto =
       new AutoCommand1(DRIVE_SUBSYSTEM, INTAKE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
@@ -63,7 +65,10 @@ public class RobotContainer {
     m_chooser.setDefaultOption("Drive and Shoot Auto", m_driveShootAuto);
     m_chooser.addOption("Drive Auto", m_driveAuto);
     m_chooser.addOption("Nothing Auto", m_nothingAuto);
+
     SmartDashboard.putData(m_chooser);
+
+    SmartDashboard.putNumber("Shooting Multiplier", 0.95);
 
     // set the drive default command
     // DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
@@ -90,10 +95,10 @@ public class RobotContainer {
     //     .andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kA.value)
-        .whenPressed(new ManualBeltCommand(INTAKE_SUBSYSTEM, true));
+        .whileHeld(new ManualBeltCommand(INTAKE_SUBSYSTEM, true));
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kY.value)
-        .whenPressed(new ManualBeltCommand(INTAKE_SUBSYSTEM, false));
+        .whileHeld(new ManualBeltCommand(INTAKE_SUBSYSTEM, false));
 
     BooleanSupplier rightTrigger = () -> XBOX_CONTROLLER.getRightTriggerAxis() > 0.2;
     new Trigger(rightTrigger).whileActiveContinuous(new ShooterCommand(SHOOTER_SUBSYSTEM));
@@ -101,6 +106,7 @@ public class RobotContainer {
     BooleanSupplier leftTrigger = () -> XBOX_CONTROLLER.getLeftTriggerAxis() > 0.2;
     new Trigger(leftTrigger).whileActiveContinuous(new ManualIntakeCommand(INTAKE_SUBSYSTEM));
 
+    new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kBack.value).whenPressed(new AlignCommand(DRIVE_SUBSYSTEM).withTimeout(5).andThen(new DistanceCommand(DRIVE_SUBSYSTEM).withTimeout(5)));
     /* 
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kRightBumper.value)
