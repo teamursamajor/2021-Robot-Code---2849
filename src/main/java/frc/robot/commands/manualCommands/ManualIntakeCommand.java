@@ -18,7 +18,6 @@ public class ManualIntakeCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    log(INTAKE_SUBSYSTEM, "intialzied", INFO);
   }
 
   @Override
@@ -33,7 +32,6 @@ public class ManualIntakeCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     INTAKE_SUBSYSTEM.INTAKE.set(0.0);
-    log(INTAKE_SUBSYSTEM, "Done", INFO);
   }
 
   @Override

@@ -16,7 +16,7 @@ public class ClimbSubsystem extends SubsystemBase {
   double maxPercentage = 0.50;
   double minPos = -1.0 + (minPercentage * 2.0);
   double maxPos = -1.0 + (maxPercentage * 2.0);
-  boolean actuatorExtended = false;
+  public boolean actuatorOpen = false;
   public double avgCurrentEncoderTicks = 0;
 
   public double desiredSpeed = 12288;
@@ -42,7 +42,8 @@ public class ClimbSubsystem extends SubsystemBase {
     climbTwoInitialTicks = climbTwo.getSelectedSensorPosition();
     climbActuator.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     climbOne.setNeutralMode(NeutralMode.Brake);
-    climbTwo.setNeutralMode(NeutralMode.Coast);
+    climbTwo.setNeutralMode(NeutralMode.Brake);
+
 
     climbOne.set(TalonFXControlMode.Velocity, -2000);
   }
@@ -55,7 +56,7 @@ public class ClimbSubsystem extends SubsystemBase {
                 + climbTwo.getSelectedSensorPosition()
                 - climbTwoInitialTicks)
             / 2.0;
-    // System.out.println("Average Encoder Ticks New: " + avgCurrentEncoderTicks);
+    //System.out.println("Average Encoder Ticks New: " + avgCurrentEncoderTicks);
 
   }
 
@@ -68,7 +69,13 @@ public class ClimbSubsystem extends SubsystemBase {
   }
 
   public void setActuatorPosition(boolean setToOpen) {
-    if (setToOpen) climbActuator.setSpeed(maxPos);
-    else climbActuator.setSpeed(minPos);
+    if (setToOpen){
+      climbActuator.setSpeed(maxPos);
+      actuatorOpen = true;
+    } 
+    else{
+      climbActuator.setSpeed(minPos);
+      actuatorOpen = false;
+    } 
   }
 }

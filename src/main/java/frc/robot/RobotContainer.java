@@ -20,6 +20,7 @@ import frc.robot.commands.autoCommands.AlignCommand;
 import frc.robot.commands.autoCommands.AutoCommand1;
 import frc.robot.commands.autoCommands.AutoCommand2;
 import frc.robot.commands.autoCommands.AutoCommand3;
+import frc.robot.commands.autoCommands.AutoCommand4;
 import frc.robot.commands.manualCommands.ActuatorCommand;
 import frc.robot.commands.manualCommands.ManualBeltCommand;
 import frc.robot.commands.manualCommands.ManualClimbCommand;
@@ -44,15 +45,15 @@ public class RobotContainer {
 
   // private final BeltSubsystem BELT_SUBSYSTEM = new BeltSubsystem();
 
-  public final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
+  final DriveCommand DRIVE_COMMAND = new DriveCommand(DRIVE_SUBSYSTEM);
 
-  public final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
+  private final ClimbSubsystem CLIMB_SUBSYSTEM = new ClimbSubsystem();
 
-  private final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
+  public final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
   private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
   // Auto Commands
-  private final Command m_driveShootAuto =
+  public final Command m_driveShootAuto =
       new AutoCommand1(DRIVE_SUBSYSTEM, INTAKE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
   private final Command m_driveAuto = new AutoCommand2(DRIVE_SUBSYSTEM);
   private final Command m_nothingAuto = new AutoCommand3();
@@ -100,8 +101,10 @@ public class RobotContainer {
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kY.value)
         .whileHeld(new ManualBeltCommand(INTAKE_SUBSYSTEM, false));
 
+    /*
     BooleanSupplier rightTrigger = () -> XBOX_CONTROLLER.getRightTriggerAxis() > 0.2;
     new Trigger(rightTrigger).whileActiveContinuous(new ShooterCommand(SHOOTER_SUBSYSTEM));
+    */
 
     BooleanSupplier leftTrigger = () -> XBOX_CONTROLLER.getLeftTriggerAxis() > 0.2;
     new Trigger(leftTrigger).whileActiveContinuous(new ManualIntakeCommand(INTAKE_SUBSYSTEM));

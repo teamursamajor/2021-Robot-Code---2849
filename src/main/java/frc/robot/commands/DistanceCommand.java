@@ -5,6 +5,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
+import static frc.robot.Constants.*;
 
 public class DistanceCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
@@ -19,10 +20,12 @@ public class DistanceCommand extends CommandBase {
   public int count;
   public int limeLightMissing = 5;
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+  
   NetworkTableEntry tv = table.getEntry("tv");
 
   /** @param subsystem */
   public DistanceCommand(DriveSubsystem subsystem) {
+    table.getEntry("pipeline").setNumber(ALIGNING_PIPELINE);
     DRIVE_SUBSYSTEM = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);

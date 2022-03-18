@@ -2,6 +2,8 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.*;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimbSubsystem;
 
@@ -65,6 +67,7 @@ public class ClimbCommand extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
+  
     CLIMB_SUBSYSTEM.setFalconPower(0);
     if (raisingArm == false) CLIMB_SUBSYSTEM.setActuatorPosition(false);
   }

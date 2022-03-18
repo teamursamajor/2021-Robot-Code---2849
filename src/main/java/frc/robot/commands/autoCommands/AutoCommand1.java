@@ -8,6 +8,7 @@ package frc.robot.commands.autoCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.AutoDriveCommand;
 import frc.robot.commands.DistanceCommand;
+import frc.robot.commands.manualCommands.ShooterCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;

@@ -7,6 +7,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterSubsystem;
+import static frc.robot.Constants.*;
 //import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ShooterCommand extends CommandBase {
@@ -33,8 +34,10 @@ public class ShooterCommand extends CommandBase {
 
   public double getY() {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    table.getEntry("pipeline").setNumber(SHOOTING_PIPELINE);
     NetworkTableEntry ty = table.getEntry("ty");
     NetworkTableEntry tv = table.getEntry("tv");
+    
     double y;
     boolean canDetectLimelight = tv.getDouble(0) > 0;
     System.out.println(canDetectLimelight + " " + tv.getDouble(0));
@@ -73,11 +76,15 @@ public class ShooterCommand extends CommandBase {
     // e.printStackTrace();
     // }
     // finished = true;
+
+    //SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -300);
+    
     shootingSpeed = -10000 + 206.19 * (getY() - 22.7);
     shootingSpeed *= SmartDashboard.getNumber("Shooting Multiplier", 1.0);
     System.out.println("Shooting multiplier: " + SmartDashboard.getNumber("Shooting Multiplier", 1.0));
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, shootingSpeed);
     System.out.println("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() + "Shooting speed at: " + shootingSpeed);
+    
   }
 
   @Override

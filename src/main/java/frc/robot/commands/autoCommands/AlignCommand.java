@@ -5,6 +5,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
+import static frc.robot.Constants.*;
 
 public class AlignCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
@@ -20,6 +21,7 @@ public class AlignCommand extends CommandBase {
 
   /** @param subsystem */
   public AlignCommand(DriveSubsystem subsystem) {
+    table.getEntry("pipeline").setNumber(ALIGNING_PIPELINE);
     DRIVE_SUBSYSTEM = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);

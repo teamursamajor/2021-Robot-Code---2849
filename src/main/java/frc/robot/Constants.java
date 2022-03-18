@@ -27,6 +27,10 @@ public final class Constants {
     CRIT,
   }
 
+  //Limelight Pipelines
+  public static final int SHOOTING_PIPELINE = 0;
+  public static final int ALIGNING_PIPELINE = 0;
+
   // Spark Ports
   public static final int SPARK_BACK_LEFT_DRIVE_PORT = 3;
   public static final int SPARK_BACK_RIGHT_DRIVE_PORT = 2;
@@ -45,7 +49,7 @@ public final class Constants {
   public static final int FALCON_CLIMB1_PORT = 0;
   public static final int FALCON_CLIMB2_PORT = 3;
 
-  public static final int SHOOTER_PORT = 2; // TODO: real port num
+  public static final int SHOOTER_PORT = 4; //Was 2 before TODO: real port num
   public static final int INTAKE_PORT = 6; // TODO: real port num
 
   // Victor Ports
