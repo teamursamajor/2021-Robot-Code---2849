@@ -68,7 +68,7 @@ public class RobotContainer {
 
     SmartDashboard.putData(m_chooser);
 
-    SmartDashboard.putNumber("Shooting Multiplier", 0.95);
+    SmartDashboard.putNumber("Shooting Multiplier", 0.92);
     SmartDashboard.putBoolean("Actuator Open", false);
     
 
@@ -119,7 +119,7 @@ public class RobotContainer {
         .whenPressed(new ClimbCommand(CLIMB_SUBSYSTEM, false));
     */
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kRightBumper.value)
-        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, true, .5));
+        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, true, .4));
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kLeftBumper.value)
         .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, false, .5));
@@ -127,7 +127,7 @@ public class RobotContainer {
     
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
-        .whenPressed(new ManualClimbCommand(CLIMB_SUBSYSTEM, true, .2));
+        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, false, .2));
 
    // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
        // .whileHeld(new ActuatorCommand(CLIMB_SUBSYSTEM, false));
