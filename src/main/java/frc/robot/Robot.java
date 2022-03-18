@@ -85,10 +85,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+
     m_robotContainer.DRIVE_SUBSYSTEM.setDefaultCommand(m_robotContainer.DRIVE_COMMAND);
 
     BooleanSupplier rightTrigger = () -> XBOX_CONTROLLER.getRightTriggerAxis() > 0.2;
-    new Trigger(rightTrigger).whileActiveContinuous(new ShooterCommand(m_robotContainer.SHOOTER_SUBSYSTEM));
+    new Trigger(rightTrigger).whileActiveContinuous(new ShooterCommand(m_robotContainer.SHOOTER_SUBSYSTEM, m_robotContainer.INTAKE_SUBSYSTEM));
     /*
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to

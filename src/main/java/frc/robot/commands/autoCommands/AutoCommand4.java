@@ -39,10 +39,9 @@ public class AutoCommand4 extends CommandBase {
         .withTimeout(1.75)
         .andThen(new AlignCommand(DRIVE_SUBSYSTEM))
         .andThen(new DistanceCommand(DRIVE_SUBSYSTEM))
-        .andThen(new ShooterCommand(SHOOTER_SUBSYSTEM))
+        .andThen(new ShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM))
         .withTimeout(7.0)
         .schedule();
-    INTAKE_SUBSYSTEM.beltSpark.set(1.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

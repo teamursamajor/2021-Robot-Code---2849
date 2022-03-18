@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClimbSubsystem extends SubsystemBase {
@@ -72,10 +73,12 @@ public class ClimbSubsystem extends SubsystemBase {
     if (setToOpen){
       climbActuator.setSpeed(maxPos);
       actuatorOpen = true;
+      SmartDashboard.putBoolean("Actuator Open", true);
     } 
     else{
       climbActuator.setSpeed(minPos);
       actuatorOpen = false;
+      SmartDashboard.putBoolean("Actuator Open", false);
     } 
   }
 }

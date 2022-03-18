@@ -117,7 +117,7 @@ public class DistanceCommand extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    // System.out.println("End");
+    System.out.println("Distance End");
     DRIVE_SUBSYSTEM.setPower(0, 0);
   }
 }

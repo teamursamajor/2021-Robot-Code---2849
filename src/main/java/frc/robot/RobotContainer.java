@@ -51,10 +51,9 @@ public class RobotContainer {
 
   public final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem();
 
-  private final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
+  public final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
   // Auto Commands
-  public final Command m_driveShootAuto =
-      new AutoCommand1(DRIVE_SUBSYSTEM, INTAKE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
+  public final Command m_driveShootAuto = new AutoCommand1(DRIVE_SUBSYSTEM, INTAKE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
   private final Command m_driveAuto = new AutoCommand2(DRIVE_SUBSYSTEM);
   private final Command m_nothingAuto = new AutoCommand3();
 
@@ -70,6 +69,8 @@ public class RobotContainer {
     SmartDashboard.putData(m_chooser);
 
     SmartDashboard.putNumber("Shooting Multiplier", 0.95);
+    SmartDashboard.putBoolean("Actuator Open", false);
+    
 
     // set the drive default command
     // DRIVE_SUBSYSTEM.setDefaultCommand(DRIVE_COMMAND);
@@ -118,24 +119,29 @@ public class RobotContainer {
         .whenPressed(new ClimbCommand(CLIMB_SUBSYSTEM, false));
     */
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kRightBumper.value)
-        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, true));
+        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, true, .5));
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kLeftBumper.value)
-        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, false));
+        .whileHeld(new ManualClimbCommand(CLIMB_SUBSYSTEM, false, .5));
 
     
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kB.value)
-        .whileHeld(new ActuatorCommand(CLIMB_SUBSYSTEM, true));
+        .whenPressed(new ManualClimbCommand(CLIMB_SUBSYSTEM, true, .2));
+
+   // new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
+       // .whileHeld(new ActuatorCommand(CLIMB_SUBSYSTEM, false));
 
     new JoystickButton(XBOX_CONTROLLER, XboxController.Button.kX.value)
-        .whileHeld(new ActuatorCommand(CLIMB_SUBSYSTEM, false));
+        .whenPressed(new ActuatorCommand(CLIMB_SUBSYSTEM));
 
     
     
   }
 
-  /***
+  
+
+/***
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous

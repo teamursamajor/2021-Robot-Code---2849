@@ -28,11 +28,11 @@ public class ManualClimbCommand extends CommandBase {
   private int actuatorTickGood = 250;
   private final ClimbSubsystem CLIMB_SUBSYSTEM;
 
-  public ManualClimbCommand(ClimbSubsystem subsystem, boolean raisingArm) {
+  public ManualClimbCommand(ClimbSubsystem subsystem, boolean raisingArm, double falconSpeed) {
     CLIMB_SUBSYSTEM = subsystem;
     this.raisingArm = raisingArm;
     addRequirements(subsystem);
-    
+    this.falconSpeed = falconSpeed;
   }
 
   @Override
@@ -74,6 +74,8 @@ public class ManualClimbCommand extends CommandBase {
       System.out.println("Closed Actuator");
     }
     */
+    CLIMB_SUBSYSTEM.climbOne.setNeutralMode(NeutralMode.Brake);
+      CLIMB_SUBSYSTEM.climbTwo.setNeutralMode(NeutralMode.Brake);
   }
 
   @Override

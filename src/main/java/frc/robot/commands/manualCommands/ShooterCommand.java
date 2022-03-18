@@ -6,6 +6,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import static frc.robot.Constants.*;
 //import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -19,16 +20,18 @@ public class ShooterCommand extends CommandBase {
   public double maxMotorPower = 1.0;
   public double shootingSpeed = -14000;
   private final ShooterSubsystem SHOOTER_SUBSYSTEM;
+  private final IntakeSubsystem INTAKE_SUBSYSTEM;
 
   /**
    * Creates a new ShooterCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ShooterCommand(ShooterSubsystem subsystem) {
+  public ShooterCommand(ShooterSubsystem subsystem, IntakeSubsystem intakeSubsystem) {
     // System.out.println("construct");
     SHOOTER_SUBSYSTEM = subsystem;
-    addRequirements(subsystem);
+    INTAKE_SUBSYSTEM = intakeSubsystem;
+    addRequirements(subsystem, intakeSubsystem);
 
   }
 
@@ -81,16 +84,19 @@ public class ShooterCommand extends CommandBase {
     
     shootingSpeed = -10000 + 206.19 * (getY() - 22.7);
     shootingSpeed *= SmartDashboard.getNumber("Shooting Multiplier", 1.0);
-    System.out.println("Shooting multiplier: " + SmartDashboard.getNumber("Shooting Multiplier", 1.0));
+    //System.out.println("Shooting multiplier: " + SmartDashboard.getNumber("Shooting Multiplier", 1.0));
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, shootingSpeed);
-    System.out.println("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() + "Shooting speed at: " + shootingSpeed);
-    
+    //System.out.println("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() + "Shooting speed at: " + shootingSpeed);
+    if(Math.abs(shootingSpeed - SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity()) < 200){
+      INTAKE_SUBSYSTEM.beltSpark.set(-1.0);
+    }
   }
 
   @Override
   public void end(boolean interrupted) {
-    // System.out.println("end");
+    System.out.println("Shooter End");
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.0);
+    INTAKE_SUBSYSTEM.beltSpark.set(0);
   }
 
   public boolean isFinished() {

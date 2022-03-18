@@ -17,26 +17,26 @@ import frc.robot.subsystems.ClimbSubsystem;
  */
 public class ActuatorCommand extends CommandBase {
 
-  private boolean opening;
+  
   private boolean isFinished = false;
   private final ClimbSubsystem CLIMB_SUBSYSTEM;
 
-  public ActuatorCommand(ClimbSubsystem subsystem, boolean opening) {
+  public ActuatorCommand(ClimbSubsystem subsystem) {
     CLIMB_SUBSYSTEM = subsystem;
-    this.opening = opening;
+    
     addRequirements(subsystem);
   }
 
   @Override
   public void initialize() {
     
-    if (opening){
-      CLIMB_SUBSYSTEM.setActuatorPosition(true);
+    if (CLIMB_SUBSYSTEM.actuatorOpen){
+      CLIMB_SUBSYSTEM.setActuatorPosition(false);
     } 
     else{
       CLIMB_SUBSYSTEM.climbOne.setNeutralMode(NeutralMode.Brake);
       CLIMB_SUBSYSTEM.climbTwo.setNeutralMode(NeutralMode.Brake);
-      CLIMB_SUBSYSTEM.setActuatorPosition(false);
+      CLIMB_SUBSYSTEM.setActuatorPosition(true);
     } 
   }
 

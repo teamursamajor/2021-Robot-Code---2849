@@ -76,10 +76,6 @@ public class AlignCommand extends CommandBase {
 
   @Override
   public void execute() {
-    System.out.println("excuting align comamand");
-    //NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    //NetworkTableEntry tx = table.getEntry("tx");
-    // System.out.println("is executing");
     double max = 1;
     double min = -1;
     // detect target
@@ -121,7 +117,7 @@ public class AlignCommand extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    // System.out.println("end");
+    System.out.println("Align End");
     DRIVE_SUBSYSTEM.setPower(0, 0);
   }
 }
