@@ -43,7 +43,7 @@ public class ShooterCommand extends CommandBase {
     
     double y;
     boolean canDetectLimelight = tv.getDouble(0) > 0;
-    System.out.println(canDetectLimelight + " " + tv.getDouble(0));
+    //System.out.println(canDetectLimelight + " " + tv.getDouble(0));
     if(canDetectLimelight == true){
       return ty.getDouble(Double.MIN_VALUE);
     }else{

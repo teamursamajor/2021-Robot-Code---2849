@@ -35,6 +35,7 @@ public class DistanceCommand extends CommandBase {
   public void initialize() {
     count = 0;
     alignFinished = false;
+    System.out.println("Distance Start");
   }
 
   public double getY() {
@@ -80,7 +81,6 @@ public class DistanceCommand extends CommandBase {
 
   @Override
   public void execute() {
-    System.out.println("in distance command");
     if(tv.getDouble(0) != 0){
       double y = getY();
     // System.out.println("is executing");

@@ -29,7 +29,7 @@ public class AlignCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    // System.out.println("initialized");
+    System.out.println("align initialized");
     alignFinished = false;
     count = 0;
   }

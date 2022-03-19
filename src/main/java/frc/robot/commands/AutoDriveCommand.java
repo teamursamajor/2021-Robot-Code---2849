@@ -24,14 +24,14 @@ public class AutoDriveCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    System.out.println("Auto drive start");
     DRIVE_SUBSYSTEM.setPower(.45, .45);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Auto driving");
+    
 
     // Pseudocode below for Falcon Drive System (if using falcons to drive)
     // SET [Distance] TO AMOUNT OF TICKS
@@ -53,7 +53,7 @@ public class AutoDriveCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    System.out.println("ends");
+    System.out.println("auto drive ends");
     DRIVE_SUBSYSTEM.setPower(0, 0);
   }
 
