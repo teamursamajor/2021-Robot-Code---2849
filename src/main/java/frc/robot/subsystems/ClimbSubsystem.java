@@ -42,8 +42,8 @@ public class ClimbSubsystem extends SubsystemBase {
     climbOneInitialTicks = climbOne.getSelectedSensorPosition();
     climbTwoInitialTicks = climbTwo.getSelectedSensorPosition();
     climbActuator.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
-    climbOne.setNeutralMode(NeutralMode.Brake);
-    climbTwo.setNeutralMode(NeutralMode.Brake);
+    climbOne.setNeutralMode(NeutralMode.Coast);
+    climbTwo.setNeutralMode(NeutralMode.Coast);
 
 
     climbOne.set(TalonFXControlMode.Velocity, -2000);

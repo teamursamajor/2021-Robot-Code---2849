@@ -31,6 +31,7 @@ public class ManualBeltCommand extends CommandBase {
       INTAKE_SUBSYSTEM.beltSpark.set(BELT_SPEED);
     } else {
       INTAKE_SUBSYSTEM.beltSpark.set(-BELT_SPEED);
+      INTAKE_SUBSYSTEM.INTAKE.set(-0.4);
     }
   }
 
@@ -42,6 +43,7 @@ public class ManualBeltCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     INTAKE_SUBSYSTEM.beltSpark.set(0.0);
+    INTAKE_SUBSYSTEM.INTAKE.set(0.0);
   }
 
   // Returns true when the command should end.

@@ -22,7 +22,7 @@ public class ManualIntakeCommand extends CommandBase {
 
   @Override
   public void execute() {
-    INTAKE_SUBSYSTEM.INTAKE.set(0.60);
+    INTAKE_SUBSYSTEM.INTAKE.set(0.40);
 
     if (INTAKE_SUBSYSTEM.bottomLineBroken) {
       INTAKE_SUBSYSTEM.ballCount++;

@@ -11,18 +11,23 @@ public class IntakeRetractCommand extends CommandBase {
   public IntakeRetractCommand(IntakeSubsystem intakeSubsystem) {
     INTAKE_SUBSYSTEM = intakeSubsystem;
     addRequirements(intakeSubsystem);
-    this.wantToRetract = wantToRetract;
     setName("Auto Drive (Command)");
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+    INTAKE_SUBSYSTEM.INTAKE.set(-0.4);
+    INTAKE_SUBSYSTEM.beltSpark.set(1.0);
+  }
 
   @Override
   public void execute() {}
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    INTAKE_SUBSYSTEM.INTAKE.set(0.0);
+    INTAKE_SUBSYSTEM.beltSpark.set(0.0);
+  }
 
   @Override
   public boolean isFinished() {

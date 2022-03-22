@@ -32,11 +32,13 @@ public class ActuatorCommand extends CommandBase {
     
     if (CLIMB_SUBSYSTEM.actuatorOpen){
       CLIMB_SUBSYSTEM.setActuatorPosition(false);
+      System.out.println("Actuator closed");
     } 
     else{
       CLIMB_SUBSYSTEM.climbOne.setNeutralMode(NeutralMode.Brake);
       CLIMB_SUBSYSTEM.climbTwo.setNeutralMode(NeutralMode.Brake);
       CLIMB_SUBSYSTEM.setActuatorPosition(true);
+      System.out.println("actuator opened");
     } 
   }
 

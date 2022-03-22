@@ -59,6 +59,9 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void initialize() {
     isShooterFinished = false;
+    shootingSpeed = SmartDashboard.getNumber("Shooting Speed", -14000);
+    shootingSpeed *= SmartDashboard.getNumber("Shooting Multiplier", 1.0);
+    
     // System.out.println("initlazed");
     //shootingSpeed = SmartDashboard.getNumber("Shooting Speed", -14000);
     
@@ -79,14 +82,17 @@ public class ShooterCommand extends CommandBase {
     // e.printStackTrace();
     // }
     // finished = true;
+    System.out.println("Desired Shooting Speed: " + shootingSpeed);
+    System.out.println("Actual Shooting Speed: " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity());
 
     //SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, -300);
     
-    shootingSpeed = -10000 + 206.19 * (getY() - 22.7);
-    shootingSpeed *= SmartDashboard.getNumber("Shooting Multiplier", 1.0);
+    
+    //shootingSpeed = -10000 + 206.19 * (getY() - 22.7);
     //System.out.println("Shooting multiplier: " + SmartDashboard.getNumber("Shooting Multiplier", 1.0));
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, shootingSpeed);
     //System.out.println("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() + "Shooting speed at: " + shootingSpeed);
+    
     if(Math.abs(shootingSpeed - SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity()) < 200){
       INTAKE_SUBSYSTEM.beltSpark.set(-1.0);
     }
@@ -94,9 +100,9 @@ public class ShooterCommand extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    System.out.println("Shooter End");
     SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.PercentOutput, 0.0);
     INTAKE_SUBSYSTEM.beltSpark.set(0);
+    shootingSpeed = -14000;
   }
 
   public boolean isFinished() {

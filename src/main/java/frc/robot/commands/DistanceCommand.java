@@ -16,7 +16,7 @@ public class DistanceCommand extends CommandBase {
   // public double maxShooting = -17;
   // public double minShooting = -8;
   public double minShooting = 22.7;
-  public double maxShooting = -1.55;
+  public double maxShooting = -1.50;
   public int count;
   public int limeLightMissing = 5;
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");

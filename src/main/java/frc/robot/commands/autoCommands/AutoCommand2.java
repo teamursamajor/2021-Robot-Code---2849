@@ -26,8 +26,6 @@ public class AutoCommand2 extends CommandBase {
   public void initialize() {
     new AutoDriveCommand(DRIVE_SUBSYSTEM)
         .withTimeout(2)
-        .andThen(new AlignCommand(DRIVE_SUBSYSTEM))
-        .andThen(new DistanceCommand(DRIVE_SUBSYSTEM))
         .schedule();
         System.out.println("Aligned");
   }
