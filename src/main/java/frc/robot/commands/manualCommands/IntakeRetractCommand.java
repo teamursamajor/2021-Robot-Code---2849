@@ -16,7 +16,7 @@ public class IntakeRetractCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    INTAKE_SUBSYSTEM.INTAKE.set(-0.4);
+    INTAKE_SUBSYSTEM.INTAKE.set(-1.0);
     INTAKE_SUBSYSTEM.beltSpark.set(1.0);
   }
 

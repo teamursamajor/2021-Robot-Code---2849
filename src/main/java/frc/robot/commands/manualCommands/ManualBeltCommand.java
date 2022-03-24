@@ -31,7 +31,8 @@ public class ManualBeltCommand extends CommandBase {
       INTAKE_SUBSYSTEM.beltSpark.set(BELT_SPEED);
     } else {
       INTAKE_SUBSYSTEM.beltSpark.set(-BELT_SPEED);
-      INTAKE_SUBSYSTEM.INTAKE.set(-0.4);
+      INTAKE_SUBSYSTEM.INTAKE.set(-0.6);
+      
     }
   }
 

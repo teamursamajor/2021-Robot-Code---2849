@@ -19,13 +19,14 @@ public class ManualClimbCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private int extendedTickCount = 4096; // Fix
 
-  private int retractedTickCount = 0;
+  
   private double falconSpeed = 0.35;
   private boolean raisingArm;
   private boolean actuatorReady = false;
   private boolean isFinished = false;
-  private int actuatorTickCount = 0;
-  private int actuatorTickGood = 250;
+  private double actuatorTickCount;
+  private double actuatorTickGood = 14000.0;
+  public double difference;
   private final ClimbSubsystem CLIMB_SUBSYSTEM;
 
   public ManualClimbCommand(ClimbSubsystem subsystem, boolean raisingArm, double falconSpeed) {
@@ -38,7 +39,7 @@ public class ManualClimbCommand extends CommandBase {
   @Override
   public void initialize() {
     log(CLIMB_SUBSYSTEM, "intialzied", INFO);
-
+    actuatorTickCount = CLIMB_SUBSYSTEM.avgCurrentEncoderTicks;
     if(CLIMB_SUBSYSTEM.actuatorOpen){
       if (raisingArm) CLIMB_SUBSYSTEM.setFalconPower(-falconSpeed);
       else {
@@ -51,7 +52,14 @@ public class ManualClimbCommand extends CommandBase {
   }
 
   public void execute() {
-
+    /*
+    if(raisingArm){
+      difference = CLIMB_SUBSYSTEM.avgCurrentEncoderTicks-actuatorTickCount;
+      if(difference == (actuatorTickGood-5) || difference == (actuatorTickGood+5)){
+        isFinished = true;
+      }
+    }
+    */
     /*
 
     if(actuatorTickCount != actuatorTickGood && raisingArm == true)
@@ -75,7 +83,7 @@ public class ManualClimbCommand extends CommandBase {
     }
     */
     CLIMB_SUBSYSTEM.climbOne.setNeutralMode(NeutralMode.Brake);
-      CLIMB_SUBSYSTEM.climbTwo.setNeutralMode(NeutralMode.Brake);
+    CLIMB_SUBSYSTEM.climbTwo.setNeutralMode(NeutralMode.Brake);
   }
 
   @Override

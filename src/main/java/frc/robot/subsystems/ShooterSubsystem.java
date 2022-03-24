@@ -15,10 +15,10 @@ public class ShooterSubsystem extends SubsystemBase {
   public ShooterSubsystem() {
     SHOOTER.configFactoryDefault();
     SHOOTER.setNeutralMode(NeutralMode.Coast);
-    SHOOTER.config_kP(0, 0.5);
+    SHOOTER.config_kP(0, 0.7);
     SHOOTER.config_kD(0, 0.1);
-    SHOOTER.config_kF(0, 0.059);
-    SHOOTER.config_kI(0, 0);
+    SHOOTER.config_kF(0, 0.05);
+    SHOOTER.config_kI(0, 0.0);
     setName("Shooter");
   }
 

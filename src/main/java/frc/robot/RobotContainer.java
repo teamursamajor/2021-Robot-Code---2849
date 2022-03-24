@@ -69,8 +69,8 @@ public class RobotContainer {
     SmartDashboard.putData(m_chooser);
 
 
-    SmartDashboard.putNumber("Shooting Speed", -14000);
-    SmartDashboard.putNumber("Shooting Multiplier", 0.92);
+    SmartDashboard.putNumber("Shooting Speed", -10500);
+    SmartDashboard.putNumber("Shooting Multiplier", 1.0);
     SmartDashboard.putBoolean("Actuator Open", false);
     
 
