@@ -105,7 +105,7 @@ public class ShooterCommand extends CommandBase {
       if(readyToShoot){
         readyToShoot = false;
         INTAKE_SUBSYSTEM.beltSpark.set(-1.0);
-        INTAKE_SUBSYSTEM.INTAKE.set(0.6);
+        INTAKE_SUBSYSTEM.INTAKE.set(0.5);
       }
     }
     
