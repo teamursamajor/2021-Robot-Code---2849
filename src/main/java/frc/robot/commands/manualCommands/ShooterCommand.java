@@ -78,7 +78,6 @@ public class ShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println(readyToShoot);
     // System.out.println("Execute");
     // try {
     //  wait(500L);
@@ -97,17 +96,12 @@ public class ShooterCommand extends CommandBase {
     //System.out.println("Shooting multiplier: " + SmartDashboard.getNumber("Shooting Multiplier", 1.0));
     //SHOOTER_SUBSYSTEM.SHOOTER.set(TalonFXControlMode.Velocity, shootingSpeed);
     //System.out.println("Motor speed at " + SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity() + "Shooting speed at: " + shootingSpeed);
-    if(ready == false){
+    
       if(Math.abs(shootingSpeed - SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity()) < 60){
-        readyToShoot = true;
-        ready = true;
-      }
-      if(readyToShoot){
-        readyToShoot = false;
-        INTAKE_SUBSYSTEM.beltSpark.set(-1.0);
+        INTAKE_SUBSYSTEM.beltSpark.set(-.7);
         INTAKE_SUBSYSTEM.INTAKE.set(0.5);
       }
-    }
+    
     
   }
 

@@ -74,6 +74,16 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void setPower(double leftSpeed, double rightSpeed) {
+    if(Math.abs(leftSpeed-rightSpeed)>.6){
+      leftSpeed = leftSpeed*.8;
+      rightSpeed = rightSpeed*.8;
+      /*if(leftSpeed > rightSpeed)
+        rightSpeed = -leftSpeed;
+      else
+        leftSpeed = -rightSpeed;
+        */
+    }
+    
     switch (motorType) {
       case SPARKS:
         setLeftPowerSparks(leftSpeed);
