@@ -28,8 +28,8 @@ public final class Constants {
   }
 
   //Limelight Pipelines
-  public static final int SHOOTING_PIPELINE = 1;
-  public static final int ALIGNING_PIPELINE = 1;
+  public static final int SHOOTING_PIPELINE = 2;
+  public static final int ALIGNING_PIPELINE = 2;
 
   // Spark Ports
   public static final int SPARK_BACK_LEFT_DRIVE_PORT = 3;
