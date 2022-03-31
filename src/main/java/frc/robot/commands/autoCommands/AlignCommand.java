@@ -93,10 +93,10 @@ public class AlignCommand extends CommandBase {
         // System.out.println("We are alined");
         alignFinished = true;
       } else if (x > max) {
-        DRIVE_SUBSYSTEM.setPower(0, .5);
+        DRIVE_SUBSYSTEM.setPower(0, .6);
         // System.out.println("4");
       } else if (x < min) {
-        DRIVE_SUBSYSTEM.setPower(.5, 0);
+        DRIVE_SUBSYSTEM.setPower(.6, 0);
         // System.out.println("5");
       }
     }

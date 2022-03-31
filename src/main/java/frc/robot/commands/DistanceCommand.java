@@ -18,6 +18,14 @@ public class DistanceCommand extends CommandBase {
   public double minShooting = 23.2;
   public double maxShooting = 21.8;
   public int count;
+  public double speed;
+  //max speed = .60 min speed = .35 
+  //max y = -10     min  y = 23
+  //speed = (current y/ max y) * .60
+  //speed = -30 + .011(curr y + -30
+  // (53 - (y + 30))*0.0113;
+  
+
   public int limeLightMissing = 5;
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   
@@ -81,11 +89,13 @@ public class DistanceCommand extends CommandBase {
 
   @Override
   public void execute() {
+    
     if(tv.getDouble(0) != 0){
       double y = getY();
     // System.out.println("is executing");
     // System.out.println("y is: +" + y);
-
+    //speed = 0.65 - (y+10)*0.010606;  KEEP THIS ONE
+    speed = ((y+10)*-.00909)+.65;
     if (y == Double.MIN_VALUE) {
       count++;
       if (count == limeLightMissing) {
@@ -98,11 +108,11 @@ public class DistanceCommand extends CommandBase {
       alignFinished = true;
 
     } else if (y > minShooting) {
-      DRIVE_SUBSYSTEM.setPower(.35, .35);
+      DRIVE_SUBSYSTEM.setPower(speed, speed);
       // System.out.println("To close");
     } else if (y < maxShooting) {
 
-      DRIVE_SUBSYSTEM.setPower(-.35, -.35);
+      DRIVE_SUBSYSTEM.setPower(-speed, -speed);
       // System.out.println("to far");
     }
     }

@@ -57,16 +57,16 @@ public class RobotContainer {
   private final Command m_driveAuto = new AutoCommand2(DRIVE_SUBSYSTEM);
   private final Command m_nothingAuto = new AutoCommand3();
 
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  SendableChooser<Command> m_autoChooser = new SendableChooser<>();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // set up the autoCommand
-    m_chooser.setDefaultOption("Drive and Shoot Auto", m_driveShootAuto);
-    m_chooser.addOption("Drive Auto", m_driveAuto);
-    m_chooser.addOption("Nothing Auto", m_nothingAuto);
+    m_autoChooser.setDefaultOption("Drive and Shoot Auto", m_driveShootAuto);
+    m_autoChooser.addOption("Drive Auto", m_driveAuto);
+    m_autoChooser.addOption("Nothing Auto", m_nothingAuto);
 
-    SmartDashboard.putData(m_chooser);
+    SmartDashboard.putData(m_autoChooser);
 
 
     SmartDashboard.putNumber("Shooting Speed", -9800);
@@ -149,6 +149,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return m_chooser.getSelected();
+    return m_autoChooser.getSelected();
   }
 }

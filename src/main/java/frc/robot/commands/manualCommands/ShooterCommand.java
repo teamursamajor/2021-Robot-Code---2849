@@ -99,7 +99,7 @@ public class ShooterCommand extends CommandBase {
     
       if(Math.abs(shootingSpeed - SHOOTER_SUBSYSTEM.SHOOTER.getSelectedSensorVelocity()) < 60){
         INTAKE_SUBSYSTEM.beltSpark.set(-.7);
-        INTAKE_SUBSYSTEM.INTAKE.set(0.5);
+       // INTAKE_SUBSYSTEM.INTAKE.set(0.5);
       }
     
     
