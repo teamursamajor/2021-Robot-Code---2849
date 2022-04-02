@@ -89,32 +89,35 @@ public class DistanceCommand extends CommandBase {
 
   @Override
   public void execute() {
-    
-    if(tv.getDouble(0) != 0){
-      double y = getY();
-    // System.out.println("is executing");
-    // System.out.println("y is: +" + y);
-    //speed = 0.65 - (y+10)*0.010606;  KEEP THIS ONE
-    speed = ((y+10)*-.00909)+.65;
-    if (y == Double.MIN_VALUE) {
-      count++;
-      if (count == limeLightMissing) {
-        // System.out.println("Couldn't detect limelight");
-        alignFinished = true;
-      }
-    } else if (y <= minShooting && y >= maxShooting) {
-      // System.out.println("y = " + y);
-      // call shooter
-      alignFinished = true;
 
-    } else if (y > minShooting) {
-      DRIVE_SUBSYSTEM.setPower(speed, speed);
-      // System.out.println("To close");
-    } else if (y < maxShooting) {
-
-      DRIVE_SUBSYSTEM.setPower(-speed, -speed);
-      // System.out.println("to far");
+    if(tv.getDouble(0) == 0){
+        count++;
+        if (count == limeLightMissing) {
+          // System.out.println("Couldn't detect limelight");
+          alignFinished = true;
+        }
     }
+    else{
+      count = 0;
+      double y = getY();
+      // System.out.println("is executing");
+      System.out.println("y is: +" + y);
+      // ((y+10)*-.00909)+.65
+      //speed = 0.65 - (y+10)*0.010606;  KEEP THIS ONE
+      speed = 0.65 - (y+10)*0.010606;
+      if (y <= minShooting && y >= maxShooting) {
+        // System.out.println("y = " + y);
+        // call shooter
+        alignFinished = true;
+
+      } else if (y > minShooting) {
+        DRIVE_SUBSYSTEM.setPower(speed, speed);
+        // System.out.println("To close");
+      } else if (y < maxShooting) {
+
+        DRIVE_SUBSYSTEM.setPower(-speed, -speed);
+        // System.out.println("to far");
+      }
     }
     
   }

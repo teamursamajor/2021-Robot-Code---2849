@@ -15,7 +15,9 @@ public class AlignCommand extends CommandBase {
   public double maxShooting;
   public double minShooting;
   public int count;
-  public int limeLightMissing = 5;
+  public int limeLightMissing = 10;
+  public int correctCountNum = 4;
+  public int correctCount;
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   NetworkTableEntry tv = table.getEntry("tv");
 
@@ -32,6 +34,7 @@ public class AlignCommand extends CommandBase {
     System.out.println("align initialized");
     alignFinished = false;
     count = 0;
+    correctCount = 0;
   }
 
   public void detectTarget() {
@@ -55,7 +58,6 @@ public class AlignCommand extends CommandBase {
   }
 
   public double getX() {
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
     double x;
 
@@ -76,27 +78,45 @@ public class AlignCommand extends CommandBase {
 
   @Override
   public void execute() {
+    if(correctCount == correctCountNum){
+      alignFinished = true;
+    } 
     double max = 1;
     double min = -1;
-    // detect target
-    if(tv.getDouble(0) != 0){
-      double x = getX();
-      if (x == Double.MIN_VALUE) {
-        count++;
-        if (count == limeLightMissing) {
-          // System.out.println("Couldn't detect limelight");
-          alignFinished = true;
-        } else {
-          return;
-        }
+    double x;
+    System.out.println("x value: "+ getX());
+    if(tv.getDouble(0) == 0) /* Don't see vision tape */{
+      count++;
+      if (count == limeLightMissing)
+        
+      alignFinished = true;
+    }
+    else /* We see vision tape */{
+      count = 0;
+      x = table.getEntry("tx").getDouble(0);
+      System.out.println("X value: " + x);
+      if(x <= max && x >= min){
+        DRIVE_SUBSYSTEM.setPower(0, 0);
+        correctCount++;
+      }
+      else if(x > max){
+        DRIVE_SUBSYSTEM.setPower(0, .5);
+        correctCount = 0;
+      }
+      else if(x < min){
+        DRIVE_SUBSYSTEM.setPower(.5, 0);
+        correctCount = 0;
+      }
+    }
+      /* KEEP THIS CODE
       } else if (x <= max && x >= min) {
         // System.out.println("We are alined");
         alignFinished = true;
       } else if (x > max) {
-        DRIVE_SUBSYSTEM.setPower(0, .6);
+        DRIVE_SUBSYSTEM.setPower(0, .35);
         // System.out.println("4");
       } else if (x < min) {
-        DRIVE_SUBSYSTEM.setPower(.6, 0);
+        DRIVE_SUBSYSTEM.setPower(.35, 0);
         // System.out.println("5");
       }
     }
@@ -107,6 +127,8 @@ public class AlignCommand extends CommandBase {
     // System.out.println("x is " + x);
     
     // end
+
+    */
   }
 
   @Override
