@@ -53,7 +53,7 @@ public class RobotContainer {
 
   public final IntakeSubsystem INTAKE_SUBSYSTEM = new IntakeSubsystem();
   // Auto Commands
-  public final Command m_driveShootAuto = new AutoCommand1(DRIVE_SUBSYSTEM, INTAKE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
+  public final Command m_shootAuto = new AutoCommand1(DRIVE_SUBSYSTEM, INTAKE_SUBSYSTEM, SHOOTER_SUBSYSTEM);
   private final Command m_driveAuto = new AutoCommand2(DRIVE_SUBSYSTEM);
   private final Command m_nothingAuto = new AutoCommand3();
 
@@ -62,14 +62,14 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // set up the autoCommand
-    m_autoChooser.setDefaultOption("Drive and Shoot Auto", m_driveShootAuto);
+    m_autoChooser.setDefaultOption("Shoot Auto", m_shootAuto);
     m_autoChooser.addOption("Drive Auto", m_driveAuto);
     m_autoChooser.addOption("Nothing Auto", m_nothingAuto);
 
     SmartDashboard.putData(m_autoChooser);
 
 
-    SmartDashboard.putNumber("Shooting Speed", -9800);
+    SmartDashboard.putNumber("Shooting Speed", -10250);
     SmartDashboard.putNumber("Shooting Multiplier", 1.0);
     SmartDashboard.putBoolean("Actuator Open", false);
     

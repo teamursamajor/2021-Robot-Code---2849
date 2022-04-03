@@ -32,6 +32,10 @@ public class AutoCommand4 extends CommandBase {
     setName("Auto Drive (Command)");
   }
 
+  public String toString(){
+    return "Auto Command4";
+  }
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {

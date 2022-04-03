@@ -15,8 +15,8 @@ public class DistanceCommand extends CommandBase {
   // This is for values on the cart
   // public double maxShooting = -17;
   // public double minShooting = -8;
-  public double minShooting = 23.2;
-  public double maxShooting = 21.8;
+  public double minShooting = 21.2;
+  public double maxShooting = 18.8;
   public int count;
   public double speed;
   //max speed = .60 min speed = .35 

@@ -33,15 +33,21 @@ public class AutoCommand1 extends CommandBase {
     setName("Auto Drive (Command)");
   }
 
+  public String toString(){
+    return "Auto Command1";
+  }
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-        new AutoDriveCommand(DRIVE_SUBSYSTEM)
-        .withTimeout(1.75).schedule();
+        //new AutoDriveCommand(DRIVE_SUBSYSTEM)
+        //.withTimeout(1.75).schedule();
     
         //new AutoDriveCommand(DRIVE_SUBSYSTEM)
         //.withTimeout(1.75).andThen(new DistanceCommand(DRIVE_SUBSYSTEM)).withTimeout(3).andThen(new AlignCommand(DRIVE_SUBSYSTEM)).withTimeout(2).andThen(new ShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM))
         //.schedule();
+
+        new ShooterCommand(SHOOTER_SUBSYSTEM, INTAKE_SUBSYSTEM).schedule();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

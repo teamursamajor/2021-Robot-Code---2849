@@ -20,6 +20,9 @@ public class AutoCommand2 extends CommandBase {
     addRequirements(driveSubsystem);
     setName("Auto Drive (Command)");
   }
+  public String toString(){
+    return "Auto Command2";
+  }
 
   // Called when the command is initially scheduled.
   @Override

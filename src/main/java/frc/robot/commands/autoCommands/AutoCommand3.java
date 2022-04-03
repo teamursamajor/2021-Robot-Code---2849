@@ -11,6 +11,9 @@ public class AutoCommand3 extends CommandBase {
   public AutoCommand3() {
     setName("Auto Drive (Command)");
   }
+  public String toString(){
+    return "Auto Command3";
+  }
 
   // Called when the command is initially scheduled.
   @Override

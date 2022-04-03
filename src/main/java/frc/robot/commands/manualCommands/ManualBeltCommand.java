@@ -15,7 +15,7 @@ public class ManualBeltCommand extends CommandBase {
 
   private boolean isBeltFoward;
 
-  private final double BELT_SPEED = -1.0;
+  private final double BELT_SPEED = -.7;
 
   public ManualBeltCommand(IntakeSubsystem intakeSubsystem, boolean isBeltFoward) {
     INTAKE_SUBSYSTEM = intakeSubsystem;
