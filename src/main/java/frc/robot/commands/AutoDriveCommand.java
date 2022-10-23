@@ -25,7 +25,7 @@ public class AutoDriveCommand extends CommandBase {
   @Override
   public void initialize() {
     System.out.println("Auto drive start");
-    DRIVE_SUBSYSTEM.setPower(.45, .45);
+    DRIVE_SUBSYSTEM.setPower(.8, .8);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
